@@ -1,0 +1,22 @@
+.trapezoid-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+  }
+  
+  .trapezoid {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0% 100%);
+    background: lightgray;
+  }
+  
+  .circle {
+    position: absolute;
+    width: 20px; /* Diameter: 2 * radius */
+    height: 20px; /* Diameter: 2 * radius */
+    border-radius: 50%;
+    background-color: blue;
+  }
+  

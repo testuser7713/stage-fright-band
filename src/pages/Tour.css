@@ -1,0 +1,70 @@
+.shape {
+    border: none;
+}
+
+.tour_map, .image-display-container {
+    margin-top: 10rem;
+}
+.tour_map_con {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10rem;
+    height:50rem;
+    background-color: black;
+}
+
+/*.sections {
+    height: 10rem; 
+    display: flex;
+    /*flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border: 1px solid #e60f0f;
+    box-sizing: border-box;
+  }
+  
+.tour img :not(.tour_layout){
+    height: 10rem;
+    width: 10rem;
+    border: 1px solid green;
+}*/
+
+.section_mapper {
+    border: 2px solid black;
+    height: 15rem;
+    width: 15.5rem;
+}
+
+.section_mapper img{
+    width: auto;
+    height: 15.5rem;
+    margin-left: -0.25rem;
+    margin-top: -0.4rem;
+    border: 2px solid red;
+}
+
+.seat_details {
+    color: white;
+}
+
+.tour_map_con {
+    display: flex;
+}
+
+.tour_left {
+    width: 57vw;
+}
+
+.selected_text {
+    color: white;
+}
+
+.tour_right {
+    border: 1px solid red;
+    width: 43vw;
+}
+
+.seat_select {
+    top: 2rem;
+    border: 2px solid yellow;
+}

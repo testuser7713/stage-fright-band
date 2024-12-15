@@ -1,0 +1,338 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Antonio';
+    src: url('Antonio-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.shop_page p {
+    font-family:'Antonio' ;
+}
+
+.side_bar_con {
+    margin-top: 8rem;
+
+}
+
+.shop_page {
+    background-color: black;
+}
+
+.top_con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8rem;
+    background-color: black;
+}
+
+.tour_image img {
+    width: 80vw;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.merch_image img {
+    width: 80vw;
+    height: 15rem;
+    object-fit: cover;
+    margin-bottom: 5rem;
+}
+
+.mid_con {
+    background-color: black;
+    justify-self: center;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    width: 80vw;
+    border: 1px solid white;
+    align-items: flex-start; /* Align children to the left */
+    position: relative; /* Establish containing block for .tote */
+}
+
+.mid_section {
+    display: flex;
+    height: fit-content;
+    justify-content: flex-start; /* Align content inside to the left */
+    width: 65%; /* Occupy 65% of the parent width */
+    border: 1px solid blue;
+}
+
+.mid_left_sec {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%; /* Three equal columns */
+    border: 1px solid yellow;
+    position: relative; /* Contain absolutely positioned children */
+}
+
+.mid_item_con {
+    padding: 10px;
+    border: 1px solid brown;
+}
+
+.mid_item, .mid_item_new {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid green;
+    background-color: grey;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.merch_label {
+    text-align: center;
+}
+
+.mid_item img {
+    display: flex;
+    width: 100%;
+    transform: scale(1.1);
+
+}
+
+.tote {
+    position: absolute; /* Remove from normal flow */
+    top: -60%; /* Adjust vertical position */
+    left: 45%; /* Adjust horizontal position */
+    transform: scale(0.60) rotate(-30deg);
+}
+
+.music_merch_con {
+    background-color: black;
+    margin-top: 5rem;
+    justify-self: center;
+    justify-content: space-between;
+    color: white;
+    display: flex;
+    overflow: visible;
+    flex-direction: row; /* Stack children vertically */
+    width: 80vw;
+    border: 1px solid white;
+    align-items: flex-end; /* Align children to the left */
+    position: relative; /* Establish containing block for .tote */
+}
+
+.music_merch_right_con {
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    height: 85vh; /* Occupy 65% of the parent width */
+    border: 2px solid blue;
+    margin-left: auto;
+    width: 45vw;
+}
+
+.music_merch_right {
+    display: grid;
+    grid-template-rows: 50% 50%; /* Three equal columns */
+    grid-template-columns: 50% 50%;
+    border: 1px solid yellow;
+    position: relative; /* Contain absolutely positioned children */
+}
+
+.music_merch_item_con {
+    padding: 10px;
+    border: 1px solid brown;
+}
+
+.music_item_con {
+    display: flex;
+    border: 1px solid green;
+
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.music_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+    padding: 0px;
+}
+
+.music_item p {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.music_item img{
+    height: 90%;
+}
+
+
+
+
+.music_merch {
+    border: 1px solid grey;
+        position: absolute; /* Position it relative to the parent container */
+        top: -7rem; /* Move upwards (adjust as needed) */
+        left: -26rem; /* Keep it aligned with the left edge of the container */
+        transform: scale(0.7); /* Optional: Adjust scale */
+
+}
+
+
+.vinyl {
+    position: absolute;
+    transform: scale(0.7);
+    top: -10rem;
+    left: -28rem;
+}
+
+.vinyl:hover {
+    animation: spinner 8s linear infinite;
+    transform: scale(0.7);
+}
+@keyframes spinner {
+    from { transform: rotate(0deg) scale(0.7); }
+    to { transform: rotate(360deg) scale(0.7); }
+}
+
+
+
+.records_con {
+    margin-top: 5rem;
+    justify-self: center;
+    justify-content: space-between;
+    color: white;
+    display: flex;
+    overflow: visible;
+    flex-direction: row; /* Stack children vertically */
+    width: 80vw;
+    border: 1px solid white;
+    align-items: flex-end; /* Align children to the left */
+    position: relative; /* Establish containing block for .tote */
+}
+
+.records_right {
+    display: flex;
+    height: fit-content;
+    justify-content: flex-end; /* Align content inside to the left */
+    border: 2px solid blue;
+    margin-left: auto;
+    width: 50vw
+}
+
+.records_right_con {
+    display: flex;
+    flex-direction: row;
+
+    border: 1px solid yellow;
+    gap: 0;
+    position: relative; /* Contain absolutely positioned children */
+}
+
+.record_sub {
+    display: flex;
+    justify-content: center;
+}
+
+
+.record_item {
+    display: flex;
+    flex-direction: column;
+    object-fit: contain;
+
+    border: 1px solid green;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    padding: 0px;
+}
+
+.record_item p {
+    justify-self: center;
+    display: flex;
+}
+
+.record_item img {
+    width: 80%;
+    display: flex;
+    border: 1px solid yellow;
+}
+
+.records_right_con .record_item_con:nth-child(2) {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    align-self: center;
+    padding: 0px;
+    border: 10px solid brown;
+}
+
+
+.image-wrapper {
+    position: relative; /* Container for images */
+    width: 100%; /* Match the dimensions of the items */
+    height: 100%;
+    overflow: hidden; /* Ensure no image goes outside the bounds */
+}
+
+.image-wrapper img {
+    position: absolute; /* Stack images */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fill the wrapper */
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+}
+
+.shop_front {
+    opacity: 1; /* Front image visible by default */
+    z-index: 1;
+}
+
+.shop_back {
+    opacity: 0; /* Back image hidden by default */
+    z-index: 0;
+}
+
+.mid_item_new:hover .shop_front {
+    opacity: 0; /* Hide front image on hover */
+}
+
+.mid_item_new:hover .shop_back {
+    opacity: 1; /* Show back image on hover */
+}
+
+.mid_item_new {
+    flex: 0 0 auto; /* Maintain individual item position in the slider */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Match image dimensions */
+    height: 100%;
+    background-color: grey;
+    position: relative; /* Ensure proper alignment in the slider */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.record_img:hover {
+    animation: spin 5s linear infinite;
+}
+  
+  
+  
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

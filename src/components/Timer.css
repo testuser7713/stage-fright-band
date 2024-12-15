@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'Antonio';
+    src: url('Antonio-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cubao Wide';
+    src: url('Cubao_Free_Wide.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.timer_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Antonio';
+  }
+  
+  .timer_grid {
+    display: flex;
+    align-items: baseline; /* Aligns items to the same horizontal baseline */
+    gap: 50px; /* Space between each timer block */
+  }
+  
+  .timer_grid > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers each number and its label */
+  }
+  
+  .timer_value {
+    font-size: 9rem;
+    color: #ffe5b5; /* Light purple color */
+    text-shadow: 0 0 20px #ffe9b5, 0 0 30px #ffc95c;
+    margin: 0;
+  }
+  
+  .label {
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #facc70; /* Slightly darker purple */
+    text-shadow: 0 0 10px #fff15c;
+    margin: 0;
+    margin-top: 10px; /* Space between the number and label */
+  }
+  
+  .timer_colon {
+    font-size: 5rem;
+    color: #facc70;
+    text-shadow: 0 0 20px #c3b5ff, 0 0 30px #fff15c;
+    margin: 0;
+    line-height: 1; /* Ensures no extra space above or below the colon */
+    display: flex;
+    align-items: center; /* Ensures vertical alignment with numbers */
+  }
+  

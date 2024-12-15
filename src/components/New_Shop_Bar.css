@@ -1,0 +1,136 @@
+.shopBar {
+    position: relative;
+    width: 100%;
+    max-width: 80vw;
+    margin: auto;
+    margin: 2rem 0;
+}
+
+.menu_secc {
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    height: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    z-index: 1;
+}
+
+.menu_secc::-webkit-scrollbar {
+    display: none;
+}
+
+.item_con img{
+    height: 270px;
+    width: 270px;
+}
+
+.item_con_one img{
+    height: 270px;
+    width: 270px;
+}
+
+
+
+/*.left_arrow, .right_arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.left_arrow, .right_arrow {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    left: 0%;
+    top: 29%;
+    cursor: pointer;
+    z-index: 1000;
+}
+ 
+.right_arrow {
+     left: 94%;
+     transform: rotate(180deg);
+}*/
+
+
+
+.left_arroww, .right_arroww {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    
+    top: 40%;
+    cursor: pointer;
+}
+
+.left_arroww {
+    right: 100%;
+}
+ 
+.right_arroww {
+     left: 100%;
+     transform: rotate(180deg);
+}
+
+.image-wrapperr {
+    position: relative; /* Container for images */
+    width: 270px; /* Match the dimensions of the items */
+    height: 270px;
+    overflow: hidden; /* Ensure no image goes outside the bounds */
+}
+
+.image-wrapperr img {
+    position: absolute; /* Stack images */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fill the wrapper */
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+}
+
+.image-front {
+    opacity: 1; /* Front image visible by default */
+    z-index: 1;
+}
+
+.image-back {
+    opacity: 0; /* Back image hidden by default */
+    z-index: 0;
+}
+
+.item_con_one:hover .image-front {
+    opacity: 0; /* Hide front image on hover */
+}
+
+.item_con_one:hover .image-back {
+    opacity: 1; /* Show back image on hover */
+}
+
+.item_con_one {
+    flex: 0 0 auto; /* Maintain individual item position in the slider */
+    display: flex;
+    flex-direction: column;
+    width: 270px; /* Match image dimensions */
+    height: 320px;
+    background-color: grey;
+    position: relative; /* Ensure proper alignment in the slider */
+    overflow: hidden;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop_label {
+    display: flex;
+    text-align: center;
+    justify-self: center;
+    z-index: 100;
+}
