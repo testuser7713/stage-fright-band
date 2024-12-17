@@ -1,5 +1,19 @@
+@font-face {
+    font-family: 'Antonio-Light';
+    src: url('Antonio-Light.ttf') format('truetype');
+    font-style: normal;
+}
+
 .shape {
     border: none;
+}
+
+.tour_map_con {
+    font-family: 'Antonio-Light';
+}
+
+.tour_map_con {
+    font-size: 20px;
 }
 
 .tour_map, .image-display-container {
@@ -45,6 +59,7 @@
 
 .seat_details {
     color: white;
+    justify-self: center;
 }
 
 .tour_map_con {
@@ -61,7 +76,7 @@
 
 .tour_right {
     border: 1px solid red;
-    width: 43vw;
+    width: 40vw;
 }
 
 .seat_select {

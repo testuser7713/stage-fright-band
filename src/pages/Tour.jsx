@@ -15,15 +15,25 @@ import img2L from "../assets/2L.png";
 import "./Tour.css";
 
 
-const generateCircles = (xStart, yStart, width, height, radius, spacing) => { 
+const generateCircles = (xStart, yStart, width, height, radius, spacing, section) => { 
   const circles = []; 
+  let seatCount = 1; // Incremental seat number
   for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) { 
     for (let x = xStart + radius; x + radius <= xStart + width; x += 2 * radius + spacing) { 
-      circles.push({ shape: "circle", coords: [x, y, radius], preFillColor: "rgba(63, 144, 236, 0.66)" }); 
+      const seatNumber = `${section}-${seatCount.toString().padStart(2, '0')}`;
+      circles.push({ 
+        shape: "circle", 
+        coords: [x, y, radius], 
+        preFillColor: "rgba(63, 144, 236, 0.66)", 
+        seatNumber: seatNumber, 
+        onClick: () => handleSeatClick(seatNumber)
+      });
+      seatCount++;
     } 
   } 
   return circles;
 };
+
 
 const Tour = ({seat}) => {
   const [selectedShapeId, setSelectedShapeId] = useState(null);
@@ -145,7 +155,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
     { "shape": "circle", "coords": [145, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-51", "onclick": "handleSeatClick('1U-51')" }
   ],
 
-    "2U": generateCircles(12,16,540,210,10,5),
+    "2U": generateCircles(12,16,540,210,10,5, "2U"),
 
   
     "3U": [
@@ -282,7 +292,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
 
         
     ],
-    "8U": generateCircles(20,40,490,180,10,5),
+    "8U": generateCircles(20,40,490,180,10,5, "8U"),
 
     "9U": [
         { shape: "circle", coords: [25, 20, 8], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "9U-1", onClick: () => handleSeatClick("9U-1") },
@@ -332,9 +342,9 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
         { shape: "circle", coords: [125, 20, 8], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "9U-45", onClick: () => handleSeatClick("9U-45") },
         { shape: "circle", coords: [145, 20, 8], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "9U-46", onClick: () => handleSeatClick("9U-46") }
     ],
-    "1L": generateCircles(8,8,170,220,10,5),
+    "1L": generateCircles(8,8,170,220,10,5,"1L"),
 
-    "2L": generateCircles(8,8,220,220,10,5),
+    "2L": generateCircles(8,8,220,220,10,5,"2L"),
 
   };
 
@@ -355,7 +365,8 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
   
   useEffect(() => {
     const handleSeatSelectionChange = () => {
-      setSelectedSeat(localStorage.getItem("seat") || "");
+      const seat = JSON.parse(localStorage.getItem("seat")) || "";
+      setSelectedSeat(seat);
     };
 
     // Listen for the custom event
@@ -412,13 +423,20 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
       
       
         <div className="seat_details">
-          <h3>Selected Seat:</h3>
+          <h3>Selected Seat: {selectedSeat}</h3>
           {selectedSeat && (
-          <p>
-            Selected Seat: <strong>{selectedSeat}</strong> <br />
-            Section: <strong>{section}</strong> <br />
-            Number: <strong>{actualSeat}</strong>
-          </p>
+          <div>
+            <div>
+              <p>Section: <strong>{section}</strong> </p>
+            </div>
+            <div>
+              <p>Number: <strong>{actualSeat}</strong> </p>
+            </div>
+            <div>
+              <p>Price: $80</p>
+
+            </div>
+          </div>
         )}
 
         </div>
