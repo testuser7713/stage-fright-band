@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Antonio';
-    src: url('Antonio-Bold.ttf') format('truetype');
+    src: url('../fonts/Antonio-Bold.ttf') format('truetype');
     font-style: normal;
 }
 

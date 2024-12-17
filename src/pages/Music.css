@@ -210,7 +210,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 @font-face {
     font-family: 'Inlander';
-    src: url('InlanderoutlineDemo-axG8K.otf') format('opentype');
+    src: url('../fonts/InlanderoutlineDemo-axG8K.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -242,7 +242,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 @font-face {
     font-family: 'SixCaps';
-    src: url('SixCaps.ttf') format('truetype');
+    src: url('../fonts/SixCaps.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -265,7 +265,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 @font-face {
     font-family: 'BigShoulder';
-    src: url('BigShouldersDisplay-VariableFont_wght.ttf') format('truetype');
+    src: url('../fonts/BigShouldersDisplay-VariableFont_wght.ttf') format('truetype');
     font-style: normal;
     font-weight: 400;
 }
@@ -287,7 +287,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 @font-face {
     font-family: 'AnkaCoder';
-    src: url('AnkaCoder-r.ttf') format('truetype');
+    src: url('../fonts/AnkaCoder-r.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -306,7 +306,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 @font-face {
     font-family: 'Alatsi';
-    src: url('Alatsi-Regular.ttf') format('truetype');
+    src: url('../fonts/Alatsi-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

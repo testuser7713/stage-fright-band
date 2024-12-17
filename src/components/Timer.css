@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'Antonio';
-    src: url('Antonio-Bold.ttf') format('truetype');
+    src: url('../fonts/Antonio-Bold.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Cubao Wide';
-    src: url('Cubao_Free_Wide.otf') format('opentype');
+    src: url('../fonts/Cubao_Free_Wide.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }

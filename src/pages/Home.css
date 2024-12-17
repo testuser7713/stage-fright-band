@@ -1,17 +1,17 @@
 @font-face {
     font-family: 'Race Sport';
-    src: url('Thuast-Demo.otf') format('opentype');
+    src: url('../fonts/Thuast-Demo.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Antonio';
-    src: url('Antonio-Bold.ttf') format('truetype');
+    src: url('../fonts/Antonio-Bold.ttf') format('truetype');
     font-style: normal;
 }
 @font-face {
     font-family: 'Holiday';
-    src: url('HolidayFree.otf') format('opentype');
+    src: url('../fonts/HolidayFree.otf') format('opentype');
     font-style: normal;
 }
 

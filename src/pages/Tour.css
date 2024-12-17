@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Antonio-Light';
-    src: url('Antonio-Light.ttf') format('truetype');
+    src: url('../fonts/Antonio-Light.ttf') format('truetype');
     font-style: normal;
 }
 
