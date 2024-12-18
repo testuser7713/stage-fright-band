@@ -2,6 +2,11 @@
   box-sizing: border-box;
 
 }
+@font-face {
+  font-family: 'Antonio';
+  src: url('../fonts/Antonio-Bold.ttf') format('truetype');
+  font-style: normal;
+}
 body {
   overflow-x: hidden;
   margin: 0;
@@ -10,7 +15,7 @@ body {
 
 .inquiry_text {
   font-size: 3rem; /* Adjust size */
-  font-family: 'Antonio', sans-serif; /* Match your fonts */
+  font-family: 'Antonio'; /* Match your fonts */
 
   color: #f5cb7f;
 
@@ -33,6 +38,7 @@ body {
   grid-template-columns: 50% 50%;
   width: 100vw;
   background-color: black;
+  font-family: 'Antonio';
 }
 
 .contact_container {
@@ -56,7 +62,6 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0 2rem;
-  font-family: 'Times New Roman';
 
 }
 
@@ -109,7 +114,6 @@ body {
   border-radius: 4px;
   box-sizing: border-box;
   color: white;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 .button:hover {
@@ -141,7 +145,6 @@ body {
   border: 1px solid black;
   border-radius: 10px;
   cursor: pointer;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 .contact_after button:hover{
@@ -152,7 +155,6 @@ body {
 }
 
 .contact_right {
-  font-family: 'Times New Roman', Times, serif;
   color: white;
 }
 
