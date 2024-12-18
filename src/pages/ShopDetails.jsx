@@ -93,7 +93,6 @@ const ShopDetails = () => {
     // Manually trigger the storage event
     window.dispatchEvent(new Event("storage"));
 
-    alert("Item added to cart!");
   };
 
   if (!item) {
@@ -104,51 +103,60 @@ const ShopDetails = () => {
     <div className="item-details">
       <CartSidebar />
       <div className="back_con">
-        <button className="back-button" onClick={() => navigate("/shop")}>Back to Shop</button>
+        <button className="back_shop" onClick={() => navigate("/shop")}>← Back to Shop</button>
+      </div>
+      <div className="item-details-sub">
+        <div className="item-details-left">
+          <h2 className="item-name">{item.name}</h2>
+          <div className="main-image-container">
+            <img src={mainImage} alt={`${item.name} Main`} className="main-image" />
+          </div>
+          <div className="thumbnail-container">
+            <img
+              src={item.image}
+              alt={`${item.name} Front`}
+              className="thumbnail"
+              onClick={() => setMainImage(item.image)}
+            />
+            {item.backImage && (
+              <img
+                src={item.backImage}
+                alt={`${item.name} Back`}
+                className="thumbnail"
+                onClick={() => {
+                  console.log("Clicked on back image");
+                  setMainImage(item.backImage);
+                }}
+              />
+            )}
+
+          </div>
+        </div>
+        <div className="item-details-right">
+          <p>{item.description}</p>
+          <p>Price: ${item.price}</p>
+
+          <div className="cart-controls">
+            <label htmlFor="quantity">Quantity:</label>
+            <select
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+            >
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+            <br></br>
+            <button className="add_cart" onClick={handleAddToCart}>
+              Add to Cart - ${(item.price * quantity).toFixed(2)}
+            </button>
+          </div>
+        </div>
       </div>
 
-      <h2>{item.name}</h2>
-      <div className="main-image-container">
-        <img src={mainImage} alt={`${item.name} Main`} className="main-image" />
-      </div>
-      <div className="thumbnail-container">
-        <img
-          src={item.image}
-          alt={`${item.name} Front`}
-          className="thumbnail"
-          onClick={() => setMainImage(item.image)}
-        />
-        {item.backImage && (
-          <img
-            src={item.backImage}
-            alt={`${item.name} Back`}
-            className="thumbnail"
-            onClick={() => {
-              console.log("Clicked on back image");
-              setMainImage(item.backImage);
-            }}
-          />
-        )}
 
-      </div>
-      <p>{item.description}</p>
-      <p>Price: ${item.price}</p>
 
-      <div className="cart-controls">
-        <label htmlFor="quantity">Quantity:</label>
-        <select
-          id="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        >
-          {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-            <option key={num} value={num}>{num}</option>
-          ))}
-        </select>
-        <button onClick={handleAddToCart}>
-          Add to Cart - ${(item.price * quantity).toFixed(2)}
-        </button>
-      </div>
     </div>
   );
 };

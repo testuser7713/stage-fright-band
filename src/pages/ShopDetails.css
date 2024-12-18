@@ -1,7 +1,36 @@
 
-
+.item-details {
+  background-color: black;
+  color: white;
+  font-family: 'Antonio';
+}
 .back_con {
-    padding-top: 0rem;
+    padding-top: 6rem;
+    font-size: 1.2rem;
+
+  }
+
+  .back_shop {
+    box-shadow: none;
+    color: white;
+    background: none;
+    margin-left: 2.5rem;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  .back_shop:hover {
+    box-shadow: none;
+    color: white;
+    background: none;
+    margin-left: 2.5rem;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    color: rgb(255, 239, 159);
+    transition: 0.3s ease-in-out;
   }
 
   .main-image-container {
@@ -23,10 +52,10 @@
   }
   
   .thumbnail {
-    width: 80px; /* Thumbnail size */
+    width: 100px; /* Thumbnail size */
     height: auto;
     cursor: pointer;
-    border: 2px solid transparent;
+    border-radius: 10px;
     transition: transform 0.2s, border 0.2s;
   }
   
@@ -35,3 +64,66 @@
     border: 2px solid #a787ff;
   }
   
+  .item-details-left {
+    width: 60vw;
+  }
+  .item-details-right {
+    width: 40vw;
+  }
+  .item-details-sub {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .item-name {
+    justify-self: center;
+    font-size:xx-large;
+  }
+
+  .item-details-right {
+    font-size: larger;
+    padding: 2rem;
+    padding-left: 0rem;
+  }
+
+  .cart-controls select{
+    background-color: white;
+    font-family: 'Antonio';
+    width: 60px;
+    margin-left: 1rem;
+    height: 25px;
+    font-size: 15px;
+  }
+
+  .add_cart {
+    margin-top: 5rem;
+    box-shadow: none;
+    color: black;
+    background: none;
+    height: 3rem;
+    width: 15rem;
+    border-radius: 10px;
+    background-color: rgb(255, 239, 159);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+
+  .add_cart:hover {
+    margin-top: 5rem;
+    box-shadow: none;
+    color: black;
+    background: none;
+    height: 3rem;
+    width: 15rem;
+    border-radius: 10px;
+    background-color: rgb(255, 213, 159);
+    border: none;
+    font: inherit;
+    transform: scale(1.03);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    outline: inherit;
+  }

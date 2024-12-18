@@ -4,7 +4,7 @@ import Background from "../assets/stage_background.svg"
 import Band_Sil from "../assets/band_sil (2).png"
 import Flame from "../assets/new_flame.png"
 import album1 from "../assets/albums.png"
-import album2 from "../assets/albums (1).png"
+import album2 from "../assets/middle_alb.png"
 import album3 from "../assets/albums (3).png"
 import "./Home.css"
 import Timer from "../components/Timer.jsx"
@@ -17,6 +17,8 @@ import Merch2 from "../assets/merch2.png"
 import Merch3 from "../assets/merch3.png"
 import Shop_Bar from "../components/Shop_Bar.jsx"
 import Background_Vid from "../assets/stage_edited.mp4"
+import members from "../assets/band_members.png"
+
 
 function Home() {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -105,8 +107,8 @@ function Home() {
                             {/* Add additional date blocks as needed */}
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 28, 2024</h3>
-                                <h4 className="loc_label">American Airlines Center</h4>
+                                <h3 className="date_label">Dec 29, 2024</h3>
+                                <h4 className="loc_label">Toyota Music Factory</h4>
                             </div>
                             <div className="location">
                                 <h3 className="area">Dallas, TX</h3>
@@ -118,8 +120,8 @@ function Home() {
 
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 28, 2024</h3>
-                                <h4 className="loc_label">American Airlines Center</h4>
+                                <h3 className="date_label">Dec 31, 2024</h3>
+                                <h4 className="loc_label">House of Blues Concert</h4>
                             </div>
                             <div className="location">
                                 <h3 className="area">Dallas, TX</h3>
@@ -148,31 +150,17 @@ function Home() {
                             <h2 className="about_label">ABOUT</h2>
                             <h3 className="band_label">Stage Fright</h3>
                         </div>
-                        <div className="about_desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore 
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                                irure dolor in reprehenderit in voluptate velit esse cillum 
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat</p>
+                        <div className="image_con">
+                            <img className="members_img" src={members} />
                         </div>
-                    </div>
-                    <div className="about_right">
-                        <div className="about_right_con">
-                            <div className="card_1">
-                            </div>
+                        
 
-                            <div className="card_2">
-                                <h2>hi</h2>
-                            </div>
-                            <div className="card_3">
-                                <h2>hi</h2>
-                            </div>
-                            <div className="card_4">
-                                <h2>hi</h2>
-                            </div>
+                        <div className="about_desc">
+                            <p>Since forming in 2024, Stage Fright has emerged as one of Dallas’ most exciting local bands, fueled by raw creativity, explosive energy, and unforgettable live performances. Stage Fright represents the ambition of four young musicians who met at a local open mic night and shared a love for rock music and a desire to push its boundaries, from there. Stage Fright quickly grew into a beloved name in the underground rock scene, gaining a reputation for its fiery performances and bold visuals. Recently they’ve announced their long-awaited tour and their newest album lost in the fire has received great applause.</p> 
+                            <p><strong>Vega (Lead Vocals, Rhythm Guitar)</strong> is the bold and fiery frontwoman with a raspy, commanding voice. She grew up singing in church but gravitated toward edgier rock influences like her inspiration, Joan Jett. A passionate songwriter, she brings emotional depth to the band’s music.  </p>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div className="shop">

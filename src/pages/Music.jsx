@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Burnt from "../assets/burnt oblations (1).png"
 import Ignition from "../assets/ignition (1).png"
 import Fire from "../assets/lost in the fire (1).png"
 import Surged from "../assets/surged chaos (1).png"
 import Obituary from "../assets/obituary (1).png"
 import "./Music.css";
+import audio from "../assets/RPReplay_Final1731258274.mp3"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify, faItunes, faApple, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
-
+import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 export default function Music() {
     const [position, setPosition] = useState(3); // Default to the 3rd radio button
@@ -33,7 +34,7 @@ export default function Music() {
             song4: "Pray to Me",
             song5: "",
 
-            desc: "Tells the story of resilience, loss, and ambition that rose from discarded prayers. Through the album, listeners are taken on a journey about rising from the ashes past dream and finding solace in oneself. (im cringing). This album involves raw, emotive guitar riffs, haunting lyrics, and a fusion of indie-rock introspection with explosive energy (taken from chatGPT)"
+            desc: "Tells the story of resilience, loss, and ambition that rose from discarded prayers. Through the album, listeners are taken on a journey about rising from the ashes past dream and finding solace in oneself. This album involves raw, emotive guitar riffs, haunting lyrics, and a fusion of indie-rock introspection with explosive energy"
         },
         {
             name: "IGNITION",
@@ -58,7 +59,7 @@ export default function Music() {
             song3: "Inferno",
             song4: "Smoke Signals",
             song5: "Flicker and Fade",
-            desc: "A song about losing oneself, self sabotage, passion, and rebirth. With a soundscape that oscillates between smoldering ballads and roaring anthems, the album captures the feeling of being consumed by life's flames while desperately seeking a way out—or perhaps a way to embrace the burn. (chat gpt)"
+            desc: "A song about losing oneself, self sabotage, passion, and rebirth. With a soundscape that oscillates between smoldering ballads and roaring anthems, the album captures the feeling of being consumed by life's flames while desperately seeking a way out—or perhaps a way to embrace the burn."
         },
         {
             name:"SURGED CHAOS",
@@ -82,9 +83,42 @@ export default function Music() {
             song3: "Nail in the Coffin",
             song4: "Paradise",
             song5: "",
-            desc: "A reflection of the past experiences that made Stage Fright who they are today. Serves to remember the past and praise the reborn present. With a sound that blends melancholic melodies, heavy rock grit, and poetic lyricism, Obituary is as much about mourning as it is about finding meaning in the void. (chat gpt)"
+            desc: "A reflection of the past experiences that made Stage Fright who they are today. Serves to remember the past and praise the reborn present. With a sound that blends melancholic melodies, heavy rock grit, and poetic lyricism, Obituary is as much about mourning as it is about finding meaning in the void."
         }
     ];
+
+    const [isPlaying, setIsPlaying] = useState(false); // Play/Pause state
+    const [currentTime, setCurrentTime] = useState(0); // Current audio time
+    const [duration, setDuration] = useState(0); // Total duration
+  
+    const audioRef = useRef(null); // Reference to the audio element
+  
+    // Toggle Play/Pause
+    const togglePlayPause = () => {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    };
+  
+    // Update current time as audio plays
+    const handleTimeUpdate = () => {
+      setCurrentTime(audioRef.current.currentTime);
+    };
+  
+    // Set audio duration when metadata is loaded
+    const handleLoadedMetadata = () => {
+      setDuration(audioRef.current.duration);
+    };
+  
+    // Seek to specific time
+    const handleSeek = (e) => {
+      const seekTime = e.target.value;
+      audioRef.current.currentTime = seekTime;
+      setCurrentTime(seekTime);
+    };
 
     return (
         <div className="music_page">
@@ -138,8 +172,45 @@ export default function Music() {
                 
 
                 {/* Right Arrow */}
+            <div className="audio_player_con">
+            <div className="audio_player">
+            {/* Audio element */}
+            <audio
+            ref={audioRef}
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleLoadedMetadata}
+            >
+            <source src={audio} type="audio/mpeg" />
+            Your browser does not support the audio element.
+            </audio>
+
+            {/* Play/Pause Button */}
+            <button className="player_but_con" onClick={togglePlayPause}>
+                <FontAwesomeIcon className="player_but" icon={isPlaying ? faPause: faPlay} />
+            </button>
+
+            {/* Progress Bar */}
+            <input
+            type="range"
+            className="custom-progress"
+            min="0"
+            max={duration || 0}
+            value={currentTime}
+            onChange={handleSeek}
+            style={{ width: "300px", margin: "0 10px" }}
+            />
+
+            {/* Time Display */}
+            <div>
+            {Math.floor(currentTime)} / {Math.floor(duration)} seconds
+            </div>
+            </div>
+            
+            </div>
+            
                 
             </div>
+
             <div className="music_bottom">
                 <div className="music_desc_con">
                     <div className={info[position-1].className}>

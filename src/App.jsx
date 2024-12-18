@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Tour from "./pages/Tour.jsx";
+import Tour_Main from "./pages/Tour_Main.jsx"
 import Shop from "./pages/Shop";
 import Music from "./pages/Music"
 import Media from "./pages/Media"
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/tour" element={<Tour />} />
+          <Route path="/tour_main" element={<Tour_Main />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/music" element={<Music />} />
           <Route path="/media" element={<Media />} />

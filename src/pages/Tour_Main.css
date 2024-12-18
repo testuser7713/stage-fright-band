@@ -1,0 +1,61 @@
+
+@font-face {
+    font-family: 'Antonio';
+    src: url('../fonts/Antonio-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Race Sport';
+    src: url('../fonts/Thuast-Demo.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+.tour_main_page {
+    background-color: black;
+}
+
+.tour_top_sec {
+    position: relative; 
+}
+
+.tour_banner {
+    width: 100vw;
+    display: block; 
+    margin-top: -3rem;
+}
+
+.tour_banner_text {
+    position: absolute;
+    top: 60%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    text-shadow:
+    0 0 0px #ee9323,
+    0 0 1px #b04202,
+    0 0 12px #f68020,
+    0 0 32px #fda745,
+    0 0 70px #d1c09c,
+    0 0 10px #f3e8d0,
+    0 0 10px #c9ac75,
+    0 0 4px #f5cb7f;
+    text-align: center; 
+    z-index: 10; 
+    font-family: 'Race Sport';
+    font-size: 4rem;
+}
+
+.tour_banner_text h3{
+    font-family: 'Antonio';
+
+}
+
+.tour_dates_2 {
+    width: 100%;
+    font-family: 'Antonio';
+    text-align: center;    
+}
+
+.tour_main_page {
+    padding-bottom: 5rem;
+}

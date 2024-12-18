@@ -22,7 +22,7 @@ import fanny_front from "../assets/fanny_front.png"
 import fanny_back from "../assets/fanny_back.png"
 
 import album1 from "../assets/albums.png"
-import album2 from "../assets/albums (1).png"
+import album2 from "../assets/middle_alb.png"
 import album3 from "../assets/albums (3).png"
 import album4 from "../assets/album4 (1).png"
 
@@ -39,7 +39,6 @@ function Shop() {
 
     const handleImageClick = (id) => {
         localStorage.setItem("clickedItem", JSON.stringify(id));
-        console.log("Item added to local storage:", id);
         navigate("/shopdetails")
       };
 

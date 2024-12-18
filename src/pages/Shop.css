@@ -51,11 +51,10 @@ body {
 .mid_con {
     background-color: black;
     justify-self: center;
-    color: white;
+    color: black;
     display: flex;
     flex-direction: column; /* Stack children vertically */
     width: 80vw;
-    border: 1px solid white;
     align-items: flex-start; /* Align children to the left */
     position: relative; /* Establish containing block for .tote */
 }
@@ -65,26 +64,22 @@ body {
     height: fit-content;
     justify-content: flex-start; /* Align content inside to the left */
     width: 65%; /* Occupy 65% of the parent width */
-    border: 1px solid blue;
 }
 
 .mid_left_sec {
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%; /* Three equal columns */
-    border: 1px solid yellow;
     position: relative; /* Contain absolutely positioned children */
 }
 
 .mid_item_con {
     padding: 10px;
-    border: 1px solid brown;
 }
 
 .mid_item, .mid_item_new {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid green;
     background-color: grey;
     justify-content: center;
     cursor: pointer;
@@ -119,7 +114,6 @@ body {
     overflow: visible;
     flex-direction: row; /* Stack children vertically */
     width: 80vw;
-    border: 1px solid white;
     align-items: flex-end; /* Align children to the left */
     position: relative; /* Establish containing block for .tote */
 }
@@ -129,7 +123,6 @@ body {
     height: fit-content;
     justify-content: center;
     height: 85vh; /* Occupy 65% of the parent width */
-    border: 2px solid blue;
     margin-left: auto;
     width: 45vw;
 }
@@ -138,21 +131,18 @@ body {
     display: grid;
     grid-template-rows: 50% 50%; /* Three equal columns */
     grid-template-columns: 50% 50%;
-    border: 1px solid yellow;
     position: relative; /* Contain absolutely positioned children */
 }
 
 .music_merch_item_con {
     padding: 10px;
-    border: 1px solid brown;
 }
 
 .music_item_con {
     display: flex;
-    border: 1px solid green;
 
     justify-content: center;
-    height: 100%;
+    height: 105%;
     width: 100%;
     padding: 20px;
 }
@@ -162,7 +152,6 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: grey;
-    padding: 0px;
 }
 
 .music_item p {
@@ -173,17 +162,17 @@ body {
 
 .music_item img{
     height: 90%;
+    cursor: pointer;
 }
 
 
 
 
 .music_merch {
-    border: 1px solid grey;
-        position: absolute; /* Position it relative to the parent container */
-        top: -7rem; /* Move upwards (adjust as needed) */
-        left: -26rem; /* Keep it aligned with the left edge of the container */
-        transform: scale(0.7); /* Optional: Adjust scale */
+    position: absolute; /* Position it relative to the parent container */
+    top: -7rem; /* Move upwards (adjust as needed) */
+    left: -26rem; /* Keep it aligned with the left edge of the container */
+    transform: scale(0.7); /* Optional: Adjust scale */
 
 }
 
@@ -210,12 +199,12 @@ body {
     margin-top: 5rem;
     justify-self: center;
     justify-content: space-between;
+    font-size: 1.5rem;
     color: white;
     display: flex;
     overflow: visible;
     flex-direction: row; /* Stack children vertically */
     width: 80vw;
-    border: 1px solid white;
     align-items: flex-end; /* Align children to the left */
     position: relative; /* Establish containing block for .tote */
 }
@@ -224,7 +213,6 @@ body {
     display: flex;
     height: fit-content;
     justify-content: flex-end; /* Align content inside to the left */
-    border: 2px solid blue;
     margin-left: auto;
     width: 50vw
 }
@@ -233,7 +221,6 @@ body {
     display: flex;
     flex-direction: row;
 
-    border: 1px solid yellow;
     gap: 0;
     position: relative; /* Contain absolutely positioned children */
 }
@@ -248,8 +235,6 @@ body {
     display: flex;
     flex-direction: column;
     object-fit: contain;
-
-    border: 1px solid green;
     justify-content: center;
     justify-items: center;
     width: 100%;
@@ -264,7 +249,6 @@ body {
 .record_item img {
     width: 80%;
     display: flex;
-    border: 1px solid yellow;
 }
 
 .records_right_con .record_item_con:nth-child(2) {
@@ -273,7 +257,6 @@ body {
     align-items: center; /* Center vertically */
     align-self: center;
     padding: 0px;
-    border: 10px solid brown;
 }
 
 
@@ -335,4 +318,10 @@ body {
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+.music_item_con p {
+    color: white;
+    font-size: larger;
+    margin-bottom: 20px;
 }

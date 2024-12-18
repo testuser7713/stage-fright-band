@@ -420,6 +420,8 @@ body {
 
 .tickets {
     text-align: center;
+
+
 }
 
 .ticket_button {
@@ -431,16 +433,22 @@ body {
     cursor: pointer;
     font-size: 1.3rem;
     margin-right: 2rem;
+    font-family: 'Antonio';
 }
 
 .ticket_button:hover {
     background-color: #e7323d;
+    
     cursor: pointer;
+    font-family: 'Antonio';
+
 }
 
 .ticket_button:active {
     background-color: #a9151a;
     cursor: pointer;
+    font-family: 'Antonio';
+
 }
   
 /* TOUR SECTION END */
@@ -510,8 +518,17 @@ body {
 
 .about_left,
 .about_right {
-    width: 45%; /* Adjust width based on design */
+    width: 100%; /* Adjust width based on design */
     text-align: center; /* Center-align text */
+}
+
+.image_con {
+    justify-content: center;
+    display: flex;
+}
+
+.members_img {
+    width: 80%;
 }
 
 .about_left h2, 
@@ -565,11 +582,7 @@ body {
     margin-top: 2rem;
 }
 
-.about_right_con {
-    display: grid;
-    grid-template-columns: auto auto;
-    
-}
+
 
 .shop {
     position: relative;
@@ -618,4 +631,9 @@ body {
 
 .header_sec, .about, .shop, .shop_sec {
     background-color: black;
+}
+
+.about_sec p{
+    font-family: 'Antonio';
+    font-size: larger;
 }

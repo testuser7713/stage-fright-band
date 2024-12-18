@@ -400,3 +400,34 @@ input:nth-of-type(5):checked ~ main#carousel {
     padding-right: 0.6rem;
     font-size: 1.5rem;
 }
+
+.audio_player_con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.audio_player {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Adjust the size as needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Optional: Add background styling */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+
+.player_but {
+    background-color: none;
+    color: white;
+}
+
+.player_but_con {
+    background-color: none;
+    all: unset;
+}
+

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
+
 import ImageMapper from "react-img-mapper";
 import Tour_Layout from "../assets/tour_trans.svg";
 import img1U from "../assets/1U.png";
@@ -16,6 +18,7 @@ import "./Tour.css";
 
 
 const generateCircles = (xStart, yStart, width, height, radius, spacing, section) => { 
+
   const circles = []; 
   let seatCount = 1; // Incremental seat number
   for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) { 
@@ -36,6 +39,11 @@ const generateCircles = (xStart, yStart, width, height, radius, spacing, section
 
 
 const Tour = ({seat}) => {
+  const navigate = useNavigate();
+  const handleClickButton = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate("/tour_main")
+  }
   const [selectedShapeId, setSelectedShapeId] = useState(null);
   const [selectedSeat, setSelectedSeat] = useState(localStorage.getItem("seat") || "" );
 
@@ -407,6 +415,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
   return (
     <div className="tour_map_con">
       <div className="tour_left">
+        <button className="back_tourmain" onClick={handleClickButton}>← Select Tour Date</button>
         <ImageMapper
           src={Tour_Layout}
           className="tour_layout"
@@ -422,21 +431,36 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
         </div>
       
       
-        <div className="seat_details">
-          <h3>Selected Seat: {selectedSeat}</h3>
+
+          <div className="seat_details">
+            {selectedSeat && (
+              <h3 className="selected_seat_main">Selected Seat: {selectedSeat}</h3>
+            )}
+
+          
           {selectedSeat && (
           <div>
-            <div>
-              <p>Section: <strong>{section}</strong> </p>
-            </div>
-            <div>
-              <p>Number: <strong>{actualSeat}</strong> </p>
-            </div>
-            <div>
-              <p>Price: $80</p>
+            <div className="seat_sub">
+              <div>
+                <p>Section<br></br></p>
+                <p><strong>{section}</strong></p>
+              </div>
+              <div>
+                <p>Number<br></br> </p>
+                <p><strong>{actualSeat}</strong></p>
+              </div>
+              <div>
+                <p>Price</p>
+                <p><strong>$80</strong></p>
 
+              </div>
             </div>
+            <div className="add_cart_con">
+              <button className="checkout_but" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
           </div>
+        </div>
+
+
         )}
 
         </div>

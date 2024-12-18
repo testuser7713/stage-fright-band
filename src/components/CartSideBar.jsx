@@ -4,6 +4,8 @@ import "./CartSideBar.css";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom"
+import shop_bag from "../assets/shop_bag (1).png"
+
 
 
 Modal.setAppElement("#root"); // Ensures accessibility by linking the modal to your app's root div.
@@ -53,7 +55,7 @@ const CartModal = () => {
   return (
     <>
       <div className="cart-icon" onClick={toggleModal}>
-        cart
+        <img className="shop_bag" src={shop_bag} />
       </div>
       <Modal
         isOpen={isOpen}
@@ -65,7 +67,7 @@ const CartModal = () => {
         <button className="close-button" onClick={toggleModal}>
           ✖
         </button>
-        <h2>Your Cart</h2>
+        <h2 className="your_cart_text">Your Cart</h2>
         {cart.length === 0 ? (
           <p>Your cart is empty</p>
         ) : (
@@ -82,7 +84,7 @@ const CartModal = () => {
                 <div className="price_con">
                   <p>${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
-                <div>
+                <div className="trash_con">
                   <FontAwesomeIcon
                     className="trash"
                     icon={faTrashCan}
@@ -94,7 +96,10 @@ const CartModal = () => {
           </ul>
         )}
         <p className="total-price">Total: ${calculateTotal()}</p>
-        <button className="Proceed to Checkout" onClick={() => navigate("/checkout")}>Back to Shop</button>
+        <div className="proceed_but_con">
+          <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+
+        </div>
 
       </Modal>
     </>

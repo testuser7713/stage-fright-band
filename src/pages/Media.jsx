@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ImageMapper from "react-img-mapper";
-import Tour_Layout from "../assets/tour_layout_final.png";
+import Tour_Layout from "../assets/tour_trans.svg";
 import img1U from "../assets/1U.png";
 import img2U from "../assets/2U.png";
 import img3U from "../assets/3U.png";
@@ -19,7 +19,7 @@ const generateCircles = (xStart, yStart, width, height, radius, spacing) => {
   const circles = []; 
   for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) { 
     for (let x = xStart + radius; x + radius <= xStart + width; x += 2 * radius + spacing) { 
-      circles.push({ shape: "circle", coords: [x, y, radius], preFillColor: "rgba(0, 255, 0, 0.5)" }); 
+      circles.push({ shape: "circle", coords: [x, y, radius], preFillColor: "rgba(63, 144, 236, 0.66)" }); 
     } 
   } 
   return circles;
@@ -31,11 +31,10 @@ const Tour = ({seat}) => {
 
 
 const handleSeatClick = (seat) => {
-  console.log("hello")
   localStorage.setItem("seat", JSON.stringify(seat));
-  window.dispatchEvent(new (Event("seatSelectionChanged")))
   setSelectedSeat(seat)
-  alert("Item added to local storage:" + seat);
+
+  window.dispatchEvent(new (Event("seatSelectionChanged")))
 };
 
 
@@ -71,34 +70,37 @@ const handleSeatClick = (seat) => {
   };
 
 
+
   const sectionMaps = {
   "1U": [
-    { "shape": "circle", "coords": [25, 20, 8], "preFillColor": "rgba(0, 255, 0, 0.5)", "seatNumber": "1U-01", "onclick": () => handleSeatClick('1U-01') },
-    { "shape": "circle", "coords": [145, 220, 8], "preFillColor": "rgba(0, 255, 0, 0.5)", "seatNumber": "1U-51", "onclick": "handleSeatClick('1U-51')" }
+    { "shape": "circle", "coords": [25, 20, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-01", "onclick": () => handleSeatClick('1U-01') },
+
   ],
 
     "2U": generateCircles(12,16,540,210,10,5),
 
   
     "3U": [
-      { shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(0, 255, 0, 0.5)", seatNumber: "3U-1", onClick: () => handleSeatClick("3U-1") },
+      { shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-1", onClick: () => handleSeatClick("3U-1") },
 
       
 
 
     ],
     "4U": [
-      { shape: "circle", coords: [125, 35, 10], preFillColor: "rgba(0, 255, 0, 0.5)", seatNumber: "4U-1", onClick: () => handleSeatClick("4U-1") },
+      { shape: "circle", coords: [125, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-1", onClick: () => handleSeatClick("4U-1") },
 
       
     ],
     "6U": [
-      { shape: "circle", coords: [100, 35, 10], preFillColor: "rgba(0, 255, 0, 0.5)", seatNumber: "6U-1", onClick: () => handleSeatClick("6U-1") },
+      { shape: "circle", coords: [100, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-1", onClick: () => handleSeatClick("6U-1") },
+
       
 
     ],
     "7U": [
-      { seatNumber: "7U-1", shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(0, 255, 0, 0.5)", onClick: () => handleSeatClick("7U-1") },
+      { seatNumber: "7U-1", shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-1") },
+
 
 
         
@@ -106,7 +108,7 @@ const handleSeatClick = (seat) => {
     "8U": generateCircles(20,40,490,180,10,5),
 
     "9U": [
-        { shape: "circle", coords: [25, 20, 8], preFillColor: "rgba(0, 255, 0, 0.5)", seatNumber: "9U-1", onClick: () => handleSeatClick("9U-1") },
+        { shape: "circle", coords: [25, 20, 8], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "9U-1", onClick: () => handleSeatClick("9U-1") },
 
     ],
     "1L": generateCircles(8,8,170,220,10,5),
@@ -132,7 +134,7 @@ const handleSeatClick = (seat) => {
   
   useEffect(() => {
     const handleSeatSelectionChange = () => {
-      setSelectedSeat(localStorage.getItem("selectedSeat") || "");
+      setSelectedSeat(localStorage.getItem("seat") || "");
     };
 
     // Listen for the custom event
@@ -156,7 +158,7 @@ const handleSeatClick = (seat) => {
 
     return (
       <div className="image-container">
-        <h3>Selected: {selectedShapeId}</h3>
+        <h3 className="selected_text">Selected Section: {selectedShapeId}</h3>
         <div className="section_mapper">
         <ImageMapper
           src={imageUrl}
@@ -172,24 +174,33 @@ const handleSeatClick = (seat) => {
 
   return (
     <div className="tour_map_con">
-      <ImageMapper
-        src={Tour_Layout}
-        className="tour_layout"
-        map={map}
-        onClick={handleClick}
-        width={958}
-      />
-      {renderSelectedImage()}
-      <div className="seat_details">
-        <h3>Selected Seat:</h3>
-        {selectedSeat && (
-        <p>
-          Selected Seat: <strong>{selectedSeat}</strong> <br />
-          Section: <strong>{section}</strong> <br />
-          Number: <strong>{actualSeat}</strong>
-        </p>
-      )}
+      <div className="tour_left">
+        <ImageMapper
+          src={Tour_Layout}
+          className="tour_layout"
+          map={map}
+          onClick={handleClick}
+          width={958}
+        />
+      </div>
+      <div className="tour_right">
+        <div className="seat_select">
 
+          {renderSelectedImage()}
+        </div>
+      
+      
+        <div className="seat_details">
+          <h3>Selected Seat:</h3>
+          {selectedSeat && (
+          <p>
+            Selected Seat: <strong>{selectedSeat}</strong> <br />
+            Section: <strong>{section}</strong> <br />
+            Number: <strong>{actualSeat}</strong>
+          </p>
+        )}
+
+        </div>
       </div>
     </div>
   );

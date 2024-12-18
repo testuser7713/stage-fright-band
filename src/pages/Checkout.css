@@ -6,6 +6,7 @@
 
 .checkout_page {
     background-color: black;
+    font-family: 'Antonio';
 }
 
 .checkout-form-heading {
@@ -67,14 +68,15 @@
   }
   
   .checkout-form-icon-container {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     padding: 7px 0;
     font-size: 24px;
   }
   
   .checkout-form-btn {
-    background-color: #04AA6D;
-    color: white;
+    background-color: rgb(255, 239, 159);
+    color: black;
+    font-family: 'Antonio';
     padding: 12px;
     margin: 10px 0;
     border: none;
@@ -85,7 +87,20 @@
   }
   
   .checkout-form-btn:hover {
-    background-color: #45a049;
+    background-color: rgb(255, 213, 159);
+    transition: 0.3s ease-in-out;
+  }
+
+  .checkout-form-back-btn {
+    box-shadow: none;
+    color: #f65654;
+    font-family: 'Antonio';
+    background: none;
+    font-size: 1.7rem;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    display: flex;
   }
   
   .checkout-form-cart-title {
@@ -147,4 +162,119 @@
     padding-top: 16px;
     padding-right: 5px;
     padding-left: 0px;
+  }
+
+  .back_conn {
+    padding-top: 1rem;
+    font-size: larger;
+  }
+
+  .back_shopp {
+    box-shadow: none;
+    color: white;
+    background: none;
+    margin-left: 2.5rem;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  .back_shopp:hover {
+    box-shadow: none;
+    color: white;
+    background: none;
+    margin-left: 2.5rem;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    color: rgb(255, 239, 159);
+    transition: 0.3s ease-in-out;
+  }
+
+  .total-price {
+    font-size: 1.5rem;
+  }
+
+  .tax {
+    font-size: 1.3rem;
+  }
+
+  .checkout-form-next-btn {
+    box-shadow: none;
+    color: #f65654;
+    font-family: 'Antonio';
+    background: none;
+    font-size: 1.7rem;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    justify-self: right;
+    display: flex;
+  }
+  .checkout-form-next-btn:hover {
+    color: #fec37b;
+    transition: 0.3s ease-in-out;
+
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+  }
+
+  .modal-close-btn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #f65654;
+    color: white;
+    border: none;
+    font-size: larger;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Antonio';
+
+  }
+
+  .modal-close-btn:hover {
+    background-color: #ce201d;
+    transition: 0.3s ease-in-out;
+    transform: scale(1.01);
+    font-family: 'Antonio';
+  }
+
+  .checkout-form-section-heading {
+    font-size: 1.5rem;
+  }
+
+  .modal-x-button {
+    position: relative;
+    top: -10px;
+    left: 120px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #555;
+    cursor: pointer;
+  }
+
+  .modal-x-button:hover {
+    color: #000;
+    transition: 0.3s ease-in-out;
   }

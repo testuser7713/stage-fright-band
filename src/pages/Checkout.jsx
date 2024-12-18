@@ -3,15 +3,37 @@ import "./Checkout.css";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom"
+import tour_cover from "../assets/lif_tour.png"
 const Checkout = () => {
       const [isOpen, setIsOpen] = useState(false);
       const [cart, setCart] = useState([]);
       const navigate = useNavigate();
+      const [showModal, setShowModal] = useState(false);
+
+      const [seat, setSeat] = useState(null);
+      
+
+      const handlePlaceOrder = (e) => {
+        e.preventDefault(); 
+        localStorage.removeItem("cart");
+        localStorage.removeItem("seat");
+        setCart([]);
+        setSeat(null); // Clears the seat state
+
+        setShowModal(true);
+      };
+
+      const handleModalClose = () => {
+        setShowModal(false);
+        navigate("/shop");
+      }
     
-      // Function to fetch the cart from localStorage
       const fetchCart = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const storedSeat = localStorage.getItem("seat"); // Get the seat from localStorage
+        const cleanedSeat = storedSeat ? storedSeat.replace(/^"|"$/g, '') : null; // Remove surrounding quotes
         setCart(storedCart);
+        setSeat(cleanedSeat); 
       };
     
       // Effect to initialize cart and listen for storage changes
@@ -32,7 +54,9 @@ const Checkout = () => {
 
     
       const calculateTotal = () => {
-        return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+        const baseTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        const seatCost = seat ? 80 : 0; // Only add the seat cost if a seat is selected
+        return baseTotal + seatCost;  // Add the seat cost if applicable
       };
     
       const removeItem = (index) => {
@@ -54,8 +78,9 @@ const Checkout = () => {
   return (
     <div className="checkout_page">
         <h1 className="test">hi</h1>
-        <button className="back-button" onClick={() => navigate("/shop")}>Continue Shopping</button>
-
+        <div className="back_conn">
+          <button className="back_shopp" onClick={() => navigate("/shop")}>← Back to Shop</button>
+        </div>
 
       <div className="checkout-form-row">
         <div className="checkout-form-col-75">
@@ -83,12 +108,11 @@ const Checkout = () => {
                         <input type="text" id="zip" name="zip" placeholder="10001" className="checkout-form-input" />
                       </div>
                     </div>
-                    <button type="button" className="checkout-form-next-btn" onClick={handleNextStep}>Next</button>
+                    <button type="button" className="checkout-form-next-btn" onClick={handleNextStep}>Next →</button>
                   </div>
                 ) : (
                   <div className="checkout-form-col-50">
                     <h3 className="checkout-form-section-heading">Payment</h3>
-                    <label className="checkout-form-label" htmlFor="fname">Accepted Cards</label>
                     <div className="checkout-form-icon-container">
                       <i className="fa fa-cc-visa" style={{ color: 'navy' }}></i>
                       <i className="fa fa-cc-amex" style={{ color: 'blue' }}></i>
@@ -111,13 +135,13 @@ const Checkout = () => {
                         <input type="text" id="cvv" name="cvv" placeholder="352" className="checkout-form-input" />
                       </div>
                     </div>
-                    <button type="button" className="checkout-form-back-btn" onClick={handlePrevStep}>Back</button>
+                    <button type="button" className="checkout-form-back-btn" onClick={handlePrevStep}>← Back</button>
                   </div>
                 )}
               </div>
 
               {step === 2 && (
-                <input type="submit" value="Continue to checkout" className="checkout-form-btn" />
+                <input type="submit" value="Place Order" className="checkout-form-btn" onClick={handlePlaceOrder} />
               )}
             </form>
           </div>
@@ -125,7 +149,7 @@ const Checkout = () => {
         <div className="checkout-form-col-25">
           <div className="checkout-form-container">
         {cart.length === 0 ? (
-          <p>Your cart is empty</p>
+          <p></p>
         ) : (
           <div className="cart_item_con">
             {cart.map((item, index) => (
@@ -151,10 +175,50 @@ const Checkout = () => {
             ))}
           </div>
         )}
-        <p className="total-price">Subtotal: ${calculateTotal()*0.2}</p>
-        <p>Tax: {calculateTotal()*0.0825}</p>
+          {seat && (
+          <div className="cart_item_con">
+            <div className="cart_item" >
+              <img className="cart_img2" src={tour_cover}  />
+              <div className="item_details2">
+                <p>Selected Seat: {seat}</p>
+                <div className="cart_sub">
+                  <p>Quantity: 1</p>
+                </div>
+              </div>
+              <div className="price_con2">
+                <p>$80</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="trash2"
+                  icon={faTrashCan}
+                  
+                />
+              </div>
+            </div>
+          
+        </div>
+          )}
+        
+        <h3 className="total-price">Subtotal: ${(calculateTotal()*1).toFixed(2)}</h3>
+        <p className="tax">Tax: {(calculateTotal()*0.0825).toFixed(2)}</p>
+        <h3 className="total-price">Total: ${(calculateTotal()*1.0825).toFixed(2)}</h3>
           </div>
         </div>
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <button className="modal-x-button" onClick={() => setIsOpen(false)}>X</button>
+              <h2>Order Placed!</h2>
+              <p>Your order has been placed successfully!</p>
+              <button onClick={handleModalClose} className="modal-close-btn">
+                Back to Shop
+              </button>
+            
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

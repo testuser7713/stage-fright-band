@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/react.svg"
+import Logo from "../assets/sf_logo.png"
 import "./Navbar.css";
 
 
@@ -18,7 +18,7 @@ export default function Navbar() {
           <Link className="item" tabIndex={2} to="/home" onClick={scrollToTop}>
             <h3>HOME</h3>
           </Link>
-          <Link className="item" tabIndex={3} to="/tour" onClick={scrollToTop}>
+          <Link className="item" tabIndex={3} to="/tour_main" onClick={scrollToTop}>
             <h3>TOUR</h3>
           </Link>
           <Link className="item" tabIndex={4} to="/shop" onClick={scrollToTop}>
@@ -31,9 +31,7 @@ export default function Navbar() {
           <Link className="item" tabIndex={5} to="/music" onClick={scrollToTop}>
             <h3>MUSIC</h3>
           </Link>
-          <Link className="item" tabIndex={6} to="/media" onClick={scrollToTop}>
-            <h3>MEDIA</h3>
-          </Link>
+
           <Link className="item" tabIndex={6} to="/contact" onClick={scrollToTop}>
             <h3>CONTACT</h3>
           </Link>
