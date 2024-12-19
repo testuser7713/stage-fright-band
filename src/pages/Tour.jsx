@@ -416,6 +416,10 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
     <div className="tour_map_con">
       <div className="tour_left">
         <button className="back_tourmain" onClick={handleClickButton}>← Select Tour Date</button>
+        <div className="select_text_con">
+          <h3 className="select_sec_text">Please Select a Section:</h3>
+
+        </div>
         <ImageMapper
           src={Tour_Layout}
           className="tour_layout"
@@ -429,14 +433,10 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
 
           {renderSelectedImage()}
         </div>
-      
-      
-
           <div className="seat_details">
             {selectedSeat && (
               <h3 className="selected_seat_main">Selected Seat: {selectedSeat}</h3>
             )}
-
           
           {selectedSeat && (
           <div>

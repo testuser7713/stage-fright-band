@@ -22,8 +22,10 @@
 
 .card1 {
     flex: 0 0 400px;
+    width: 400px;
+    height: auto;
     margin-right: 0px;
-    height: 60%;
+
     display: flex;
     flex-direction: column;
     align-items: center;

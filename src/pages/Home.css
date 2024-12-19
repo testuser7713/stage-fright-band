@@ -323,7 +323,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0rem 0; /* Adjust padding as needed */
-    margin-top: 0rem;
+    margin-top: -2.5rem;
     max-height: fit-content;
     position: relative;
 }
@@ -438,6 +438,7 @@ body {
 
 .ticket_button:hover {
     background-color: #e7323d;
+    transition: 0.3s ease-in-out;
     
     cursor: pointer;
     font-family: 'Antonio';

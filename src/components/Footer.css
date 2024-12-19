@@ -1,8 +1,8 @@
 .footer_container {
     background-color: grey;
     font-family: 'Antonio';
-    margin-top: -1rem;
-    margin-bottom: -1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
     display: flex;
     gap: 5rem;
     justify-content: center;

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpotify, faInstagram, faFacebook, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
 function Contact() {
 
@@ -114,20 +116,38 @@ function Contact() {
             </div>
             <div className="contact_right">
                 <h2 className="inquiry_text">CONTACT</h2>
-                <p>stagefright@globalmedia.com</p>
+                <p className="contact_p">stagefright@globalmedia.com</p>
 
                 <h2 className="contact_heading">BASED IN</h2>
-                <p>Dallas, Texas</p>
+                <p className="contact_p">Dallas, Texas</p>
 
                 {/* Social Media */}
                 <div className="social-media">
                 <h3 className="contact_heading">FOLLOW US:</h3>
-                <ul className="social_links">
-                    <li ><a href="https://www.instagram.com/stagefright" target="_blank" rel="noopener noreferrer">Instagram: @stagefright</a></li>
-                    <li><a href="https://www.twitter.com/name" target="_blank" rel="noopener noreferrer">Twitter: @name</a></li>
-                    <li><a href="https://www.facebook.com/name" target="_blank" rel="noopener noreferrer">Facebook: @name</a></li>
-                    <li><a href="https://www.spotify.com/name" target="_blank" rel="noopener noreferrer">Spotify: @name</a></li>
-                </ul>
+                <div className="social_links">
+                    <div className="social_row">
+                        <FontAwesomeIcon className="icon" icon={faInstagram} />
+                        <p href="https://www.instagram.com/stagefright" target="_blank" rel="noopener noreferrer">Instagram: @stagefright</p>
+
+                    </div>
+                    <div className="social_row">
+                        <FontAwesomeIcon className="icon" icon={faXTwitter} />
+                        <p href="https://www.twitter.com/name" target="_blank" rel="noopener noreferrer">Twitter: @stage_fright</p>
+
+                    </div>
+                    <div className="social_row">
+                        <FontAwesomeIcon className="icon" icon={faFacebook} />
+                        <p href="https://www.facebook.com/name" target="_blank" rel="noopener noreferrer">Facebook: @sf_band</p>
+
+                    </div>
+                    <div className="social_row">
+                        <FontAwesomeIcon className="icon" icon={faSpotify} />
+                        <p href="https://www.spotify.com/name" target="_blank" rel="noopener noreferrer">Spotify: @stagefright</p>
+
+                    </div>
+
+                    
+                </div>
                 </div>
 
             </div>

@@ -79,20 +79,19 @@ const ShopDetails = () => {
 
   const handleAddToCart = () => {
     if (!item) return;
-
+  
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItemIndex = storedCart.findIndex((cartItem) => cartItem.id === item.id);
-
+  
     if (existingItemIndex !== -1) {
       storedCart[existingItemIndex].quantity += quantity;
     } else {
       storedCart.push({ ...item, quantity });
     }
-
+  
     localStorage.setItem("cart", JSON.stringify(storedCart));
-    // Manually trigger the storage event
-    window.dispatchEvent(new Event("storage"));
-
+    // Trigger custom event to open the cart sidebar
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   if (!item) {

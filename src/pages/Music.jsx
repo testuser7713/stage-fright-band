@@ -10,6 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify, faItunes, faApple, faSoundcloud } from "@fortawesome/free-brands-svg-icons";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
+import album1 from "../assets/albums.png"
+import album2 from "../assets/middle_alb.png"
+import album3 from "../assets/albums (3).png"
+import album4 from "../assets/album4 (1).png"
+
 export default function Music() {
     const [position, setPosition] = useState(3); // Default to the 3rd radio button
     const totalSlides = 5; // Total number of slides
@@ -71,7 +76,7 @@ export default function Music() {
             song3: "",
             song4: "",
             song5: "",
-            desc: "letting loose"
+            desc: "This single is a fierce and electrifying journey through the collision of raw energy and distorted reality. The band weaves a chaotic tapestry of heavy riffs, pounding drums, and piercing vocals, capturing the frenetic tension of a world teetering on the edge. With explosive intensity, SURGED CHAOS delves into the turmoil of self-doubt, internal conflict, and the uncontrollable forces that define modern existence."
         },
         {
             name:"OBITUARY",
@@ -173,40 +178,40 @@ export default function Music() {
 
                 {/* Right Arrow */}
             <div className="audio_player_con">
-            <div className="audio_player">
-            {/* Audio element */}
-            <audio
-            ref={audioRef}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleLoadedMetadata}
-            >
-            <source src={audio} type="audio/mpeg" />
-            Your browser does not support the audio element.
-            </audio>
+                <div className="audio_player">
+                {/* Audio element */}
+                <audio
+                ref={audioRef}
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={handleLoadedMetadata}
+                >
+                <source src={audio} type="audio/mpeg" />
+                Your browser does not support the audio element.
+                </audio>
 
-            {/* Play/Pause Button */}
-            <button className="player_but_con" onClick={togglePlayPause}>
-                <FontAwesomeIcon className="player_but" icon={isPlaying ? faPause: faPlay} />
-            </button>
+                {/* Play/Pause Button */}
+                <button className="player_but_con" onClick={togglePlayPause}>
+                    <FontAwesomeIcon className="player_but" icon={isPlaying ? faPause: faPlay} />
+                </button>
 
-            {/* Progress Bar */}
-            <input
-            type="range"
-            className="custom-progress"
-            min="0"
-            max={duration || 0}
-            value={currentTime}
-            onChange={handleSeek}
-            style={{ width: "300px", margin: "0 10px" }}
-            />
+                {/* Progress Bar */}
+                <input
+                type="range"
+                className="custom-progress"
+                min="0"
+                max={duration || 0}
+                value={currentTime}
+                onChange={handleSeek}
+                style={{ width: "300px", margin: "0 10px" }}
+                />
 
-            {/* Time Display */}
-            <div>
-            {Math.floor(currentTime)} / {Math.floor(duration)} seconds
-            </div>
+                {/* Time Display */}
+                <div>
+                {Math.floor(currentTime)} / {Math.floor(duration)} seconds
+                </div>
             </div>
             
-            </div>
+        </div>
             
                 
             </div>
@@ -230,6 +235,42 @@ export default function Music() {
                 
             </div>
             <div>
+                                {/*<div className="music_merch_right_con">
+                                    <div className="music_merch_right">
+                                        <div className="music_item_con">
+                                            <div className="music_item">
+                                                <img src={album1} id="vinyl" onClick={() => handleImageClick("vinyl")}></img>
+                                                <p className="">Standard LP Vinyl Record</p>
+                
+                                                
+                
+                                            </div>
+                                            
+                                        </div>
+                                        <div className="music_item_con">
+                                            <div className="music_item">
+                                                <img src={album2} id="manuscript" onClick={() => handleImageClick("manuscript")}></img>
+                                                <p className="">CD + Manuscript</p>
+                                                
+                                            </div>
+                                        </div>
+                                        <div className="music_item_con">
+                                            <div className="music_item">
+                                                <img src={album3} id="casette" onClick={() => handleImageClick("casette")}></img>
+                                                <p className="">Standard Casette</p>
+                                                
+                                            </div>
+                                        </div>
+                                        <div className="music_item_con">
+                                            <div className="music_item">
+                                                <img src={album4} id="cd" onClick={() => handleImageClick("cd")}></img>
+                                                <p className="">Exclusive CD</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                </div>*/}
 
             </div>
             <div className="streaming">
@@ -237,6 +278,7 @@ export default function Music() {
                         <div className="stream_text_con">
                             <h2 className="stream_text">STREAM NOW</h2>
                         </div>
+                        <div className="stream_icons_con">
                         <div className="stream_icons">
                             
                             <div className="stream_row">
@@ -255,6 +297,7 @@ export default function Music() {
                                 <FontAwesomeIcon className="icon" icon={faSoundcloud} />
                                 <p>SoundCloud</p>
                             </div>
+                        </div>
                         </div>
                         
                     </div>

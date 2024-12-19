@@ -359,11 +359,16 @@ input:nth-of-type(5):checked ~ main#carousel {
 .stream_con {
     border: 1px solid yellow;
     border-radius: 10px;
-    padding: 0rem 2rem;
+    padding: 0rem 0rem;
     display: flex;
     justify-content: center;
     display: flex;
     flex-direction: column;
+}
+
+.stream_icons_con {
+    display: flex;
+    justify-content: center;
 }
 
 .stream_text {
@@ -371,7 +376,6 @@ input:nth-of-type(5):checked ~ main#carousel {
     justify-self: center;
     color: #ffe9c0;
     font-size: 2.5rem;
-    line-height: 0.5rem;
     text-shadow:
         0 0 0px #de9e2a,
         0 0 5px #de9e2a,
@@ -384,8 +388,19 @@ input:nth-of-type(5):checked ~ main#carousel {
 }
 
 .stream_icons {
-    padding: 0 5rem;
+    padding: 0 0rem;
     color: #f5cb7f;
+    font-family: 'Antonio';
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream_icons div:hover {
+    color: #ec9f10;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .stream_row {
@@ -401,24 +416,31 @@ input:nth-of-type(5):checked ~ main#carousel {
     font-size: 1.5rem;
 }
 
+/* Position the audio player relative to the carousel */
 .audio_player_con {
+    position: absolute; /* Allow positioning relative to the carousel */
+    top: 75%; /* Adjust based on how far down from the center image you want the player */
+    left: 50%; /* Center horizontally */
+    transform: translate(-35%, -50%); /* Center alignment */
+    z-index: 5; /* Ensure it stays above the carousel items */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
 }
 
+/* Fine-tune the styling of the audio player */
 .audio_player {
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
     align-items: center;
-    width: 100%;
-    max-width: 500px; /* Adjust the size as needed */
-    background-color: rgba(0, 0, 0, 0.7); /* Optional: Add background styling */
-    border-radius: 10px; /* Optional: Add rounded corners */
+    width: 370px; /* Match carousel image size if needed */
+    max-width: 500px; /* Optional: Add a maximum width for responsiveness */
+    background-color: rgba(0, 0, 0, 0.8); /* Match carousel theme */
+    border-radius: 10px; /* Add rounded corners */
+    padding: 1rem; /* Adjust padding as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
 }
+
 
 
 .player_but {
@@ -426,8 +448,81 @@ input:nth-of-type(5):checked ~ main#carousel {
     color: white;
 }
 
+.player_but:hover {
+    cursor: pointer;
+    color:#e82d08;
+    transition: ease-in-out;
+}
+
 .player_but_con {
     background-color: none;
     all: unset;
 }
 
+.custom-progress {
+    color: red;
+}
+
+.custom-progress {
+    appearance: none; /* Remove default styling */
+    height: 6px; /* Adjust height as needed */
+    background: #e0e0e0; /* Track background color */
+    border-radius: 5px;
+    outline: none;
+    margin: 0 10px;
+}
+
+.custom-progress::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, #ff5733, #ff5733); /* Track gradient color */
+    border-radius: 5px;
+    height: 6px;
+}
+
+.custom-progress::-webkit-slider-thumb {
+    appearance: none; /* Remove default thumb styling */
+    width: 12px;
+    height: 12px;
+    background: #ff5733; /* Thumb color */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Optional border */
+    margin-top: -3px; /* Center the thumb */
+}
+
+.custom-progress::-moz-range-track {
+    background: linear-gradient(90deg, #ff5733, #ff5733);
+    border-radius: 5px;
+    height: 6px;
+}
+
+.custom-progress::-moz-range-thumb {
+    height: 12px;
+    background: #ff5733;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.custom-progress::-ms-track {
+    background: transparent; /* Hide default styling */
+    border-color: transparent;
+    color: transparent;
+}
+
+.custom-progress::-ms-fill-lower {
+    background: linear-gradient(90deg, #ff5733, #ff5733);
+    border-radius: 5px;
+}
+
+.custom-progress::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background: #ff5733;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.music_merch_right_con {
+    font-family: 'Antonio';
+}

@@ -164,6 +164,12 @@
     padding-left: 0px;
   }
 
+  .trash2:hover{
+    color: red;
+    transition: ease-in-out;
+    cursor: pointer;
+  }
+
   .back_conn {
     padding-top: 1rem;
     font-size: larger;

@@ -15,9 +15,7 @@ export default function Navbar() {
       <div className="navbar">
         
         <ul className="navbar-items">
-          <Link className="item" tabIndex={2} to="/home" onClick={scrollToTop}>
-            <h3>HOME</h3>
-          </Link>
+
           <Link className="item" tabIndex={3} to="/tour_main" onClick={scrollToTop}>
             <h3>TOUR</h3>
           </Link>

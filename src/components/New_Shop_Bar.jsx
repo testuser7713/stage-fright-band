@@ -41,6 +41,7 @@ export default function MenuBar() {
 
     return (
         <div className="shopBar">
+            {/*
             <img
                 src={Arrow}
                 alt="left arrow"
@@ -48,6 +49,7 @@ export default function MenuBar() {
                 id="left_arrow"
                 onClick={() => scrollHandler("left")}
             ></img>
+            */}
             <div className="menu_secc" id="menu_sec">
               <div className="item_con_one">
                 <div className="image-wrapperr" onClick={() => handleImageClick("shirt1")}>
@@ -81,6 +83,7 @@ export default function MenuBar() {
                 <p className="shop_label">Stage Fright Classic Black Tee</p>
 
               </div>
+              {/*
                 <div className="item_con">
                     <img src={Merch3} alt="Deserts" loading="lazy"></img>
                 </div>
@@ -94,7 +97,9 @@ export default function MenuBar() {
                     <img src={Merch2} alt="Sides" loading="lazy"></img>
                 </div>
                 <h5 className="border"></h5>
+                */}
             </div>
+            {/*
             <img
                 src={Arrow}
                 alt="right arrow"
@@ -102,6 +107,7 @@ export default function MenuBar() {
                 id="right_arrow"
                 onClick={() => scrollHandler("right")}
             ></img>
+            */}
         </div>
     );
 }

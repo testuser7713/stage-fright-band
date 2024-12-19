@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Background from "../assets/stage_background.svg"
 import Band_Sil from "../assets/band_sil (2).png"
 import Flame from "../assets/new_flame.png"
@@ -21,6 +21,8 @@ import members from "../assets/band_members.png"
 
 
 function Home() {
+    const navigate = useNavigate();
+    
     const [isFlipped, setIsFlipped] = useState(false);
     function flipCard() {
         setIsFlipped(!isFlipped);
@@ -100,7 +102,7 @@ function Home() {
                                 <h3 className="area">Dallas, TX</h3>
                             </div>
                             <div className="tickets">
-                                <button className="ticket_button">Buy Tickets</button>
+                                <button className="ticket_button" onClick={() => navigate("/tour_main")}>Buy Tickets</button>
                             </div>
                             </div>
 
@@ -114,7 +116,7 @@ function Home() {
                                 <h3 className="area">Dallas, TX</h3>
                             </div>
                             <div className="tickets">
-                                <button className="ticket_button" href="">Buy Tickets</button>
+                                <button className="ticket_button" href="" onClick={() => navigate("/tour_main")}>Buy Tickets</button>
                             </div>
                             </div>
 
@@ -127,7 +129,7 @@ function Home() {
                                 <h3 className="area">Dallas, TX</h3>
                             </div>
                             <div className="tickets">
-                                <button className="ticket_button">Buy Tickets</button>
+                                <button className="ticket_button" onClick={() => navigate("/tour_main")}>Buy Tickets</button>
                             </div>
                             </div>
                         </div>

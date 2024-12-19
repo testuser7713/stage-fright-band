@@ -23,19 +23,18 @@ const CartModal = () => {
 
   // Effect to initialize cart and listen for storage changes
   useEffect(() => {
-    fetchCart(); // Load initial cart state
-
-    const handleStorageChange = () => {
-      fetchCart(); // Refresh cart when localStorage changes
+    const handleCartUpdate = () => {
+      setIsOpen(true); // Open the modal when an item is added to the cart
+      fetchCart(); // Refresh the cart contents
     };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    // Cleanup event listener on unmount
+  
+    window.addEventListener("cartUpdated", handleCartUpdate);
+  
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("cartUpdated", handleCartUpdate);
     };
   }, []);
+  
 
   const toggleModal = () => {
     setIsOpen(!isOpen);

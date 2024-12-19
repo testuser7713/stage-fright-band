@@ -121,7 +121,7 @@ body {
 .music_merch_right_con {
     display: flex;
     height: fit-content;
-    justify-content: center;
+    justify-content: end;
     height: 85vh; /* Occupy 65% of the parent width */
     margin-left: auto;
     width: 45vw;
@@ -182,12 +182,11 @@ body {
     transform: scale(0.7);
     top: -10rem;
     left: -28rem;
+    animation: spinner 8s linear infinite;
+
 }
 
-.vinyl:hover {
-    animation: spinner 8s linear infinite;
-    transform: scale(0.7);
-}
+
 @keyframes spinner {
     from { transform: rotate(0deg) scale(0.7); }
     to { transform: rotate(360deg) scale(0.7); }
@@ -311,6 +310,7 @@ body {
 
 .record_img:hover {
     animation: spin 5s linear infinite;
+    cursor: pointer;
 }
   
   
@@ -325,3 +325,4 @@ body {
     font-size: larger;
     margin-bottom: 20px;
 }
+

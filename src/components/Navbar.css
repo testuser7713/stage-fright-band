@@ -8,9 +8,16 @@
     width: 100%;
     
 }
+@font-face {
+  font-family: 'Race Sport';
+  src: url('../fonts/Thuast-Demo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 .navbar {
     position: fixed;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Antonio';
+    letter-spacing: 2px;
     top: 0;
     width: 100%;
     background-color: rgb(27, 27, 27);
@@ -30,7 +37,33 @@
     align-items: center;
     margin: 0;
     padding: 0;
-    padding-right: 12rem;
+  }
+
+  .navbar-items h3 {
+    font-size: 1.6rem; /* Adjust size */
+    font-family: 'Antonio', sans-serif; /* Match your fonts */
+
+    color: white;
+
+
+    line-height: 0.7;
+
+    font-weight: 900;
+  }
+
+  .navbar-items h3:hover {
+    transition: 0.3s ease-in-out;
+
+    text-shadow:
+        0 0 0px #de9e2a,
+        0 0 0px #de9e2a,
+        0 0 0px #de9e2a,
+        0 0 8px #de9e2a,
+        0 0 0px #de9e2a,
+        0 0 0px #f5cb7f,
+        0 0 8px #f5cb7f,
+        0 0 0px #f5cb7f;
+
   }
   
   .item, .item1 {

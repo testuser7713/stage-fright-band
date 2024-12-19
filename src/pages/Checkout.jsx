@@ -65,6 +65,11 @@ const Checkout = () => {
         setCart(updatedCart); // Update the state
         localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save changes to localStorage
       };
+
+      const removeSeat = () => {
+        localStorage.removeItem("seat"); // Remove seat from localStorage
+        setSeat(null); // Update state to reflect removal
+      };
   const [step, setStep] = useState(1); // 1 for Billing, 2 for Payment
 
   const handleNextStep = () => {
@@ -192,6 +197,7 @@ const Checkout = () => {
                 <FontAwesomeIcon
                   className="trash2"
                   icon={faTrashCan}
+                  onClick={removeSeat}
                   
                 />
               </div>
@@ -201,14 +207,14 @@ const Checkout = () => {
           )}
         
         <h3 className="total-price">Subtotal: ${(calculateTotal()*1).toFixed(2)}</h3>
-        <p className="tax">Tax: {(calculateTotal()*0.0825).toFixed(2)}</p>
+        <p className="tax">Tax: ${(calculateTotal()*0.0825).toFixed(2)}</p>
         <h3 className="total-price">Total: ${(calculateTotal()*1.0825).toFixed(2)}</h3>
           </div>
         </div>
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content">
-              <button className="modal-x-button" onClick={() => setIsOpen(false)}>X</button>
+              <button className="modal-x-button" onClick={handleModalClose} >X</button>
               <h2>Order Placed!</h2>
               <p>Your order has been placed successfully!</p>
               <button onClick={handleModalClose} className="modal-close-btn">
