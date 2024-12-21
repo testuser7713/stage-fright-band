@@ -330,7 +330,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 } 
 
 .music_desc_con_p, .lost_desc_con_p {
-    font-family:'Times New Roman', Times, serif;
+    font-family:'Antonio';
     font-size: 1.5rem;
     padding: 0;
     color: white;
@@ -342,7 +342,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 .burnt_s, .ignition_s, .lost_s, .surged_s, .obituary_s {
     list-style: none;
-    font-family:'Times New Roman', Times, serif;
+    font-family:'Antonio';
     font-size: 1.5rem;
     padding: 0;
     line-height: normal;
