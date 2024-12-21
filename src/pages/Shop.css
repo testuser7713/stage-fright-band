@@ -51,7 +51,8 @@ body {
 .mid_con {
     background-color: black;
     justify-self: center;
-    color: black;
+    color: white;
+    font-size: larger;
     display: flex;
     flex-direction: column; /* Stack children vertically */
     width: 80vw;

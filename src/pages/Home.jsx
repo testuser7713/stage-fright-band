@@ -18,6 +18,7 @@ import Merch3 from "../assets/merch3.png"
 import Shop_Bar from "../components/Shop_Bar.jsx"
 import Background_Vid from "../assets/stage_edited.mp4"
 import members from "../assets/band_members.png"
+import Aout from "../components/Members.jsx"
 
 
 function Home() {
@@ -152,19 +153,25 @@ function Home() {
                             <h2 className="about_label">ABOUT</h2>
                             <h3 className="band_label">Stage Fright</h3>
                         </div>
-                        <div className="image_con">
-                            <img className="members_img" src={members} />
+                        <div className="about_con">
+                            <div className="about_desc">
+                                <p className="story_text">Since forming in 2024, Stage Fright has emerged as one of Dallas’ most exciting local bands, fueled by raw creativity, explosive energy, and unforgettable live performances. Stage Fright represents the ambition of four young musicians who met at a local open mic night and shared a love for rock music and a desire to push its boundaries, from there. Recently they’ve announced their long-awaited tour and their newest album Lost in the Fire has received great applause.</p> 
+                                <p className="explore_text">Explore each of the members on the right!</p>
+                            </div>
+                            <div className="members_con">
+                                <Aout />
+                            </div>
                         </div>
+
                         
 
-                        <div className="about_desc">
-                            <p>Since forming in 2024, Stage Fright has emerged as one of Dallas’ most exciting local bands, fueled by raw creativity, explosive energy, and unforgettable live performances. Stage Fright represents the ambition of four young musicians who met at a local open mic night and shared a love for rock music and a desire to push its boundaries, from there. Stage Fright quickly grew into a beloved name in the underground rock scene, gaining a reputation for its fiery performances and bold visuals. Recently they’ve announced their long-awaited tour and their newest album lost in the fire has received great applause.</p> 
-                            <p><strong>Vega (Lead Vocals, Rhythm Guitar)</strong> is the bold and fiery frontwoman with a raspy, commanding voice. She grew up singing in church but gravitated toward edgier rock influences like her inspiration, Joan Jett. A passionate songwriter, she brings emotional depth to the band’s music.  </p>
-                        </div>
+
                     </div>
 
                 </div>
+                
             </div>
+
             <div className="shop">
                 <div className="shop_con">
                     <div className="shop_text_con">
