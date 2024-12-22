@@ -41,9 +41,10 @@
   
   .main-image {
     width: 300px; /* Adjust as needed */
-    border: 3px solid #a787ff;
+    border: 3px solid #fb03037d;
+    box-shadow: 1px 1px 20px rgba(255, 50, 50, 1); /* Brighter red shadow on hover */
+
     border-radius: 10px;
-    background-color: #f4f4f4;
   }
   
   .thumbnail-container {
@@ -62,14 +63,14 @@
   
   .thumbnail:hover {
     transform: scale(1.1);
-    border: 2px solid #a787ff;
+    border: 2px solid #fb03037d;
   }
   
   .item-details-left {
     width: 60vw;
   }
   .item-details-right {
-    width: 40vw;
+    width: 40vw;  
   }
   .item-details-sub {
     display: flex;

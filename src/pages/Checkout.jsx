@@ -25,6 +25,9 @@ const Checkout = () => {
 
       const handleModalClose = () => {
         setShowModal(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+
         navigate("/shop");
       }
     

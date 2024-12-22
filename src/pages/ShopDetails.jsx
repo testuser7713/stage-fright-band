@@ -35,23 +35,24 @@ import CartSidebar from "../components/CartSideBar";
 import "../pages/ShopDetails.css"
 
 const items = [
-  { id: "shirt1", name: "Stage Fright Classic Longsleeve", description: "A stylish tote bag with the Stage Fright logo.", price: 29.99, image: Shirt1_front, backImage: Shirt1_back },
-  { id: "shirt2", name: "Stage Fright Zip-Up Sweatshirt", description: "A stylish tote bag with the Stage Fright logo.", price: 29.99, image: Shirt2_front, backImage: Shirt2_back  },
-  { id: "shirt3", name: "Stage Fright Classic Graphic Tee", description: "A stylish tote bag with the Stage Fright logo.", price: 29.99, image: Shirt3_front, backImage: Shirt3_back  },
-  { id: "shirt4", name: "Stage Fright Classic Black Tee", description: "A stylish tote bag with the Stage Fright logo.", price: 29.99, image: Shirt4_front, backImage: Shirt4_back  },
-  { id: "toteOne", name: "Stage Fright Classic Tote", description: "A stylish tote bag with the Stage Fright logo.", price: 29.99, image: toteOne },
-  { id: "toteTwo", name: "Stage Fright Graphic Tote", description: "A graphic tote bag perfect for everyday use.", price: 24.99, image: toteTwo },
-  { id: "cap", name: "Stage Fright Baseball Cap", description: "A baseball cap featuring the Stage Fright logo.", price: 19.99, image: cap_front, backImage: cap_back },
-  { id: "tokens", name: "Stage Fright Keychain Assortment", description: "A set of keychains to show off your fandom.", price: 9.99, image: tokens },
-  { id: "bundle", name: "Accessory Bundle Package", description: "A bundle of accessories including a tote, cap, and more.", price: 49.99, image: bundle_front, backImage: bundle_back },
-  { id: "fanny", name: "Embellished Fanny Pack", description: "A stylish fanny pack for all your essentials.", price: 34.99, image: fanny_front, backImage: fanny_back },
-  { id: "vinyl", name: "Standard LP Vinyl Record", description: "The classic album on vinyl.", price: 39.99, image: album1 },
-  { id: "manuscript", name: "CD + Manuscript", description: "A CD bundle with exclusive manuscript.", price: 29.99, image: album2 },
-  { id: "casette", name: "Standard Casette", description: "Classic album on cassette.", price: 14.99, image: album3 },
-  { id: "cd", name: "Exclusive CD", description: "The exclusive album on CD.", price: 19.99, image: album4 },
-  { id: "ignition_vinyl", name: "Ignition 12-inch LP Vinyl", description: "Ignition album on premium vinyl.", price: 44.99, image: record1 },
-  { id: "lif_vinyl", name: "Lost in the Fire 13-inch Vinyl", description: "A special edition vinyl record.", price: 49.99, image: record2 },
-  { id: "surged_vinyl", name: "Surged Chaos Single 12-inch LP", description: "Limited edition single vinyl.", price: 39.99, image: record3 },
+  { id: "shirt1", name: "Stage Fright Classic Longsleeve", description: "This comfortable long-sleeve shirt features a timeless Stage Fright design, perfect for cooler days. Made from soft, breathable fabric, it’s a stylish choice for any fan.", price: 29.99, image: Shirt1_front, backImage: Shirt1_back },
+  { id: "shirt2", name: "Stage Fright Zip-Up Sweatshirt", description: "Stay warm in style with this Stage Fright zip-up sweatshirt, complete with a sleek logo design. Ideal for layering, it combines comfort and fashion effortlessly.", price: 29.99, image: Shirt2_front, backImage: Shirt2_back },
+  { id: "shirt3", name: "Stage Fright Classic Graphic Tee", description: "A must-have for fans, this graphic tee showcases bold Stage Fright artwork. Lightweight and versatile, it's great for casual outings or concerts.", price: 29.99, image: Shirt3_front, backImage: Shirt3_back },
+  { id: "shirt4", name: "Stage Fright Classic Black Tee", description: "This classic black tee highlights the Stage Fright logo in a clean and minimalist style. Perfect for everyday wear, it pairs well with any outfit.", price: 29.99, image: Shirt4_front, backImage: Shirt4_back },
+  { id: "toteOne", name: "Stage Fright Classic Tote", description: "Carry your essentials in this classic tote bag featuring the Stage Fright logo. Durable and spacious, it’s perfect for shopping or a day out.", price: 29.99, image: toteOne },
+  { id: "toteTwo", name: "Stage Fright Graphic Tote", description: "Show off your fandom with this vibrant graphic tote bag. Sturdy and stylish, it’s ideal for everyday use or as a gift.", price: 24.99, image: toteTwo },
+  { id: "cap", name: "Stage Fright Baseball Cap", description: "This adjustable baseball cap features the iconic Stage Fright logo, making it a perfect accessory for fans. Designed for comfort and style, it’s suitable for any occasion.", price: 19.99, image: cap_front, backImage: cap_back },
+  { id: "tokens", name: "Stage Fright Keychain Assortment", description: "A set of high-quality keychains showcasing unique Stage Fright designs. Great for personal use or sharing with fellow fans.", price: 9.99, image: tokens },
+  { id: "bundle", name: "Accessory Bundle Package", description: "This all-in-one accessory bundle includes a tote, cap, and more fan-favorite items. The perfect way to show your love for Stage Fright.", price: 49.99, image: bundle_front, backImage: bundle_back },
+  { id: "fanny", name: "Embellished Fanny Pack", description: "Keep your essentials close with this embellished Stage Fright fanny pack. Practical and stylish, it’s perfect for concerts and on-the-go adventures.", price: 34.99, image: fanny_front, backImage: fanny_back },
+  { id: "vinyl", name: "Standard LP Vinyl Record", description: "Enjoy the classic Stage Fright album in rich vinyl sound. A must-have collector’s piece for audiophiles and fans alike.", price: 39.99, image: album1 },
+  { id: "manuscript", name: "CD + Manuscript", description: "This exclusive bundle includes the album on CD and a collectible manuscript. A great choice for fans who love exclusive memorabilia.", price: 29.99, image: album2 },
+  { id: "casette", name: "Standard Cassette", description: "Relive the nostalgia with the Stage Fright album on cassette. Compact and retro, it’s a unique way to enjoy your favorite tracks.", price: 14.99, image: album3 },
+  { id: "cd", name: "Exclusive CD", description: "Experience the exclusive Stage Fright album on CD with crisp sound quality. A fan essential for any collection.", price: 19.99, image: album4 },
+  { id: "ignition_vinyl", name: "Ignition 12-inch LP Vinyl", description: "Ignition, now available on premium vinyl for an unparalleled listening experience. This 12-inch LP features stunning audio fidelity and album art.", price: 44.99, image: record1 },
+  { id: "lif_vinyl", name: "Lost in the Fire 13-inch Vinyl", description: "Celebrate the Lost in the Fire album with this special edition 13-inch vinyl. A true collector’s item with a unique design.", price: 49.99, image: record2 },
+  { id: "surged_vinyl", name: "Surged Chaos Single 12-inch LP", description: "This limited-edition single vinyl captures the energy of Surged Chaos. A standout piece for fans and vinyl enthusiasts.", price: 39.99, image: record3 },
+  
 ];
 
 const ShopDetails = () => {
