@@ -1,0 +1,74 @@
+
+  
+  .header {
+    text-align: center;
+    padding: 0px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10rem;
+  }
+  
+  .column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Modal styles */
+  .gal-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .gal-modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%; /* Increase the max-width for a larger image */
+    max-height: 90%; /* Adjust the max-height as well for a larger image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gal-modal img {
+    width: 100%;  /* This makes the image take up the width of the modal-content */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%;  /* Ensure the image doesn't exceed the container's width */
+  }
+
+.column img:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
+}

@@ -17,6 +17,7 @@ import Merch2 from "../assets/merch2.png"
 import Merch3 from "../assets/merch3.png"
 import Shop_Bar from "../components/Shop_Bar.jsx"
 import Background_Vid from "../assets/stage_edited.mp4"
+import red_smoke from "../assets/red_smoke.mp4"
 import members from "../assets/band_members.png"
 import Aout from "../components/Members.jsx"
 
@@ -96,7 +97,7 @@ function Home() {
                             {/* Repeatable blocks for each tour date */}
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 28, 2024</h3>
+                                <h3 className="date_label">May 21, 2024</h3>
                                 <h4 className="loc_label">American Airlines Center</h4>
                             </div>
                             <div className="location">
@@ -110,7 +111,7 @@ function Home() {
                             {/* Add additional date blocks as needed */}
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 29, 2024</h3>
+                                <h3 className="date_label">May 23, 2024</h3>
                                 <h4 className="loc_label">Toyota Music Factory</h4>
                             </div>
                             <div className="location">
@@ -123,7 +124,7 @@ function Home() {
 
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 31, 2024</h3>
+                                <h3 className="date_label">May 24, 2024</h3>
                                 <h4 className="loc_label">House of Blues Concert</h4>
                             </div>
                             <div className="location">

@@ -14,6 +14,83 @@ body {
     padding: 0;
 }
 
+.lines {
+    padding-top: 8%;
+    color: white;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+.latestt {
+        font-family: 'Holiday';
+        font-size: 1.5rem;
+        color: white;
+        top: -1rem;
+        position: relative;
+        letter-spacing: 2px;
+        word-spacing: 5px;
+
+    
+}
+
+.shop_header {
+    color: white;
+    font-family: 'Antonio';
+    font-size: 2.5rem;
+    line-height: 0;
+
+}
+
+.shop_headerr {
+    color: white;
+    font-family: 'Antonio';
+    font-size: 2rem;
+    line-height: 0;
+
+}
+
+.shop_header_con {
+    justify-content: center;
+    display: flex;
+
+}
+.merch_text {
+    font-family: 'Race Sport', sans-serif;
+    line-height: 0;
+    /*color: #f97a7a;*/
+    display: flex;
+    /*text-shadow:
+    0 0 0px #c61c1e,
+    0 0 1px #c61c1e,
+    0 0 12px #8c1a1c,
+    0 0 3px #bf3e40,
+    0 0 7px #bf3e40,
+    0 0 1px #f5cb7f,
+    0 0 1px #f5cb7f,
+    0 0 4px #f5cb7f;*/
+    font-size: 6rem;
+    /*text-shadow:
+        0 0 0px #f374747d,
+        0 0 1px #f374747d,
+        0 0 12px #f374747d,
+        0 0 32px #f374747d,
+        0 0 70px #f374747d,
+        0 0 10px #fb03037d,
+        0 0 10px #fb03037d,
+        0 0 4px #fb03037d;*/
+    text-shadow:
+        0 0 0px #dea730,
+        0 0 1px #dea730,
+        0 0 12px #f5cb7f,
+        0 0 32px #dea730,
+        0 0 50px #dea730,
+        0 0 10px #dea730,
+        0 0 10px #f5cb7f,
+        0 0 4px #f5cb7f;
+
+}
+
+
 .shop_page p {
     font-family:'Antonio' ;
 }
@@ -31,7 +108,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 8rem;
+    padding-top: 0rem;
     background-color: black;
 }
 
@@ -51,7 +128,7 @@ body {
 .mid_con {
     background-color: black;
     justify-self: center;
-    color: white;
+    color: black;
     font-size: larger;
     display: flex;
     flex-direction: column; /* Stack children vertically */
@@ -81,7 +158,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: grey;
+    background-color: rgb(231, 231, 231);
     justify-content: center;
     
     cursor: pointer;
@@ -101,7 +178,7 @@ body {
 
 .tote {
     position: absolute; /* Remove from normal flow */
-    top: -60%; /* Adjust vertical position */
+    top: -40%; /* Adjust vertical position */
     left: 45%; /* Adjust horizontal position */
     transform: scale(0.60) rotate(-30deg);
 }
@@ -111,7 +188,7 @@ body {
     margin-top: 5rem;
     justify-self: center;
     justify-content: space-between;
-    color: white;
+    color: black;
     display: flex;
     overflow: visible;
     flex-direction: row; /* Stack children vertically */
@@ -125,6 +202,11 @@ body {
     height: fit-content;
     justify-content: end;
     height: 85vh; /* Occupy 65% of the parent width */
+    margin-left: auto;
+    width: 45vw;
+}
+
+.music_right_con {
     margin-left: auto;
     width: 45vw;
 }
@@ -153,7 +235,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: grey;
+    background-color: rgb(231, 231, 231);
+
 }
 
 .music_item p {
@@ -172,9 +255,9 @@ body {
 
 .music_merch {
     position: absolute; /* Position it relative to the parent container */
-    top: -7rem; /* Move upwards (adjust as needed) */
+    top: -5rem; /* Move upwards (adjust as needed) */
     left: -26rem; /* Keep it aligned with the left edge of the container */
-    transform: scale(0.7); /* Optional: Adjust scale */
+    transform: scale(0.8); /* Optional: Adjust scale */
 
 }
 
@@ -304,7 +387,7 @@ body {
     justify-content: center;
     width: 100%; /* Match image dimensions */
     height: 100%;
-    background-color: grey;
+    background-color: rgb(231, 231, 231);
     position: relative; /* Ensure proper alignment in the slider */
     overflow: hidden;
     cursor: pointer;
@@ -323,8 +406,27 @@ body {
 }
 
 .music_item_con p {
-    color: white;
+    color: black;
     font-size: larger;
     margin-bottom: 20px;
 }
 
+
+.acc_con {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: -2rem;
+}
+
+.acc_conn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.shop_headerr {
+    color: white;
+}

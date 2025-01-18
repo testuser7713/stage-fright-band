@@ -1,22 +1,111 @@
-.trapezoid-container {
-    position: relative;
-    width: 300px;
-    height: 200px;
-  }
+.media_page {
+  background-color: black;
+}
+.spotify_name {
+  color: white;
+}
   
-  .trapezoid {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0% 100%);
-    background: lightgray;
-  }
-  
-  .circle {
-    position: absolute;
-    width: 20px; /* Diameter: 2 * radius */
-    height: 20px; /* Diameter: 2 * radius */
-    border-radius: 50%;
-    background-color: blue;
-  }
-  
+.media_top {
+  padding-top: 5rem;
+  color: white;
+  text-align: center;
+}
+
+.connect_text {
+  font-family: 'Race Sport', sans-serif;
+  font-size: 4rem;
+  text-shadow:
+      0 0 0px #dea730,
+      0 0 1px #dea730,
+      0 0 12px #f5cb7f,
+      0 0 2px #dea730,
+      0 0 50px #dea730,
+      0 0 10px #dea730,
+      0 0 10px #f5cb7f,
+      0 0 4px #f5cb7f;
+}
+
+.with_text {
+  font-family: 'Holiday';
+  font-size: 1.5rem;
+  color: white;
+  top: -3rem;
+  position: relative;
+  letter-spacing: 2px;
+  word-spacing: 5px;
+}
+
+.spotify_con {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.spotify_sub_con {
+  display: flex;
+  justify-content: center;
+
+}
+
+.spotify_name {
+  color: white;
+  font-family: 'Antonio';
+  font-size: 2.75rem;
+  line-height: auto;
+}
+
+
+
+.social_con {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+
+.gallery {
+  margin-top: 3rem;
+}
+
+.insta_top {
+  justify-content: center;
+  display: flex;
+}
+.embedd_con {
+  justify-content: center; /* Centers horizontally */
+  width: 100%;
+}
+
+.embedd_con > * {
+  max-width: 100%; /* Prevents width distortion */
+  flex-shrink: 0; /* Ensures the embed doesn't shrink unexpectedly */
+}
+
+.insta_con {
+  display: flex;
+  flex-direction: column;
+}
+
+.insta_sub_con {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto; /* Adjust height automatically */
+}
+
+.embedd_con {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  width: 100%;
+}
+
+.embed_sub_con {
+  display: block; /* Remove flex to avoid shrinking */
+  width: 100%; /* Ensure it fills the width without shrinking */
+  max-width: 100%; /* Prevent any restrictions */
+  flex-shrink: 0; /* Prevents shrinking */
+}
+
+.instagram-embed {
+  width: 100%; /* Allow the embed to fill its container */
+  height: auto; /* Adjusts height proportionally */
+}

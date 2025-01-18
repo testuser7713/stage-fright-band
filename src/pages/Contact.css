@@ -87,7 +87,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-family: poppins;
 }
 
 .input, .subject {
@@ -211,3 +210,168 @@ body {
   color:#de9e2a;
   transition: 0.3s ease-in-out;
 }
+
+.tab_buttons {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab_button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.tab_button.active {
+  background-color: #555;
+  color: white;
+}
+
+.tab_content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+/* old stuff */
+
+
+
+.order_type, .payment_type, .discount_con {
+  background-color: #ffc33c;
+  font-family: 'Antonio';
+
+}
+
+.payment input {
+  background-color: transparent;
+}
+
+
+.options {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  justify-content: space-around;
+  height: 2.5rem;
+  font-family: 'Antonio';
+
+}
+
+
+
+
+
+.delivery_btn.active1, .pickup_btn.active1 {
+  background-color: #f8fadb;
+  border: 4px;
+}
+
+.pickup_btn1.active4, .delivery_btn1.active3 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #f8fadb;
+  cursor: pointer;
+}
+
+
+
+.delivery_con, .pickup_con {
+  margin-bottom: 2rem;
+}
+
+.delivery_btn, .pickup_btn, .delivery_btn1, .pickup_btn1 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffc33c;
+  cursor: pointer;
+}
+
+
+
+
+.pickup_radio, .delivery_radio, .giftCard_radio, .creditCard_radio {
+  margin-right: .5rem;
+  appearance: none;
+  width: 10px; 
+  height: 10px; 
+  border: 2px solid #ffe4b5; 
+  box-shadow: 0 0 30px rgb(249, 242, 43);
+  border-radius: 50%; 
+  outline: none; 
+  background-color: white; 
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+
+
+
+
+.delivery_btn_con1, .pickup_btn_con1 {
+  border-radius: 20px;
+  height: 3rem;
+
+}
+
+
+
+.delivery_btn_con1 button, .pickup_btn_con1 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+
+
+
+
+
+
+.pickup_time {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.pickup_time select{
+  width: 12rem;
+}
+
+.pickup_text{
+  align-self: center;
+}
+
+.pickup_grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  text-align: center;
+  color: black;
+}
+
+.pickup_name, .pickup_contact {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10px;
+}
+
+.pickup_name input, .pickup_contact input{
+  margin-top: 0.5rem;
+  height: 30px;
+}
+
+
+
+
+
+
+

@@ -33,8 +33,8 @@ const Checkout = () => {
     
       const fetchCart = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        const storedSeat = localStorage.getItem("seat"); // Get the seat from localStorage
-        const cleanedSeat = storedSeat ? storedSeat.replace(/^"|"$/g, '') : null; // Remove surrounding quotes
+        const storedSeat = localStorage.getItem("seat"); 
+        const cleanedSeat = storedSeat ? storedSeat.replace(/^"|"$/g, '') : null; 
         setCart(storedCart);
         setSeat(cleanedSeat); 
       };
@@ -165,6 +165,17 @@ const Checkout = () => {
                 <img className="cart_img2" src={item.image} alt={item.name} />
                 <div className="item_details2">
                   <p>{item.name}</p>
+
+                  {/* Display size if available */}
+                  {item.size && (
+                    <p className="item-size">Size: {item.size}</p>
+                  )}
+
+                  {/* Display color if available 
+                  {item.color && (
+                    <p className="item-color">Color: {item.color}</p>
+                  )} */}
+
                   <div className="cart_sub">
                     <p>Quantity: {item.quantity}</p>
                   </div>

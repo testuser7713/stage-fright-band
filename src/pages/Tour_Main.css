@@ -28,6 +28,7 @@
     position: absolute;
     top: 60%; 
     left: 50%; 
+    width: 80vw;
     transform: translate(-50%, -50%); 
     color: white; 
     text-shadow:
@@ -40,9 +41,9 @@
     0 0 10px #c9ac75,
     0 0 4px #f5cb7f;
     text-align: center; 
-    z-index: 10; 
+    z-index: 1; 
     font-family: 'Race Sport';
-    font-size: 4rem;
+    font-size: 4vw;
     animation: flicker 1.2s infinite;
 }
 

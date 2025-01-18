@@ -20,9 +20,11 @@ const CartModal = () => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
   };
+  
 
   // Effect to initialize cart and listen for storage changes
   useEffect(() => {
+    fetchCart();
     const handleCartUpdate = () => {
       setIsOpen(true); // Open the modal when an item is added to the cart
       fetchCart(); // Refresh the cart contents
@@ -74,11 +76,16 @@ const CartModal = () => {
             {cart.map((item, index) => (
               <div className="cart_item" key={index}>
                 <img className="cart_img" src={item.image} alt={item.name} />
+                
+                
                 <div className="item_details">
                   <p>{item.name}</p>
                   <div className="cart_sub">
                     <p>Quantity: {item.quantity}</p>
                   </div>
+                  {item.size && (
+                    <p className="item-size">Size: {item.size}</p>
+                  )}
                 </div>
                 <div className="price_con">
                   <p>${(item.price * item.quantity).toFixed(2)}</p>

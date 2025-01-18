@@ -4,7 +4,7 @@
     max-width: 80vw;
     margin: auto;
     margin: 2rem 0;
-    color: white;
+    color: black;
     font-size: larger;
 }
 
@@ -122,7 +122,7 @@
     flex-direction: column;
     width: 270px; /* Match image dimensions */
     height: 320px;
-    background-color: grey;
+    background-color: rgb(231, 231, 231);
     position: relative; /* Ensure proper alignment in the slider */
     overflow: hidden;
     cursor: pointer;

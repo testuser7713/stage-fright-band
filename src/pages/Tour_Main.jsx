@@ -29,7 +29,7 @@ function Tour_Main() {
                             {/* Repeatable blocks for each tour date */}
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 28, 2024</h3>
+                                <h3 className="date_label">May 21, 2024</h3>
                                 <h4 className="loc_label">American Airlines Center</h4>
                             </div>
                             <div className="location">
@@ -43,7 +43,7 @@ function Tour_Main() {
                             {/* Add additional date blocks as needed */}
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 29, 2024</h3>
+                                <h3 className="date_label">May 23, 2024</h3>
                                 <h4 className="loc_label">Toyota Music Factory</h4>
                             </div>
                             <div className="location">
@@ -56,7 +56,7 @@ function Tour_Main() {
 
                             <div className="date">
                             <div className="date_texts">
-                                <h3 className="date_label">Dec 31, 2024</h3>
+                                <h3 className="date_label">May 24, 2024</h3>
                                 <h4 className="loc_label">House of Blues Concert</h4>
                             </div>
                             <div className="location">

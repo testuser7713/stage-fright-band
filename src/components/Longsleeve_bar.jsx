@@ -56,79 +56,62 @@ export default function MenuBar() {
     return (
         <div className="shopBar">
           
-            <img
+            {/*<img
                 src={Arrow}
                 alt="left arrow"
                 className="left_arroww"
                 id="left_arrow"
                 onClick={() => scrollHandler("left")}
-            ></img>
+            ></img>*/}
             
             <div className="menu_secc" id="menu_sec">
-
               <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt6")}>
-                  <img src={shirt6} className="image-front" loading="lazy"/>
-                  <img src={shirt6_back} className="image-back" loading="lazy" />
+                <div className="image-wrapperr" onClick={() => handleImageClick("shirt1")}>
+                  <img src={Shirt1_front} className="image-front" loading="lazy"/>
+                  <img src={Shirt1_back} className="image-back" loading="lazy" />
                 </div>
-                <p className="shop_label">Band Member Photo Tee</p>
+                <p className="shop_label">Stage Fright Classic Longsleeve</p>
 
+                
               </div>
               <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt8")}>
-                  <img src={shirt8} className="image-front" loading="lazy"/>
-                  <img src={shirt8_back} className="image-back" loading="lazy" />
+                <div className="image-wrapperr" onClick={() => handleImageClick("shirt2")}>
+                  <img src={Shirt2_front} className="image-front" loading="lazy"/>
+                  <img src={Shirt2_back} className="image-back" loading="lazy" />
                 </div>
-                <p className="shop_label">On Tour White Tee</p>
-
-              </div>
-              <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt4")}>
-                  <img src={Shirt4_front} className="image-front" loading="lazy"/>
-                  <img src={Shirt4_back} className="image-back" loading="lazy" />
-                </div>
-                <p className="shop_label">Stage Fright Classic Black Tee</p>
+                <p className="shop_label">Stage Fright Zip-Up Sweatshirt</p>
 
               </div>
 
-
-
-
               <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt9")}>
-                  <img src={shirt9} className="image-front" loading="lazy"/>
-                  <img src={shirt9_back} className="image-back" loading="lazy" />
+                <div className="image-wrapperr" onClick={() => handleImageClick("shirt5")}>
+                  <img src={shirt5} className="image-front" loading="lazy"/>
+                  <img src={shirt5_back} className="image-back" loading="lazy" />
                 </div>
-                <p className="shop_label">Stage Fright Rocker Tee</p>
+                <p className="shop_label">Stage Fright Tour Longsleeve</p>
 
               </div>
-              <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt10")}>
-                  <img src={shirt10} className="image-front" loading="lazy"/>
-                  <img src={shirt10_back} className="image-back" loading="lazy" />
-                </div>
-                <p className="shop_label">Stage Photo Tee</p>
 
-              </div>
               <div className="item_con_one">
-                <div className="image-wrapperr" onClick={() => handleImageClick("shirt3")}>
-                  <img src={Shirt3_front} className="image-front" loading="lazy"/>
-                  <img src={Shirt3_back} className="image-back" loading="lazy" />
+                <div className="image-wrapperr" onClick={() => handleImageClick("shirt7")}>
+                  <img src={shirt7} className="image-front" loading="lazy"/>
+                  <img src={shirt7_back} className="image-back" loading="lazy" />
                 </div>
-                <p className="shop_label">Stage Fright Classic Graphic Tee</p>
+                <p className="shop_label">Stage Fright CD Zipup</p>
+
               </div>
               
 
                 
             </div>
             
-            <img
+            {/*<img
                 src={Arrow}
                 alt="right arrow"
                 className="right_arroww"
                 id="right_arrow"
                 onClick={() => scrollHandler("right")}
-            ></img>
+            ></img>*/}
             
         </div>
     );

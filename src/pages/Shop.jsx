@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 
 import Shop_Bar from "../components/New_Shop_Bar"
+import Longsleeve_Bar from "../components/Longsleeve_bar.jsx"
+
 import tour_back from "../assets/tour_back.png"
 import shirts_back from "../assets/shirts_back.png"
 import "./Shop.css"
@@ -32,6 +34,10 @@ import record3 from "../assets/record3.png"
 
 import CartSidebar from "../components/CartSideBar";
 
+import line1 from "../assets/line1.png"
+import line2 from "../assets/line2.png"
+
+
 
 
 function Shop() {
@@ -45,7 +51,13 @@ function Shop() {
     return (
         <div className="shop_page">
 
-           
+            <div className="lines">
+                <div>
+                <h1 className="merch_text">Merch</h1>
+                <h3 className="latestt">Shop the Latest</h3>
+                </div>
+
+            </div>
             <div className="top_con">
             <CartSidebar />
                 <div className="top_section">
@@ -53,7 +65,15 @@ function Shop() {
                         <img src={tour_back}></img>
                     </div>
                     <div className="shop_items">
+                        <div className="shop_header_con">
+                            <h3 className="shop_header">SHIRTS</h3>
+                        </div>
+                        
                         <Shop_Bar></Shop_Bar>
+                        <div className="shop_header_con">
+                            <h3 className="shop_header">LONGSLEEVES</h3>
+                        </div>
+                        <Longsleeve_Bar></Longsleeve_Bar>
                     </div>
                     <div className="merch_image">
                         <img src={shirts_back}></img>
@@ -61,8 +81,18 @@ function Shop() {
                 </div>
             </div>
             <div className="mid_con">
+                
+                
                 <div className="mid_section">
+                    <div>
+                    <div className="acc_conn">
+                        <h3 className="shop_header">ACCESSORIES</h3>
+                    </div>
+
+                    
+                    
                     <div className="mid_left_sec">
+                        
                         <div className="mid_item_con">
                             <div className="mid_item">
                                 <img src={toteOne} id="toteOne" onClick={() => handleImageClick("toteOne")}></img>
@@ -124,6 +154,7 @@ function Shop() {
                                 
                             </div>
                         </div>
+                        </div>
                         
 
                     </div>
@@ -135,45 +166,58 @@ function Shop() {
 
             <div className="music_merch_con">
                 <img className="music_merch" src={music_merch}></img>
-
-                <div className="music_merch_right_con">
-                    <div className="music_merch_right">
-                        <div className="music_item_con">
-                            <div className="music_item">
-                                <img src={album1} id="vinyl" onClick={() => handleImageClick("vinyl")}></img>
-                                <p className="">Standard LP Vinyl Record</p>
-
-                                
-
-                            </div>
-                            
-                        </div>
-                        <div className="music_item_con">
-                            <div className="music_item">
-                                <img src={album2} id="manuscript" onClick={() => handleImageClick("manuscript")}></img>
-                                <p className="">CD + Manuscript</p>
-                                
-                            </div>
-                        </div>
-                        <div className="music_item_con">
-                            <div className="music_item">
-                                <img src={album3} id="casette" onClick={() => handleImageClick("casette")}></img>
-                                <p className="">Standard Casette</p>
-                                
-                            </div>
-                        </div>
-                        <div className="music_item_con">
-                            <div className="music_item">
-                                <img src={album4} id="cd" onClick={() => handleImageClick("cd")}></img>
-                                <p className="">Exclusive CD</p>
-                                
-                            </div>
-                        </div>
+                
+                <div className="music_right_con">
+                    <div className="acc_conn">
+                        <h3 className="shop_headerr">MUSIC</h3>
                     </div>
+                    <div className="music_merch_right_con">
+                        
+                        
+                        <div className="music_merch_right">
+                            <div className="music_item_con">
+                                <div className="music_item">
+                                    <img src={album1} id="vinyl" onClick={() => handleImageClick("vinyl")}></img>
+                                    <p className="">Standard LP Vinyl Record</p>
 
+                                    
+
+                                </div>
+                                
+                            </div>
+                            <div className="music_item_con">
+                                <div className="music_item">
+                                    <img src={album2} id="manuscript" onClick={() => handleImageClick("manuscript")}></img>
+                                    <p className="">CD + Manuscript</p>
+                                    
+                                </div>
+                            </div>
+                            <div className="music_item_con">
+                                <div className="music_item">
+                                    <img src={album3} id="casette" onClick={() => handleImageClick("casette")}></img>
+                                    <p className="">Standard Casette</p>
+                                    
+                                </div>
+                            </div>
+                            <div className="music_item_con">
+                                <div className="music_item">
+                                    <img src={album4} id="cd" onClick={() => handleImageClick("cd")}></img>
+                                    <p className="">Exclusive CD</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+            </div>
+            <div className="acc_con">
+                <h3 className="shop_headerr">EXCLUSIVE RECORDS</h3>
             </div>
             <div className="records_con">
+                
+
                 <img className="vinyl" src={vinyl} />
                 
                 <div className="records_right">
