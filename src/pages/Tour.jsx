@@ -15,27 +15,57 @@ import img9U from "../assets/9U.png";
 import img1L from "../assets/1L.png";
 import img2L from "../assets/2L.png";
 import "./Tour.css";
+import amer_airlines from "../assets/amer_airlines.jpg"
 
 
 const generateCircles = (xStart, yStart, width, height, radius, spacing, section) => { 
-
   const circles = []; 
   let seatCount = 1; // Incremental seat number
-  for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) { 
-    for (let x = xStart + radius; x + radius <= xStart + width; x += 2 * radius + spacing) { 
+
+  // Default price mapping based on section
+  const sectionPrices = {
+    "1L": 280,
+    "2L": 210,
+    "2U": 190,
+    "8U": 170
+  };
+
+  for (let x = xStart + radius; x + radius <= xStart + width; x += 2 * radius + spacing) { 
+    for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) { 
       const seatNumber = `${section}-${seatCount.toString().padStart(2, '0')}`;
+
+      // Apply dynamic pricing for section "1U"
+      let price;
+      if (section === "1L") {
+        if (seatCount >= 1 && seatCount <= 27) {
+          price = 260;
+        } else if (seatCount >= 28 && seatCount <= 45) {
+          price = 290;
+        } else if (seatCount >= 46 && seatCount <= 63) {
+          price = 320;
+        } else {
+          price = 0; // Default price if outside the range
+        }
+      } else {
+        price = sectionPrices[section] || 0; // Default price for other sections
+      }
+
       circles.push({ 
         shape: "circle", 
         coords: [x, y, radius], 
         preFillColor: "rgba(63, 144, 236, 0.66)", 
         seatNumber: seatNumber, 
-        onClick: () => handleSeatClick(seatNumber)
+        price: price,
+        onClick: () => handleSeatClick(seatNumber, price) // Pass the price here
       });
       seatCount++;
     } 
   } 
   return circles;
 };
+
+
+
 
 
 const Tour = ({seat}) => {
@@ -46,33 +76,22 @@ const Tour = ({seat}) => {
   }
   const [selectedShapeId, setSelectedShapeId] = useState(null);
   const [selectedSeat, setSelectedSeat] = useState(localStorage.getItem("seat") || "" );
+  const [seatPrice, setSeatPrice] = useState(null);
 
-  const generateCirclesWithSlant = (xStart, yStart, width, height, radius, spacing, slope, intercept) => {
-  const circles = [];
-  for (let y = yStart + radius; y + radius <= yStart + height; y += 2 * radius + spacing) {
-    for (let x = xStart + radius; x + radius <= xStart + width; x += 2 * radius + spacing) {
-      
-      if (y >= slope * x + intercept) {
-        circles.push({ shape: "circle", coords: [x, y, radius], preFillColor: "rgba(63, 144, 236, 0.66)" });
-      }
-    }
-  }
-  return circles;
-};
 
-const handleSeatClick = (seat) => {
+
+const handleSeatClick = (seat, price) => {
   localStorage.setItem("seat", JSON.stringify(seat));
+  localStorage.setItem("price", price)
   setSelectedSeat(seat)
-
+  setSeatPrice(price)
   window.dispatchEvent(new (Event("seatSelectionChanged")))
 };
 
 
 
 
-  const map = {
-    name: "tour-layout-map",
-    areas: [
+  const areas = [
       { id: "1U", shape: "poly", coords: [589, 355, 620, 353, 675, 484, 589, 484], preFillColor: "rgba(255, 0, 0, 0)", lineWidth: 0 },
       { id: "2U", shape: "rect", coords: [273, 355, 587, 484], preFillColor: "rgba(255, 0, 0, 0)" },
       { id: "3U", shape: "poly", coords: [271, 354, 272, 484, 191, 484, 182, 474, 243, 352, 251, 355], preFillColor: "rgba(255, 0, 0, 0)" },
@@ -83,8 +102,8 @@ const handleSeatClick = (seat) => {
       { id: "9U", shape: "poly", coords: [590, 153, 622, 157, 677, 28, 590, 28], preFillColor: "rgba(255, 0, 0, 0)" },
       { id: "1L", shape: "rect", coords: [462, 160, 614, 352], preFillColor: "rgba(255, 0, 0, 0)" },
       { id: "2L", shape: "rect", coords: [273, 352, 462, 160], preFillColor: "rgba(255, 0, 0, 0)" },
-    ],
-  };
+    ,
+  ];
 
   const sectionImages = {
     "1U": img1U,
@@ -98,209 +117,198 @@ const handleSeatClick = (seat) => {
     "1L": img1L,
     "2L": img2L,
   };
-const x1 = 63, y1 = 5;
-const x2 = 12, y2 = 135; 
 
 
-const slope = (y2 - y1) / (x2 - x1);
-const intercept = y1 - slope * x1;
 
-
-const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, intercept);
-
-
-  const sectionMaps = {
+const sectionMaps = {
   "1U": [
-    { "shape": "circle", "coords": [25, 20, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-01", "onclick": () => handleSeatClick('1U-01') },
-    { "shape": "circle", "coords": [45, 20, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-02", "onclick": () => handleSeatClick('1U-02') },
-    { "shape": "circle", "coords": [25, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-03", "onclick": "handleSeatClick('1U-03')" },
-    { "shape": "circle", "coords": [45, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-04", "onclick": "handleSeatClick('1U-04')" },
-    { "shape": "circle", "coords": [65, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-05", "onclick": "handleSeatClick('1U-05')" },
-    { "shape": "circle", "coords": [25, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-06", "onclick": "handleSeatClick('1U-06')" },
-    { "shape": "circle", "coords": [45, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-07", "onclick": "handleSeatClick('1U-07')" },
-    { "shape": "circle", "coords": [65, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-08", "onclick": "handleSeatClick('1U-08')" },
-    { "shape": "circle", "coords": [25, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-09", "onclick": "handleSeatClick('1U-09')" },
-    { "shape": "circle", "coords": [45, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-10", "onclick": "handleSeatClick('1U-10')" },
-    { "shape": "circle", "coords": [65, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-11", "onclick": "handleSeatClick('1U-11')" },
-    { "shape": "circle", "coords": [85, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-12", "onclick": "handleSeatClick('1U-12')" },
-    { "shape": "circle", "coords": [25, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-13", "onclick": "handleSeatClick('1U-13')" },
-    { "shape": "circle", "coords": [45, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-14", "onclick": "handleSeatClick('1U-14')" },
-    { "shape": "circle", "coords": [65, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-15", "onclick": "handleSeatClick('1U-15')" },
-    { "shape": "circle", "coords": [85, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-16", "onclick": "handleSeatClick('1U-16')" },
-    { "shape": "circle", "coords": [25, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-17", "onclick": "handleSeatClick('1U-17')" },
-    { "shape": "circle", "coords": [45, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-18", "onclick": "handleSeatClick('1U-18')" },
-    { "shape": "circle", "coords": [65, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-19", "onclick": "handleSeatClick('1U-19')" },
-    { "shape": "circle", "coords": [85, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-20", "onclick": "handleSeatClick('1U-20')" },
-    { "shape": "circle", "coords": [105, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-21", "onclick": "handleSeatClick('1U-21')" },
-    { "shape": "circle", "coords": [25, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-22", "onclick": "handleSeatClick('1U-22')" },
-    { "shape": "circle", "coords": [45, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-23", "onclick": "handleSeatClick('1U-23')" },
-    { "shape": "circle", "coords": [65, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-24", "onclick": "handleSeatClick('1U-24')" },
-    { "shape": "circle", "coords": [85, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-25", "onclick": "handleSeatClick('1U-25')" },
-    { "shape": "circle", "coords": [105, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-26", "onclick": "handleSeatClick('1U-26')" },
-    { "shape": "circle", "coords": [25, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-27", "onclick": "handleSeatClick('1U-27')" },
-    { "shape": "circle", "coords": [45, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-28", "onclick": "handleSeatClick('1U-28')" },
-    { "shape": "circle", "coords": [65, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-29", "onclick": "handleSeatClick('1U-29')" },
-    { "shape": "circle", "coords": [85, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-30", "onclick": "handleSeatClick('1U-30')" },
-    { "shape": "circle", "coords": [105, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-31", "onclick": "handleSeatClick('1U-31')" },
-    { "shape": "circle", "coords": [25, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-33", "onclick": "handleSeatClick('1U-33')" },
-    { "shape": "circle", "coords": [45, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-34", "onclick": "handleSeatClick('1U-34')" },
-    { "shape": "circle", "coords": [65, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-35", "onclick": "handleSeatClick('1U-35')" },
-    { "shape": "circle", "coords": [85, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-36", "onclick": "handleSeatClick('1U-36')" },
-    { "shape": "circle", "coords": [105, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-37", "onclick": "handleSeatClick('1U-37')" },
-    { "shape": "circle", "coords": [125, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-38", "onclick": "handleSeatClick('1U-38')" },
-    { "shape": "circle", "coords": [25, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-39", "onclick": "handleSeatClick('1U-39')" },
-    { "shape": "circle", "coords": [45, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-40", "onclick": "handleSeatClick('1U-40')" },
-    { "shape": "circle", "coords": [65, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-41", "onclick": "handleSeatClick('1U-41')" },
-    { "shape": "circle", "coords": [85, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-42", "onclick": "handleSeatClick('1U-42')" },
-    { "shape": "circle", "coords": [105, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-43", "onclick": "handleSeatClick('1U-43')" },
-    { "shape": "circle", "coords": [125, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-44", "onclick": "handleSeatClick('1U-44')" },
-    { "shape": "circle", "coords": [25, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-46", "onclick": "handleSeatClick('1U-46')" },
-    { "shape": "circle", "coords": [45, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-52", "onclick": "handleSeatClick('1U-52')" },
-    { "shape": "circle", "coords": [65, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-47", "onclick": "handleSeatClick('1U-47')" },
-    { "shape": "circle", "coords": [85, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-48", "onclick": "handleSeatClick('1U-48')" },
-    { "shape": "circle", "coords": [105, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-49", "onclick": "handleSeatClick('1U-49')" },
-    { "shape": "circle", "coords": [125, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-50", "onclick": "handleSeatClick('1U-50')" },
-    { "shape": "circle", "coords": [145, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-51", "onclick": "handleSeatClick('1U-51')" }
+    { "shape": "circle", "coords": [25, 20, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-01", price: 220},
+    { "shape": "circle", "coords": [45, 20, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-02", price: 220},
+    { "shape": "circle", "coords": [25, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-03", price: 220},
+    { "shape": "circle", "coords": [45, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-04", price:220 },
+    { "shape": "circle", "coords": [65, 40, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-05", price: 220},
+    { "shape": "circle", "coords": [25, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-06", price:220 },
+    { "shape": "circle", "coords": [45, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-07", price: 220 },
+    { "shape": "circle", "coords": [65, 60, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-08", price:220},
+    { "shape": "circle", "coords": [25, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-09", price:180},
+    { "shape": "circle", "coords": [45, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-10", price:180 },
+    { "shape": "circle", "coords": [65, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-11", price:180},
+    { "shape": "circle", "coords": [85, 80, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-12", price:180 },
+    { "shape": "circle", "coords": [25, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-13", price:180},
+    { "shape": "circle", "coords": [45, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-14", price:180 },
+    { "shape": "circle", "coords": [65, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-15", price:180 },
+    { "shape": "circle", "coords": [85, 100, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-16", price:180},
+    { "shape": "circle", "coords": [25, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-17", price:180 },
+    { "shape": "circle", "coords": [45, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-18", price:180},
+    { "shape": "circle", "coords": [65, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-19", price:180 },
+    { "shape": "circle", "coords": [85, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-20", price:180 },
+    { "shape": "circle", "coords": [105, 120, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-21", price:100 },
+    { "shape": "circle", "coords": [25, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-22", price:100 },
+    { "shape": "circle", "coords": [45, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-23", price:100 },
+    { "shape": "circle", "coords": [65, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-24", price:100 },
+    { "shape": "circle", "coords": [85, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-25", price:100 },
+    { "shape": "circle", "coords": [105, 140, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-26", price:100 },
+    { "shape": "circle", "coords": [25, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-27", price:100 },
+    { "shape": "circle", "coords": [45, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-28", price:100 },
+    { "shape": "circle", "coords": [65, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-29", price:100 },
+    { "shape": "circle", "coords": [85, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-30", price:100 },
+    { "shape": "circle", "coords": [105, 160, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-31", price:100 },
+    { "shape": "circle", "coords": [25, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-33", price:80 },
+    { "shape": "circle", "coords": [45, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-34", price: 80 },
+    { "shape": "circle", "coords": [65, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-35", price:80},
+    { "shape": "circle", "coords": [85, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-36", price:80 },
+    { "shape": "circle", "coords": [105, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-37", price:80 },
+    { "shape": "circle", "coords": [125, 180, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-38", price:80 },
+    { "shape": "circle", "coords": [25, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-39", price:80 },
+    { "shape": "circle", "coords": [45, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-40", price:80 },
+    { "shape": "circle", "coords": [65, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-41", price:80 },
+    { "shape": "circle", "coords": [85, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-42", price:80 },
+    { "shape": "circle", "coords": [105, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-43", price:80},
+    { "shape": "circle", "coords": [125, 200, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-44", price:80 },
+    { "shape": "circle", "coords": [25, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-46", price:80 },
+    { "shape": "circle", "coords": [45, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-52", price:80 },
+    { "shape": "circle", "coords": [65, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-47", price:80 },
+    { "shape": "circle", "coords": [85, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-48", price:80},
+    { "shape": "circle", "coords": [105, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-49", price:80},
+    { "shape": "circle", "coords": [125, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-50", price:80 },
+    { "shape": "circle", "coords": [145, 220, 8], "preFillColor": "rgba(63, 144, 236, 0.66)", "seatNumber": "1U-51", price:80 }      
   ],
 
-    "2U": generateCircles(12,16,540,210,10,5, "2U"),
+    "2U": generateCircles(14,16,520,210,10,5, "2U"),
 
   
     "3U": [
-      { shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-1", onClick: () => handleSeatClick("3U-1") },
-      { shape: "circle", coords: [110, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-2", onClick: () => handleSeatClick("3U-2") },
-      { shape: "circle", coords: [135, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-3", onClick: () => handleSeatClick("3U-3") },
-      { shape: "circle", coords: [110, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-4", onClick: () => handleSeatClick("3U-4") },
-      { shape: "circle", coords: [135, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-5", onClick: () => handleSeatClick("3U-5") },
-      { shape: "circle", coords: [110, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-6", onClick: () => handleSeatClick("3U-6") },
-      { shape: "circle", coords: [85, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-7", onClick: () => handleSeatClick("3U-7") },
-      { shape: "circle", coords: [135, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-8", onClick: () => handleSeatClick("3U-8") },
-      { shape: "circle", coords: [110, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-9", onClick: () => handleSeatClick("3U-9") },
-      { shape: "circle", coords: [85, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-10", onClick: () => handleSeatClick("3U-10") },
-      { shape: "circle", coords: [135, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-11", onClick: () => handleSeatClick("3U-11") },
-      { shape: "circle", coords: [110, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-12", onClick: () => handleSeatClick("3U-12") },
-      { shape: "circle", coords: [85, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-13", onClick: () => handleSeatClick("3U-13") },
-      { shape: "circle", coords: [60, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-14", onClick: () => handleSeatClick("3U-14") },
-      { shape: "circle", coords: [135, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-15", onClick: () => handleSeatClick("3U-15") },
-      { shape: "circle", coords: [110, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-16", onClick: () => handleSeatClick("3U-16") },
-      { shape: "circle", coords: [85, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-17", onClick: () => handleSeatClick("3U-17") },
-      { shape: "circle", coords: [60, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-18", onClick: () => handleSeatClick("3U-18") },
-      { shape: "circle", coords: [135, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-19", onClick: () => handleSeatClick("3U-19") },
-      { shape: "circle", coords: [110, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-20", onClick: () => handleSeatClick("3U-20") },
-      { shape: "circle", coords: [85, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-21", onClick: () => handleSeatClick("3U-21") },
-      { shape: "circle", coords: [60, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-22", onClick: () => handleSeatClick("3U-22") },
-      { shape: "circle", coords: [35, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-23", onClick: () => handleSeatClick("3U-23") },
-      { shape: "circle", coords: [135, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-24", onClick: () => handleSeatClick("3U-24") },
-      { shape: "circle", coords: [110, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-25", onClick: () => handleSeatClick("3U-25") },
-      { shape: "circle", coords: [85, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-26", onClick: () => handleSeatClick("3U-26") },
-      { shape: "circle", coords: [60, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-27", onClick: () => handleSeatClick("3U-27") },
-      { shape: "circle", coords: [35, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-28", onClick: () => handleSeatClick("3U-28") }
+      { shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-1", price: 160 },
+      { shape: "circle", coords: [110, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-2", price: 160 },
+      { shape: "circle", coords: [135, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-3", price: 160 },
+      { shape: "circle", coords: [110, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-4", price: 160 },
+      { shape: "circle", coords: [135, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-5", price: 160 },
+      { shape: "circle", coords: [110, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-6", price: 160 },
+      { shape: "circle", coords: [85, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-7", price: 160 },
+      { shape: "circle", coords: [135, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-8", price: 160 },
+      { shape: "circle", coords: [110, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-9", price: 120 },
+      { shape: "circle", coords: [85, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-10", price: 120 },
+      { shape: "circle", coords: [135, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-11", price: 120 },
+      { shape: "circle", coords: [110, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-12", price: 120 },
+      { shape: "circle", coords: [85, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-13", price: 120 },
+      { shape: "circle", coords: [60, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-14", price: 120 },
+      { shape: "circle", coords: [135, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-15", price: 120 },
+      { shape: "circle", coords: [110, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-16", price: 120 },
+      { shape: "circle", coords: [85, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-17", price: 120 },
+      { shape: "circle", coords: [60, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-18", price: 120 },
+      { shape: "circle", coords: [135, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-19", price: 100 },
+      { shape: "circle", coords: [110, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-20", price: 100 },
+      { shape: "circle", coords: [85, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-21", price: 100 },
+      { shape: "circle", coords: [60, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-22", price: 100 },
+      { shape: "circle", coords: [35, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-23", price: 100 },
+      { shape: "circle", coords: [135, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-24", price: 100 },
+      { shape: "circle", coords: [110, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-25", price: 100 },
+      { shape: "circle", coords: [85, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-26", price: 60 },
+      { shape: "circle", coords: [60, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-27", price: 60 },
+      { shape: "circle", coords: [35, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "3U-28", price: 60 }
       
 
 
     ],
     "4U": [
-      { shape: "circle", coords: [125, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-1", onClick: () => handleSeatClick("4U-1") },
-      { shape: "circle", coords: [125, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-2", onClick: () => handleSeatClick("4U-2") },
-      { shape: "circle", coords: [125, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-3", onClick: () => handleSeatClick("4U-3") },
-      { shape: "circle", coords: [125, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-4", onClick: () => handleSeatClick("4U-4") },
-      { shape: "circle", coords: [125, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-5", onClick: () => handleSeatClick("4U-5") },
-      { shape: "circle", coords: [125, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-6", onClick: () => handleSeatClick("4U-6") },
-      { shape: "circle", coords: [150, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-7", onClick: () => handleSeatClick("4U-7") },
-      { shape: "circle", coords: [150, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-8", onClick: () => handleSeatClick("4U-8") },
-      { shape: "circle", coords: [150, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-9", onClick: () => handleSeatClick("4U-9") },
-      { shape: "circle", coords: [100, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-10", onClick: () => handleSeatClick("4U-10") },
-      { shape: "circle", coords: [100, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-11", onClick: () => handleSeatClick("4U-11") },
-      { shape: "circle", coords: [100, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-12", onClick: () => handleSeatClick("4U-12") },
-      { shape: "circle", coords: [100, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-13", onClick: () => handleSeatClick("4U-13") },
-      { shape: "circle", coords: [100, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-14", onClick: () => handleSeatClick("4U-14") },
-      { shape: "circle", coords: [100, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-15", onClick: () => handleSeatClick("4U-15") },
-      { shape: "circle", coords: [75, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-16", onClick: () => handleSeatClick("4U-16") },
-      { shape: "circle", coords: [75, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-17", onClick: () => handleSeatClick("4U-17") },
-      { shape: "circle", coords: [75, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-18", onClick: () => handleSeatClick("4U-18") },
-      { shape: "circle", coords: [75, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-19", onClick: () => handleSeatClick("4U-19") },
-      { shape: "circle", coords: [75, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-20", onClick: () => handleSeatClick("4U-20") },
-      { shape: "circle", coords: [50, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-21", onClick: () => handleSeatClick("4U-21") },
-      { shape: "circle", coords: [50, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-22", onClick: () => handleSeatClick("4U-22") },
-      { shape: "circle", coords: [50, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-23", onClick: () => handleSeatClick("4U-23") },
-      { shape: "circle", coords: [25, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-24", onClick: () => handleSeatClick("4U-24") },
-      { shape: "circle", coords: [25, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-25", onClick: () => handleSeatClick("4U-25") },
+      { shape: "circle", coords: [125, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-1", price: 140 },
+      { shape: "circle", coords: [125, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-2", price: 140 },
+      { shape: "circle", coords: [125, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-3", price: 120 },
+      { shape: "circle", coords: [125, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-4", price: 120 },
+      { shape: "circle", coords: [125, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-5", price: 100},
+      { shape: "circle", coords: [125, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-6", price: 80 },
+      { shape: "circle", coords: [150, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-7", price: 150 },
+      { shape: "circle", coords: [150, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-8", price: 160 },
+      { shape: "circle", coords: [150, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-9", price: 160 },
+      { shape: "circle", coords: [100, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-10", price: 120 },
+      { shape: "circle", coords: [100, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-11", price: 100 },
+      { shape: "circle", coords: [100, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-12", price: 110 },
+      { shape: "circle", coords: [100, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-13", price: 80 },
+      { shape: "circle", coords: [100, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-14", price: 70 },
+      { shape: "circle", coords: [100, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-15", price: 70 },
+      { shape: "circle", coords: [75, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-16", price: 90 },
+      { shape: "circle", coords: [75, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-17", price: 90 },
+      { shape: "circle", coords: [75, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-18", price: 80 },
+      { shape: "circle", coords: [75, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-19", price: 80 },
+      { shape: "circle", coords: [75, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-20", price: 75 },
+      { shape: "circle", coords: [50, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-21", price: 80 },
+      { shape: "circle", coords: [50, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-22", price: 60 },
+      { shape: "circle", coords: [50, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-23", price: 65 },
+      { shape: "circle", coords: [25, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-24", price: 35 },
+      { shape: "circle", coords: [25, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "4U-25", price: 45 }
       
     ],
     "6U": [
-      { shape: "circle", coords: [100, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-1", onClick: () => handleSeatClick("6U-1") },
-      { shape: "circle", coords: [125, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-2", onClick: () => handleSeatClick("6U-2") },
-      { shape: "circle", coords: [125, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-3", onClick: () => handleSeatClick("6U-3") },
-      { shape: "circle", coords: [125, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-4", onClick: () => handleSeatClick("6U-4") },
-      { shape: "circle", coords: [125, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-5", onClick: () => handleSeatClick("6U-5") },
-      { shape: "circle", coords: [125, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-6", onClick: () => handleSeatClick("6U-6") },
-      { shape: "circle", coords: [125, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-7", onClick: () => handleSeatClick("6U-7") },
-      { shape: "circle", coords: [125, 210, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-8", onClick: () => handleSeatClick("6U-8") },
-      { shape: "circle", coords: [150, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-9", onClick: () => handleSeatClick("6U-9") },
-      { shape: "circle", coords: [150, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-10", onClick: () => handleSeatClick("6U-10") },
-      { shape: "circle", coords: [150, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-11", onClick: () => handleSeatClick("6U-11") },
-      { shape: "circle", coords: [100, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-12", onClick: () => handleSeatClick("6U-12") },
-      { shape: "circle", coords: [100, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-13", onClick: () => handleSeatClick("6U-13") },
-      { shape: "circle", coords: [100, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-14", onClick: () => handleSeatClick("6U-14") },
-      { shape: "circle", coords: [100, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-15", onClick: () => handleSeatClick("6U-15") },
-      { shape: "circle", coords: [100, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-16", onClick: () => handleSeatClick("6U-16") },
-      { shape: "circle", coords: [100, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-17", onClick: () => handleSeatClick("6U-17") },
+      { shape: "circle", coords: [100, 35, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-1", price: 80 },
+      { shape: "circle", coords: [125, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-2", price: 80 },
+      { shape: "circle", coords: [125, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-3", price: 80 },
+      { shape: "circle", coords: [125, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-4", price: 90 },
+      { shape: "circle", coords: [125, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-5", price: 110 },
+      { shape: "circle", coords: [125, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-6", price: 120 },
+      { shape: "circle", coords: [125, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-7", price: 120 },
+      { shape: "circle", coords: [125, 210, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-8", price: 120 },
+      { shape: "circle", coords: [150, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-9", price: 120 },
+      { shape: "circle", coords: [150, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-10", price: 120 },
+      { shape: "circle", coords: [150, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-11", price: 90 },
+      { shape: "circle", coords: [100, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-12", price: 80 },
+      { shape: "circle", coords: [100, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-13", price: 80 },
+      { shape: "circle", coords: [100, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-14", price: 100 },
+      { shape: "circle", coords: [100, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-15", price: 100 },
+      { shape: "circle", coords: [100, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-16", price: 100 },
+      { shape: "circle", coords: [100, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-17", price: 100 },
+      { shape: "circle", coords: [75, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-18", price: 80 },
+      { shape: "circle", coords: [75, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-19", price: 70 },
+      { shape: "circle", coords: [75, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-20", price: 90 },
+      { shape: "circle", coords: [75, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-21", price: 90 },
+      { shape: "circle", coords: [75, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-22", price: 100 },
+      { shape: "circle", coords: [75, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-23", price: 100 },
+      { shape: "circle", coords: [50, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-24", price: 60 },
+      { shape: "circle", coords: [50, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-25", price: 70 },
+      { shape: "circle", coords: [50, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-26", price: 80 },
+      { shape: "circle", coords: [50, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-27", price: 80 },
+      { shape: "circle", coords: [25, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-28", price: 40 },
+      { shape: "circle", coords: [25, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-29", price: 40 },
+      { shape: "circle", coords: [25, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-30", price: 80 }
       
-      { shape: "circle", coords: [75, 60, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-18", onClick: () => handleSeatClick("6U-18") },
-      
-      { shape: "circle", coords: [75, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-19", onClick: () => handleSeatClick("6U-19") },
-      { shape: "circle", coords: [75, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-20", onClick: () => handleSeatClick("6U-20") },
-      { shape: "circle", coords: [75, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-21", onClick: () => handleSeatClick("6U-21") },
-      { shape: "circle", coords: [75, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-22", onClick: () => handleSeatClick("6U-22") },
-      { shape: "circle", coords: [75, 185, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-23", onClick: () => handleSeatClick("6U-23") },
-      
-      { shape: "circle", coords: [50, 85, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-24", onClick: () => handleSeatClick("6U-24") },
-      { shape: "circle", coords: [50, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-25", onClick: () => handleSeatClick("6U-25") },
-      { shape: "circle", coords: [50, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-26", onClick: () => handleSeatClick("6U-26") },
-      { shape: "circle", coords: [50, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-27", onClick: () => handleSeatClick("6U-27") },
-      
-      { shape: "circle", coords: [25, 135, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-28", onClick: () => handleSeatClick("6U-28") },
-      { shape: "circle", coords: [25, 110, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-29", onClick: () => handleSeatClick("6U-29") },
-      { shape: "circle", coords: [25, 160, 10], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "6U-30", onClick: () => handleSeatClick("6U-30") },
       
 
     ],
     "7U": [
-      { seatNumber: "7U-1", shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-1") },
-      { seatNumber: "7U-25", shape: "circle", coords: [35, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-25") },
-
-      { seatNumber: "7U-2", shape: "circle", coords: [110, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-2") },
-      { seatNumber: "7U-3", shape: "circle", coords: [135, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-3") },
-      { seatNumber: "7U-4", shape: "circle", coords: [110, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-4") },
-      { seatNumber: "7U-5", shape: "circle", coords: [135, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-5") },
-      { seatNumber: "7U-6", shape: "circle", coords: [110, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-6") },
-      { seatNumber: "7U-7", shape: "circle", coords: [85, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-7") },
-      { seatNumber: "7U-22", shape: "circle", coords: [60, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-22") },
-
-      { seatNumber: "7U-8", shape: "circle", coords: [135, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-8") },
-      { seatNumber: "7U-9", shape: "circle", coords: [110, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-9") },
-      { seatNumber: "7U-10", shape: "circle", coords: [85, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-10") },
-      { seatNumber: "7U-11", shape: "circle", coords: [135, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-11") },
-      { seatNumber: "7U-12", shape: "circle", coords: [110, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-12") },
-      { seatNumber: "7U-23", shape: "circle", coords: [85, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-23") },
-
-      { seatNumber: "7U-13", shape: "circle", coords: [85, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-13") },
-      { seatNumber: "7U-14", shape: "circle", coords: [60, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-14") },
-      { seatNumber: "7U-15", shape: "circle", coords: [135, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-15") },
-      { seatNumber: "7U-16", shape: "circle", coords: [110, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-16") },
-      { seatNumber: "7U-17", shape: "circle", coords: [85, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-17") },
-      { seatNumber: "7U-18", shape: "circle", coords: [60, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-18") },
-      { seatNumber: "7U-19", shape: "circle", coords: [85, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-19") },
-
-      { seatNumber: "7U-20", shape: "circle", coords: [135, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-20") },
-      { seatNumber: "7U-21", shape: "circle", coords: [110, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-21") },
-      { seatNumber: "7U-24", shape: "circle", coords: [110, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-24") },
-      { seatNumber: "7U-25", shape: "circle", coords: [135, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", onClick: () => handleSeatClick("7U-25") }
+      { seatNumber: "7U-1", shape: "circle", coords: [135, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 80 },
+      { seatNumber: "7U-26", shape: "circle", coords: [35, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 80 },
+    
+      { seatNumber: "7U-2", shape: "circle", coords: [110, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 80 },
+      { seatNumber: "7U-3", shape: "circle", coords: [135, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 110 },
+      { seatNumber: "7U-4", shape: "circle", coords: [110, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 110 },
+      { seatNumber: "7U-5", shape: "circle", coords: [135, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-6", shape: "circle", coords: [110, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-7", shape: "circle", coords: [85, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-22", shape: "circle", coords: [60, 75, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+    
+      { seatNumber: "7U-8", shape: "circle", coords: [135, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-9", shape: "circle", coords: [110, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-10", shape: "circle", coords: [85, 100, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-11", shape: "circle", coords: [135, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-12", shape: "circle", coords: [110, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+      { seatNumber: "7U-23", shape: "circle", coords: [85, 125, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 130 },
+    
+      { seatNumber: "7U-13", shape: "circle", coords: [85, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 80 },
+      { seatNumber: "7U-14", shape: "circle", coords: [60, 25, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 80 },
+      { seatNumber: "7U-15", shape: "circle", coords: [135, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 150 },
+      { seatNumber: "7U-16", shape: "circle", coords: [110, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 150 },
+      { seatNumber: "7U-17", shape: "circle", coords: [85, 150, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 150 },
+      { seatNumber: "7U-18", shape: "circle", coords: [60, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 110 },
+      { seatNumber: "7U-19", shape: "circle", coords: [85, 50, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 110 },
+    
+      { seatNumber: "7U-20", shape: "circle", coords: [135, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 140 },
+      { seatNumber: "7U-21", shape: "circle", coords: [110, 175, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 140 },
+      { seatNumber: "7U-24", shape: "circle", coords: [110, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 150 },
+      { seatNumber: "7U-25", shape: "circle", coords: [135, 200, 10], preFillColor: "rgba(63, 144, 236, 0.66)", price: 150 }
 
 
         
     ],
-    "8U": generateCircles(20,40,490,180,10,5, "8U"),
+    "8U": generateCircles(20,40,480,180,10,5, "8U"),
 
     "9U": [
         { shape: "circle", coords: [25, 20, 8], preFillColor: "rgba(63, 144, 236, 0.66)", seatNumber: "9U-1", onClick: () => handleSeatClick("9U-1") },
@@ -364,7 +372,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
   
     // Check if it's a seat click
     if (area.seatNumber) {
-      handleSeatClick(area.seatNumber);
+      handleSeatClick(area.seatNumber, area.price);
     }
   };
 
@@ -374,7 +382,9 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
   useEffect(() => {
     const handleSeatSelectionChange = () => {
       const seat = JSON.parse(localStorage.getItem("seat")) || "";
+      const price = JSON.parse(localStorage.getItem("price")) || 0;
       setSelectedSeat(seat);
+      setSeatPrice(price)
     };
 
     // Listen for the custom event
@@ -397,37 +407,54 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
     const areaMap = sectionMaps[selectedShapeId];
 
     return (
-      <div className="image-container">
+      <div className="image_container">
         <h3 className="selected_text">Selected Section: {selectedShapeId}</h3>
-        <div className="section_mapper">
         <ImageMapper
           src={imageUrl}
-          map={{ name: selectedShapeId, areas: areaMap }}
+          name={selectedShapeId}
+          areas={areaMap}
           onClick={handleClick}
           className="section_mapper"
-          
         />
-        </div>
       </div>
     );
   };
 
   return (
-    <div className="tour_map_con">
-      <div className="tour_left">
-        <button className="back_tourmain" onClick={handleClickButton}>← Select Tour Date</button>
-        <div className="select_text_con">
-          <h3 className="select_sec_text">Please Select a Section:</h3>
+    <div className="tour_page">
+      <button className="back_tourmain" onClick={handleClickButton}>← Select Tour Date</button>
+      <div className="tour_details">
+          <div className="venue_con">
+            <img className="amer_air" src={amer_airlines} />
+          </div>
+        <div className="tour_name_con">
+          
+          <div className="tour_det">
+            <h2>American Airlines Center</h2>
+            <h3>May 21, 2024</h3>
+            <h3>7:00 PM CST</h3>
+          </div>
+          
+        </div>
+        <div className="map_con">
+          <p>hi</p>
+        </div>
+      </div>
+      <div className="tour_map_con">
+        <div className="tour_left">
+          <div className="select_text_con">
+            <h3 className="select_sec_text">Please Select a Section:</h3>
+          </div>
+          <ImageMapper
+            src={Tour_Layout}
+            className="tour_layout"
+            name="tour-layout-map"
+            areas={areas}
+            onClick={handleClick}
+            width={958}
+          />
 
         </div>
-        <ImageMapper
-          src={Tour_Layout}
-          className="tour_layout"
-          map={map}
-          onClick={handleClick}
-          width={958}
-        />
-      </div>
       <div className="tour_right">
         <div className="seat_select">
 
@@ -451,7 +478,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
               </div>
               <div>
                 <p>Price</p>
-                <p><strong>$80</strong></p>
+                <p><strong>${seatPrice}</strong></p>
 
               </div>
             </div>
@@ -465,6 +492,7 @@ const circles3U = generateCirclesWithSlant(90, 7, 78, 200, 10, 5, slope, interce
 
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -16,6 +16,8 @@ import Media from "./pages/Media"
 import Contact from "./pages/Contact"
 import ShopDetails from "./pages/ShopDetails.jsx"
 import Checkout from "./pages/Checkout.jsx"
+import test from "./pages/test.jsx"
+
 import "./App.css"
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/shopdetails" element={<ShopDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/test" element={<test />} />
+
         </Routes>
         <Footer />
       </HashRouter>

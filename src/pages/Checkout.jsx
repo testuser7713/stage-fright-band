@@ -11,6 +11,7 @@ const Checkout = () => {
       const [showModal, setShowModal] = useState(false);
 
       const [seat, setSeat] = useState(null);
+      const[price, setPrice] = useState(null);
       
 
       const handlePlaceOrder = (e) => {
@@ -19,6 +20,7 @@ const Checkout = () => {
         localStorage.removeItem("seat");
         setCart([]);
         setSeat(null); // Clears the seat state
+        setPrice(null)
 
         setShowModal(true);
       };
@@ -35,8 +37,10 @@ const Checkout = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         const storedSeat = localStorage.getItem("seat"); 
         const cleanedSeat = storedSeat ? storedSeat.replace(/^"|"$/g, '') : null; 
+        const price = localStorage.getItem("price")
         setCart(storedCart);
         setSeat(cleanedSeat); 
+        setPrice(price)
       };
     
       // Effect to initialize cart and listen for storage changes
@@ -58,8 +62,9 @@ const Checkout = () => {
     
       const calculateTotal = () => {
         const baseTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-        const seatCost = seat ? 80 : 0; // Only add the seat cost if a seat is selected
-        return baseTotal + seatCost;  // Add the seat cost if applicable
+        const seatCost = seat ? Number(price) : 0; // Ensure price is a number
+        const total = seatCost + baseTotal
+        return total;  // Add the seat cost if applicable
       };
     
       const removeItem = (index) => {
@@ -205,7 +210,7 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="price_con2">
-                <p>$80</p>
+                <p>${price}</p>
               </div>
               <div>
                 <FontAwesomeIcon

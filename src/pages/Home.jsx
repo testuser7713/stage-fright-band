@@ -16,7 +16,7 @@ import Merch1 from "../assets/merch1.png"
 import Merch2 from "../assets/merch2.png"
 import Merch3 from "../assets/merch3.png"
 import Shop_Bar from "../components/Shop_Bar.jsx"
-import Background_Vid from "../assets/stage_edited.mp4"
+import Background_Vid from "../assets/stage_editedd.mp4"
 import red_smoke from "../assets/red_smoke.mp4"
 import members from "../assets/band_members.png"
 import Aout from "../components/Members.jsx"
@@ -24,6 +24,9 @@ import Aout from "../components/Members.jsx"
 
 function Home() {
     const navigate = useNavigate();
+
+
+    
     
     const [isFlipped, setIsFlipped] = useState(false);
     function flipCard() {
@@ -45,17 +48,18 @@ function Home() {
       }
     };
 
+    
+
     return (
         <div className="home_page">
             <div className="header_sec">
                 <div className="home_overlay">
-                    <video src={Background_Vid} autoPlay loop muted controls className="video" />
+                    <video src={Background_Vid} autoPlay loop muted className="video" />
                     <div className="text">
                         <h2 className=""><strong className="stage">STAGE</strong> <br></br><strong className="fright">FRIGHT</strong></h2>
                         
                     </div>
                 </div>
-                <img src={Band_Sil} className="band_sil"/>
 
             </div>
             <div className="out_now">
@@ -64,7 +68,9 @@ function Home() {
                         <h2 className="lost">LOST IN THE FIRE</h2>
                         <h3 className="out_now_text">Out Now</h3>
                     </div>
-                    <img src={Flame} className="flame" />
+                    {/*<img src={Flame} className="flame" /> */}
+                    <video src={red_smoke} autoPlay loop muted  className="flame" />
+
                     
                     <div className="albums_outer">
                         

@@ -22,8 +22,7 @@
 .tour_map_con {
     display: flex;
     flex-direction: row;
-    padding-top: 10rem;
-    height:50rem;
+    height:auto;
     background-color: black;
 }
 
@@ -43,17 +42,8 @@
     border: 1px solid green;
 }*/
 
-.section_mapper {
-    height: 15rem;
-    width: 15.5rem;
-}
 
-.section_mapper img{
-    width: auto;
-    height: 15.5rem;
-    margin-left: -0.25rem;
-    margin-top: -0.4rem;
-}
+
 
 .seat_details {
     color: white;
@@ -79,7 +69,15 @@
 .seat_select {
     top: 2rem;
     justify-content: center;
+    border:1px solid red;
+}
 
+.seat_select img{
+    height: 15.5rem;
+    width: auto;
+    margin-left: -0.25rem;
+    margin-top: -0.4rem;
+    border:1px solid yellow;
 }
 .selected_seat_main {
     justify-content: center;
@@ -172,3 +170,39 @@
     font-size: larger;
   }
 
+
+
+.tour_page {
+    background-color: black;
+    padding-top: 8rem;
+    font-family: 'Antonio';
+
+}
+
+
+.tour_details {
+    display: flex;
+    justify-content: space-between; /* Space out the two elements */
+    align-items: center;            /* Center vertically */
+    border: 1px solid green;
+}
+
+.tour_name_con {
+    flex-grow: 1;                   /* Take up remaining space */
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border: 1px solid red;
+    text-align: center;
+    font-size: larger;
+    justify-content: center;        /* Center content vertically */
+    align-items: center;            /* Center content horizontally */
+}
+
+.venue_con {
+    margin-right: auto;             /* Keep it to the left */
+}
+
+.amer_air {
+    height: 15rem;
+}

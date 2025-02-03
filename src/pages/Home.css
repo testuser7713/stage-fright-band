@@ -246,8 +246,8 @@ body {
 
 .flame {
     position: relative; /* Keep the flame positioned properly */
-    z-index: 1; /* Lower than .albums_outer */
-    transform: translate(0%, -50%) scale(2);
+    z-index: 0; /* Lower than .albums_outer */
+    transform: translate(-10%, -40%) scale(0.8);
     overflow: hidden;
     object-fit: cover;
     
@@ -259,19 +259,18 @@ body {
     align-items: center;
     position: absolute; /* Allow overlap */
     z-index: 10; /* Higher than .flame */
-    top: 17rem;
+    top: 20rem;
     width: 100%; /* Optional, adjust as needed */
     margin: 0 auto;
 }
 
 .albums {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
+    display: flex;
     gap: 5rem;
 }
 
 .album_item {
-    height: 22rem;
+    height: 24rem;
     /*border: 2px solid white; /* Add a border for debugging if needed */
 }
 
@@ -281,7 +280,7 @@ body {
     text-align: center; /* Center the text */
     margin-bottom: 0rem; /* Add space between text and albums */
 
-
+    z-index: 1000;
 
 
 }
@@ -324,7 +323,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0rem 0; /* Adjust padding as needed */
-    margin-top: -2.5rem;
+    margin-top: -35rem;
     max-height: fit-content;
     position: relative;
 }
