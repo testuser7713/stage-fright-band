@@ -16,6 +16,8 @@
     font-size: 20px;
 }
 
+
+
 .tour_map, .image-display-container {
     margin-top: 10rem;
 }
@@ -47,6 +49,14 @@
 
 .seat_details {
     color: white;
+    width: 100%;
+}
+
+
+.slider_con {
+    justify-content: space-evenly;
+    display: flex;
+    padding-bottom: 20px;
 }
 
 .tour_map_con {
@@ -69,7 +79,11 @@
 .seat_select {
     top: 2rem;
     justify-content: center;
-    border:1px solid red;
+}
+
+.seat_select_con {
+    display: flex;
+    justify-content: center;
 }
 
 .seat_select img{
@@ -77,34 +91,41 @@
     width: auto;
     margin-left: -0.25rem;
     margin-top: -0.4rem;
-    border:1px solid yellow;
+
 }
+
+
 .selected_seat_main {
     justify-content: center;
     display: flex;
     font-size: 2rem;
 }
-
-.seat_sub {
+.seat_sub_con {
+    display: flex;
+    justify-content: center;
     width: 100%;
+}
+.seat_sub {
     display: grid;
-    gap: 2rem;
-    grid-template-columns: 33% 33% 33%;
-    padding: 0 6rem;
+    width: 100%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
     font-size: 1.5rem;
 }
+
+
 
 .seat_sub div p{
     justify-self: center;
 }
 .seat_sub div p strong{
-    color: #ffffff;
+    color: #f8c66a;
     font-size: 2.5rem;
-    text-shadow:
-    0 0 2px #f6f2e9,
-    0 0 1px #f0ddb4,
-    0 0 0px #f5daa7,
-    0 0 4px #f8c66a;
+
+}
+
+.align-right {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .back_tourmain {
@@ -181,18 +202,21 @@
 
 
 .tour_details {
-    display: flex;
-    justify-content: space-between; /* Space out the two elements */
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
     align-items: center;            /* Center vertically */
-    border: 1px solid green;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+    
 }
+
+
 
 .tour_name_con {
     flex-grow: 1;                   /* Take up remaining space */
     display: flex;
     flex-direction: column;
     color: white;
-    border: 1px solid red;
     text-align: center;
     font-size: larger;
     justify-content: center;        /* Center content vertically */
@@ -204,5 +228,91 @@
 }
 
 .amer_air {
-    height: 15rem;
+    width:100%;
 }
+
+.p-4 {
+    color: white;
+
+}
+
+.select_but {
+    font-family: Antonio;
+    font-size: 15px;
+}
+
+.seat_ind {
+    padding-bottom: 15px;
+}
+
+.slider_text {
+    display: flex;
+    justify-content: center;
+}
+
+.slider {
+    color: #c61c1d;
+}
+
+.slider {
+    appearance: none; /* Remove default styling */
+    height: 30px; /* Adjust height as needed */
+    background: transparent; /* Track background color */
+    border-radius: 5px;
+    outline: none;
+    margin: 0 10px;
+    transition: background-color 0.3s ease-in-out; /* Add smooth transition */
+
+}
+
+.slider::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, #c61c1d, #c61c1d); /* Track gradient color */
+    border-radius: 5px;
+    height: 10px;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none; /* Remove default thumb styling */
+    width: 15px;
+    height: 15px;
+    background: #c61c1d; /* Thumb color */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff; /* Optional border */
+    margin-top: -2.5px; /* Center the thumb */
+}
+
+.slider::-moz-range-track {
+    background: linear-gradient(90deg, #c61c1d, #c61c1d);
+    border-radius: 5px;
+    height: 6px;
+}
+
+.slider::-moz-range-thumb {
+    height: 12px;
+    background: #c61c1d;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.slider::-ms-track {
+    background: transparent; /* Hide default styling */
+    border-color: transparent;
+    color: transparent;
+}
+
+.slider::-ms-fill-lower {
+    background: linear-gradient(90deg, #c61c1d, #c61c1d);
+    border-radius: 5px;
+}
+
+.slider::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background: #c61c1d;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+

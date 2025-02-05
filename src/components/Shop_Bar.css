@@ -14,6 +14,9 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     z-index: 1;
+    color: white;
+    font-family: Antonio;
+    font-size: larger;
 }
 
 .menu_sec::-webkit-scrollbar {
@@ -32,6 +35,10 @@
     justify-content: center;
     cursor: pointer;
 
+}
+
+.card1 img {
+    width: 400px;
 }
 
 /*.left_arrow, .right_arrow {

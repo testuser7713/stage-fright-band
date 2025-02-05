@@ -430,3 +430,33 @@ body {
 .shop_headerr {
     color: white;
 }
+
+.shop_navbar_con {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000000;
+    top: 11%;
+    background-color: #808080;
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+}
+
+.shop_navbar button{
+    margin: 0 30px;
+    appearance: none;
+    background-color: #808080;
+    border: none;
+    color: white;
+    font-family: Antonio;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.shop_navbar button:hover {
+    cursor: pointer;
+    color:#f5cb7f;
+    transition: 0.3s ease-in-out;
+}

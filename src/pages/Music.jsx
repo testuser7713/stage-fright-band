@@ -271,38 +271,48 @@ export default function Music() {
                                     </div>
                 
                                 </div>*/}
+                <div className="poll_con">
+                <div className="poll">
+                <iframe
+                src="https://strawpoll.com/embed/XOgOVdDPon3"
+                style={{ width: '100%', height: '500px', border: 'none' }}
+                title="Poll"
+                ></iframe>
+                </div>
+            </div>
 
             </div>
             <div className="streaming">
-                    <div className="stream_con">
-                        <div className="stream_text_con">
-                            <h2 className="stream_text">STREAM NOW</h2>
-                        </div>
-                        <div className="stream_icons_con">
-                        <div className="stream_icons">
-                            
-                            <div className="stream_row">
-                                <FontAwesomeIcon className="icon" icon={faSpotify} />
-                                <p>Spotify</p>
-                            </div>
-                            <div className="stream_row">
-                                <FontAwesomeIcon className="icon" icon={faItunes} />
-                                <p>iTunes</p>
-                            </div>
-                            <div className="stream_row">
-                                <FontAwesomeIcon className="icon" icon={faApple} />
-                                <p>Apple Music</p>
-                            </div>
-                            <div className="stream_row">
-                                <FontAwesomeIcon className="icon" icon={faSoundcloud} />
-                                <p>SoundCloud</p>
-                            </div>
-                        </div>
-                        </div>
+                <div className="stream_con">
+                    <div className="stream_text_con">
+                        <h2 className="stream_text">STREAM NOW</h2>
+                    </div>
+                    <div className="stream_icons_con">
+                    <div className="stream_icons">
                         
+                        <div className="stream_row">
+                            <FontAwesomeIcon className="icon" icon={faSpotify} />
+                            <p>Spotify</p>
+                        </div>
+                        <div className="stream_row">
+                            <FontAwesomeIcon className="icon" icon={faItunes} />
+                            <p>iTunes</p>
+                        </div>
+                        <div className="stream_row">
+                            <FontAwesomeIcon className="icon" icon={faApple} />
+                            <p>Apple Music</p>
+                        </div>
+                        <div className="stream_row">
+                            <FontAwesomeIcon className="icon" icon={faSoundcloud} />
+                            <p>SoundCloud</p>
+                        </div>
+                    </div>
                     </div>
                     
                 </div>
+                    
+            </div>
+
 
         </div>
     );

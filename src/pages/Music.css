@@ -353,6 +353,8 @@ input:nth-of-type(5):checked ~ main#carousel {
 .streaming {
     padding: 2rem 4rem;
     position: relative;
+    justify-content: center;
+    align-content: center;
     
 }
 
@@ -525,4 +527,14 @@ input:nth-of-type(5):checked ~ main#carousel {
 
 .music_merch_right_con {
     font-family: 'Antonio';
+}
+
+.poll_con {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.poll {
+    width: 75%;
 }

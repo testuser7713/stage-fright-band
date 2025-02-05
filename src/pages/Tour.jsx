@@ -16,6 +16,7 @@ import img1L from "../assets/1L.png";
 import img2L from "../assets/2L.png";
 import "./Tour.css";
 import amer_airlines from "../assets/amer_airlines.jpg"
+import Amer_Air from "../components/AmerAir.jsx"
 
 
 const generateCircles = (xStart, yStart, width, height, radius, spacing, section) => { 
@@ -81,10 +82,16 @@ const Tour = ({seat}) => {
 
 
 const handleSeatClick = (seat, price) => {
-  localStorage.setItem("seat", JSON.stringify(seat));
-  localStorage.setItem("price", price)
+  const shapeId = seat.split('-')[0];
+
+  setSelectedShapeId(shapeId);
   setSelectedSeat(seat)
   setSeatPrice(price)
+
+  
+  localStorage.setItem("seat", JSON.stringify(seat));
+  localStorage.setItem("price", price)
+
   window.dispatchEvent(new (Event("seatSelectionChanged")))
 };
 
@@ -377,6 +384,37 @@ const sectionMaps = {
   };
 
   
+  const allCircles = [];
+  allCircles.push(...sectionMaps["1U"]);
+  allCircles.push(...sectionMaps["2U"]);
+  allCircles.push(...sectionMaps["3U"]);
+  allCircles.push(...sectionMaps["4U"]);
+  allCircles.push(...sectionMaps["6U"]);
+  allCircles.push(...sectionMaps["7U"]);
+  allCircles.push(...sectionMaps["8U"]);
+  allCircles.push(...sectionMaps["9U"]);
+  allCircles.push(...sectionMaps["1L"]);
+  allCircles.push(...sectionMaps["2L"]);
+
+  const [sortedCircles, setSortedCircles] = useState([...allCircles]);
+  const [sliderValue, setSliderValue] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  useEffect(() => {
+    const sorted = [...allCircles].sort((a, b) => a.price - b.price);
+    const step = Math.floor(sorted.length / 10) || 1;
+    const startIndex = sliderValue * step;
+    const endIndex = startIndex + step;
+    setSortedCircles(sorted.slice(startIndex, endIndex));
+    setMaxPrice(sorted[sorted.length - 1].price);  // Set the max price for the current sortedCircles
+  }, [sliderValue, allCircles]);
+
+  const handleSliderChange = (event) => {
+    setSliderValue(parseInt(event.target.value, 10));
+  };
+
+  const selectedPrice = sortedCircles[0]?.price || 0;  // Get the first circle's price as the selected price
+
 
   
   useEffect(() => {
@@ -408,7 +446,9 @@ const sectionMaps = {
 
     return (
       <div className="image_container">
+        <div className="img_sub">
         <h3 className="selected_text">Selected Section: {selectedShapeId}</h3>
+        <div className="section_con">
         <ImageMapper
           src={imageUrl}
           name={selectedShapeId}
@@ -416,28 +456,31 @@ const sectionMaps = {
           onClick={handleClick}
           className="section_mapper"
         />
+        </div>
+        </div>
       </div>
     );
   };
 
   return (
     <div className="tour_page">
-      <button className="back_tourmain" onClick={handleClickButton}>← Select Tour Date</button>
+      <button className="back_tourmain" onClick={handleClickButton}>
+        ← Select Tour Date
+      </button>
       <div className="tour_details">
-          <div className="venue_con">
-            <img className="amer_air" src={amer_airlines} />
-          </div>
+        <div className="venue_con">
+          <img className="amer_air" src={amer_airlines} />
+        </div>
         <div className="tour_name_con">
-          
           <div className="tour_det">
             <h2>American Airlines Center</h2>
             <h3>May 21, 2024</h3>
             <h3>7:00 PM CST</h3>
+            <h3>2500 Victory Ave, Dallas, TX 75219</h3>
           </div>
-          
         </div>
         <div className="map_con">
-          <p>hi</p>
+          <Amer_Air />
         </div>
       </div>
       <div className="tour_map_con">
@@ -453,48 +496,106 @@ const sectionMaps = {
             onClick={handleClick}
             width={958}
           />
-
         </div>
-      <div className="tour_right">
-        <div className="seat_select">
-
-          {renderSelectedImage()}
-        </div>
-          <div className="seat_details">
-            {selectedSeat && (
-              <h3 className="selected_seat_main">Selected Seat: {selectedSeat}</h3>
-            )}
-          
-          {selectedSeat && (
-          <div>
-            <div className="seat_sub">
-              <div>
-                <p>Section<br></br></p>
-                <p><strong>{section}</strong></p>
+        <div className="tour_right">
+          <div className="seat_select">
+            {renderSelectedImage()}
+          </div>
+          <div className={`seat_con ${selectedSeat && selectedShapeId ? 'align-right' : 'align-center'}`}>
+            <div className="seat_details">
+              {selectedSeat && selectedShapeId && (
+                <h3 className="selected_seat_main">Selected Seat: {selectedSeat}</h3>
+              )}
+              {selectedSeat && selectedShapeId && (
+                <div className="seat_sub_con">
+                  <div className="">
+                    <div className="seat_sub">
+                      <div>
+                        <p>Section<br /></p>
+                        <p><strong>{section}</strong></p>
+                      </div>
+                      <div>
+                        <p>Number<br /> </p>
+                        <p><strong>{actualSeat}</strong></p>
+                      </div>
+                      <div>
+                        <p>Price</p>
+                        <p><strong>${seatPrice}</strong></p>
+                      </div>
+                    </div>
+                    <div className="add_cart_con">
+                      <button
+                        className="checkout_but"
+                        onClick={() => navigate("/checkout")}
+                      >
+                        Proceed to Checkout
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="p-4">
+              <div className="slider_text">
+                <h2>Find Cheapest Seats</h2>
               </div>
               <div>
-                <p>Number<br></br> </p>
-                <p><strong>{actualSeat}</strong></p>
-              </div>
-              <div>
-                <p>Price</p>
-                <p><strong>${seatPrice}</strong></p>
+                <div className="slider_con_con">
+                <div className="slider_con">
+                  <span>${selectedPrice}</span> {/* Display selected price on the left */}
+                  <input
+                    type="range"
+                    min="0"
+                    max="9"
+                    step="1"
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    className="slider"
+                  />
+                  <span>${maxPrice}</span> {/* Display max price on the right */}
+                </div>
+                </div>
 
+                <div
+                  style={{
+                    maxHeight: '300px', /* Set the max height of the list */
+                    overflowY: 'auto', /* Enable vertical scrolling */
+                    border: '1px solid rgb(45, 45, 45)', /* Optional: Add border for styling */
+                    padding: '15px', /* Optional: Add padding */
+                    borderRadius: '10px'
+                  }}
+                >
+                  {sortedCircles.map((circle) => (
+                    <div key={circle.seatNumber} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="seat_ind">
+                        Seat {circle.seatNumber}: ${circle.price}
+                      </div>
+                      <button
+                        className="select_but"
+                        onClick={() => handleSeatClick(circle.seatNumber, circle.price)}
+                        style={{
+                          marginLeft: '5px', /* Space between seat info and button */
+                          padding: '5px 10px',
+                          backgroundColor: '#c61c1d', /* Green button */
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Select
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            <div className="add_cart_con">
-              <button className="checkout_but" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
           </div>
         </div>
-
-
-        )}
-
-        </div>
       </div>
-    </div>
+
     </div>
   );
-};
-
-export default Tour;
+}  
+  export default Tour;
+  

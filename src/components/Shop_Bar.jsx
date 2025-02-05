@@ -18,6 +18,11 @@ import bundle_back from "../assets/bundle_back.png"
 import bundle_front from "../assets/bundle_front.png"
 import fanny_front from "../assets/fanny_front.png"
 import fanny_back from "../assets/fanny_back.png"
+import shirt6 from "../assets/shirt6.png"
+import bundle_frontt from "../assets/bundle_front.png"
+
+
+
 
 import album1 from "../assets/albums.png"
 import album2 from "../assets/middle_alb.png"
@@ -60,45 +65,31 @@ export default function menuBar() {
         
         <div className="card1" onClick={() => handleNavigate("/shop")}>
           
-            <img src={Merch2} alt="Specials" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
-          
+            <img src={shirt6} alt="Specials" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
+            <h2>SHIRTS</h2>
         </div>
         <div className="card1">
         
-          <img src={Merch1} loading="lazy" onClick={() => handleNavigate("/shop")} alt="Appetizers" />
-          
+          <img src={Merch2} loading="lazy" onClick={() => handleNavigate("/shop")} alt="Appetizers" />
+          <h2>LONGSLEEVES</h2>
         
         </div>
         <div className="card1">
         
-          <img src={Merch3} alt="Burgers" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
-        
+          <img src={bundle_frontt} alt="Burgers" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
+          <h2>ACCESSORIES</h2>
         </div>
         <div className="card1">
           
-            <img src={cap_front} alt="Pizza" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
-          
+            <img src={album3} alt="Pizza" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
+            <h2>MUSIC</h2>
         </div>
         <div className="card1">
           
-            <img src={tokens} alt="Tex" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
-          
+            <img src={record3} alt="Tex" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
+            <h2>EXCLUSIVE RECORDS</h2>
         </div>
-        <div className="card1">
-          
-            <img src={fanny_front} alt="Deserts" loading="lazy" onClick={() => handleNavigate("/shop")} ></img>
-          
-        </div>
-        <div className="card1">
-          
-            <img src={bundle_front} alt="Drinks" loading="lazy" onClick={() => handleNavigate("/shop")} ></img>
-          
-        </div>
-        <div className="card1">
-          
-            <img src={toteTwo} alt="Sides" loading="lazy" onClick={() => handleNavigate("/shop")}></img>
-          
-        </div>
+
         <h5 className="border"></h5>
       </div>
 

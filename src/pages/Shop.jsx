@@ -48,6 +48,19 @@ function Shop() {
         navigate("/shopdetails")
       };
 
+    const shirtsRef = useRef(null);
+    const longsleevesRef = useRef(null);
+    const accessoriesRef = useRef(null);
+    const musicRef = useRef(null);
+    const recordsRef = useRef(null);
+    
+    const scrollToSection = (ref) => {
+        const yOffset = -160; // Adjust this value for the desired offset
+        const y = ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    };
+
     return (
         <div className="shop_page">
 
@@ -58,6 +71,16 @@ function Shop() {
                 </div>
 
             </div>
+            <div className="shop_navbar_con">
+            <div className="shop_navbar">
+                <button onClick={() => scrollToSection(shirtsRef)}>Shirts</button>
+                <button onClick={() => scrollToSection(longsleevesRef)}>Longsleeves</button>
+                <button onClick={() => scrollToSection(accessoriesRef)}>Accessories</button>
+                <button onClick={() => scrollToSection(musicRef)}>Music</button>
+                <button onClick={() => scrollToSection(recordsRef)}>Exclusive Records</button>
+            </div>
+            </div>
+
             <div className="top_con">
             <CartSidebar />
                 <div className="top_section">
@@ -66,12 +89,12 @@ function Shop() {
                     </div>
                     <div className="shop_items">
                         <div className="shop_header_con">
-                            <h3 className="shop_header">SHIRTS</h3>
+                            <h3 className="shop_header" id="shirts" ref={shirtsRef}>SHIRTS</h3>
                         </div>
                         
                         <Shop_Bar></Shop_Bar>
                         <div className="shop_header_con">
-                            <h3 className="shop_header">LONGSLEEVES</h3>
+                            <h3 className="shop_header" id="longsleeves" ref={longsleevesRef}>LONGSLEEVES</h3>
                         </div>
                         <Longsleeve_Bar></Longsleeve_Bar>
                     </div>
@@ -86,7 +109,7 @@ function Shop() {
                 <div className="mid_section">
                     <div>
                     <div className="acc_conn">
-                        <h3 className="shop_header">ACCESSORIES</h3>
+                        <h3 className="shop_header" id="accessories" ref={accessoriesRef}>ACCESSORIES</h3>
                     </div>
 
                     
@@ -169,7 +192,7 @@ function Shop() {
                 
                 <div className="music_right_con">
                     <div className="acc_conn">
-                        <h3 className="shop_headerr">MUSIC</h3>
+                        <h3 className="shop_headerr" id="music" ref={musicRef}>MUSIC</h3>
                     </div>
                     <div className="music_merch_right_con">
                         
@@ -213,7 +236,7 @@ function Shop() {
 
             </div>
             <div className="acc_con">
-                <h3 className="shop_headerr">EXCLUSIVE RECORDS</h3>
+                <h3 className="shop_headerr" id="exclusive-records" ref={recordsRef}>EXCLUSIVE RECORDS</h3>
             </div>
             <div className="records_con">
                 
