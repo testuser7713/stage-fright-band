@@ -11,7 +11,6 @@ import Timer from "../components/Timer.jsx"
 import Smoky from "../assets/smoky.mp4"
 import Stripe from "../assets/stripe (2).png"
 import Spotlight from "../assets/spotlight.png"
-import ReactCardFlip from "react-card-flip";
 import Merch1 from "../assets/merch1.png"
 import Merch2 from "../assets/merch2.png"
 import Merch3 from "../assets/merch3.png"
