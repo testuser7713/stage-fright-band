@@ -1,3 +1,4 @@
+import SQLiteComponent from "./SQLiteComponent";
 
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -118,7 +119,7 @@ const ShopDetails = () => {
   const [selectedSize, setSelectedSize] = useState(null); // State for selected size
   const [selectedColor, setSelectedColor] = useState(null); // State for selected color
   const navigate = useNavigate();
-
+  const [fetchedNumber, setFetchedNumber] = useState(null);
 
   useEffect(() => {
     const storedItemId = JSON.parse(localStorage.getItem("clickedItem"));
@@ -151,7 +152,16 @@ const ShopDetails = () => {
     }
   }, [navigate, items, sizes, itemColors, itemImages]);
   
-  
+
+  // ? Fetch `number` column from SQLite when "Add to Cart" is clicked
+  const fetchItemNumber = async () => {
+    if (sqliteRef.current && sqliteRef.current.fetchDataByText) {
+      const numberValue = await sqliteRef.current.fetchDataByText(item.id);
+      setFetchedNumber(numberValue);
+      return numberValue;
+    }
+    return null;
+  };  
 
   const handleAddToCart = () => {
     if (!item) {
@@ -166,6 +176,10 @@ const ShopDetails = () => {
       alert("Please select a color.");
       return;
     }
+
+    // ? Fetch number value before adding to cart
+    const itemNumber = await fetchItemNumber();
+
   
     let selectedItemImage = item.image;
     if (itemColors[item.id] && selectedColor) {
@@ -194,6 +208,8 @@ const ShopDetails = () => {
   
     localStorage.setItem("cart", JSON.stringify(storedCart));
     window.dispatchEvent(new Event("cartUpdated"));
+    
+	alert(`Added "${item.name}" to cart!\nFetched Number: ${itemNumber}`);    
   };
   
 
@@ -203,6 +219,7 @@ const ShopDetails = () => {
 
   return (
     <div className="item-details">
+    <SQLiteComponent ref={sqliteRef} />
       <CartSidebar />
       <div className="back_con">
         <button className="back_shop" onClick={() => navigate("/shop")}>
