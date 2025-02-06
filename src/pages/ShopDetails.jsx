@@ -163,7 +163,8 @@ const ShopDetails = () => {
     return null;
   };  
 
-  const handleAddToCart = () => {
+  //const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!item) {
       alert("Item not found.");
       return;
