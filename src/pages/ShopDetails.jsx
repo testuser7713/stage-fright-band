@@ -113,6 +113,7 @@ const items = [
 
 
 const ShopDetails = () => {
+  const sqliteRef = useRef(null);	
   const [item, setItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState(null);
@@ -120,6 +121,7 @@ const ShopDetails = () => {
   const [selectedColor, setSelectedColor] = useState(null); // State for selected color
   const navigate = useNavigate();
   const [fetchedNumber, setFetchedNumber] = useState(null);
+  
 
   useEffect(() => {
     const storedItemId = JSON.parse(localStorage.getItem("clickedItem"));
