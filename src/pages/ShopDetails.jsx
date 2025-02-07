@@ -166,7 +166,7 @@ const ShopDetails = () => {
   };  
   
 	const compareNumbers = async () => {
-	  alert(`checking ${fetchedNumber}`)
+	  alert(`checking inv ${inventory}`)
 	  if (fetchedNumber > quantity) {
 	  	return true;
 	  }
