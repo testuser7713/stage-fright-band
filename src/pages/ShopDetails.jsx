@@ -164,6 +164,19 @@ const ShopDetails = () => {
     }
     return null;
   };  
+  
+	const compareNumbers = async () => {
+	  if (fetchedNumber > quantity) {
+	  }
+	  else if (fetchedNumber < quantity) {
+		alert(`Please select the quantity less than or equal to: ${inventory}`);
+	  }
+	  else {
+	  	alert(`Please  same `);
+	  }
+	};	
+  
+  
 
   //const handleAddToCart = () => {
   const handleAddToCart = async () => {
@@ -183,23 +196,14 @@ const ShopDetails = () => {
     // ? Fetch number value before adding to cart
     const inventory = await fetchItemNumber();
 	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
-	
 	alert(`Added to cart quantity: ${quantity}`);
+	
+	await compareNumbers();
 	
 	const inv = Number(inventory);
   	const quat = Number(quantity);
 	
-	const compareNumbers = () => {
-	  if (inv > quat) {
-	  }
-	  else if (inv < quat) {
-		alert(`Please select the quantity less than or equal to: ${inventory}`);
-	  }
-	  else {
-	  	alert(`Please  same `);
-	  }
-	};	
-	
+
   
     let selectedItemImage = item.image;
     if (itemColors[item.id] && selectedColor) {
