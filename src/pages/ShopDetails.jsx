@@ -166,12 +166,12 @@ const ShopDetails = () => {
     return null;
   };  
   
-	const compareNumbers = () => {
-	  if (fetchedNumber > quantity) {
+	const compareNumbers = (inventory) => {
+	  if (inventory > quantity) {
 	  	return true;
 	  }
-	  else if (fetchedNumber < quantity) {
-		alert(`Please select the quantity less than or equal to: ${fetchedNumber}`);
+	  else if (inventory < quantity) {
+		alert(`Please select the quantity less than or equal to: ${inventory}`);
 		return false;
 	  }
 	  else {
@@ -196,12 +196,11 @@ const ShopDetails = () => {
     }
 
     // ? Fetch number value before adding to cart
-    //const inventory = await fetchItemNumber();
     const inventory = fetchItemNumber();
 	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
 	alert(`Added to cart quantity: ${quantity}`);
 	
-	//const check = await compareNumbers();
+	//const check = await compareNumbers(inventory);
 	const check =  compareNumbers();
 
 	
