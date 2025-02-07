@@ -159,7 +159,8 @@ const ShopDetails = () => {
   //const fetchItemNumber = async () => {
   const fetchItemNumber =  () => {
     if (sqliteRef.current && sqliteRef.current.fetchDataByText) {
-      const numberValue = await sqliteRef.current.fetchDataByText(item.id);
+      //const numberValue = await sqliteRef.current.fetchDataByText(item.id);
+      const numberValue =  sqliteRef.current.fetchDataByText(item.id);
       setFetchedNumber(numberValue);
       return numberValue;
     }
