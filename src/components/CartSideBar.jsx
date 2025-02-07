@@ -61,7 +61,7 @@ const CartModal = () => {
 
 		  cart.forEach((item, index) => {
 			console.log(`Updating DB for item ${index + 1}: ${item.id}, Quantity: ${item.quantity}`);
-			alert(`detail... ${item.id}`)
+    		alert(`Inventory qantity will be reduced for ${item.id} by ${item.quantity}`);			
 			sqliteRef.current.updateNumberByText(item.id, item.quantity);
 		  });
 		}
@@ -69,7 +69,6 @@ const CartModal = () => {
   
   
   const handleProceed = (cart) => {
-    alert(`Function executed before navigation!`);
     handleUpdate(cart)
     navigate("/checkout"); 
   };  

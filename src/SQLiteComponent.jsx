@@ -45,6 +45,27 @@ const SQLiteComponent = forwardRef((props, ref) => {
               database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt6", 5]);
               database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt7", 5]);
 
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt8", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt9", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt10", 5]);
+			  
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["toteOne", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["toteTwo", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["cap", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["tokens", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["bundle", 5]);
+			  
+
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["fanny", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["vinyl", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["manuscript", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["cd", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["ignition_vinyl", 5]);
+
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["lif_vinyl", 5]);
+			  database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["surged_vinyl", 5]);
+
+
               saveToIndexedDB(database);
             }
 
