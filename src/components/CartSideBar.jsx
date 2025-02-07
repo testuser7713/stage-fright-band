@@ -53,6 +53,24 @@ const CartModal = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save changes to localStorage
   };
 
+	const handleUpdate = (cart) => {
+		if (sqliteRef.current && sqliteRef.current.updateNumberByText) {
+
+		  cart.forEach((item, index) => {
+			console.log(`Updating DB for item ${index + 1}: ${item.id}, Quantity: ${item.quantity}`);
+			alert(`detail... ${item.id}`)
+			sqliteRef.current.updateNumberByText(item.id, item.quantity);
+		  });
+	}
+  
+  
+  const handleProceed = (cart) => {
+    alert(`Function executed before navigation!`);
+    handleUpdate(cart)
+    navigate("/checkout"); 
+  };  
+  
+
   return (
     <>
       <div className="cart-icon" onClick={toggleModal}>
@@ -90,6 +108,8 @@ const CartModal = () => {
                 <div className="price_con">
                   <p>${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
+                
+                
                 <div className="trash_con">
                   <FontAwesomeIcon
                     className="trash"
@@ -103,8 +123,8 @@ const CartModal = () => {
         )}
         <p className="total-price">Total: ${calculateTotal()}</p>
         <div className="proceed_but_con">
-          <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
-
+          // <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+			<button className="proceed" onClick={handleProceed}> Proceed to Checkout</button>
         </div>
 
       </Modal>

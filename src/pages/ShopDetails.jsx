@@ -199,8 +199,6 @@ const ShopDetails = () => {
     const inventory = fetchItemNumber();
 	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
 	alert(`Added to cart quantity: ${quantity}`);
-	
-	//const check = await compareNumbers(inventory);
 	const check =  compareNumbers(inventory);
 
 	
