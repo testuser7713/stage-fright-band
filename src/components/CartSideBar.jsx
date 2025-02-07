@@ -1,4 +1,4 @@
-import SQLiteComponent from "../SQLiteComponent";
+
 import React, { useState, useEffect, useRef } from "react";
 
 import Modal from "react-modal";
@@ -7,7 +7,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom"
 import shop_bag from "../assets/shop_bag (1).png"
-
+import SQLiteComponent from "../SQLiteComponent";
 
 
 Modal.setAppElement("#root"); // Ensures accessibility by linking the modal to your app's root div.
@@ -128,7 +128,9 @@ const CartModal = () => {
         <p className="total-price">Total: ${calculateTotal()}</p>
         <div className="proceed_but_con">
           //<button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
-			<button className="proceed" onClick={handleProceed}>Proceed to Checkout</button>
+	          <button className="proceed" onClick={() => handleProceed(cart)}>
+	            Proceed to Checkout
+          	  </button>
         </div>
 
       </Modal>
