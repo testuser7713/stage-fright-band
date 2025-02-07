@@ -123,8 +123,8 @@ const CartModal = () => {
         )}
         <p className="total-price">Total: ${calculateTotal()}</p>
         <div className="proceed_but_con">
-          // <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
-			<button className="proceed" onClick={handleProceed}> Proceed to Checkout</button>
+           <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+			// <button className="proceed" onClick={handleProceed}> Proceed to Checkout</button>
         </div>
 
       </Modal>
@@ -133,3 +133,8 @@ const CartModal = () => {
 };
 
 export default CartModal;
+
+
+
+
+
