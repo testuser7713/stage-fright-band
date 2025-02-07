@@ -166,11 +166,11 @@ const ShopDetails = () => {
   };  
   
 	const compareNumbers = async () => {
-	  alert(`starting`);	
 	  if (fetchedNumber > quantity) {
 	  }
 	  else if (fetchedNumber < quantity) {
 		alert(`Please select the quantity less than or equal to: ${fetchedNumber}`);
+		return false
 	  }
 	  else {
 	  	alert(`Please  same `);
@@ -199,7 +199,7 @@ const ShopDetails = () => {
 	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
 	alert(`Added to cart quantity: ${quantity}`);
 	
-	await compareNumbers();
+	const check = await compareNumbers();
 
 	
 
@@ -229,8 +229,14 @@ const ShopDetails = () => {
       });
     }
   
-    localStorage.setItem("cart", JSON.stringify(storedCart));
-    window.dispatchEvent(new Event("cartUpdated"));
+  	if (check)
+  	{
+    	localStorage.setItem("cart", JSON.stringify(storedCart));
+    	window.dispatchEvent(new Event("cartUpdated"));
+    }
+    else
+    {}
+    
     
 	    
   };
