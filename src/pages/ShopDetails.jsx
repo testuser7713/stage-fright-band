@@ -166,10 +166,11 @@ const ShopDetails = () => {
   };  
   
 	const compareNumbers = async () => {
+	  alert(`starting`);	
 	  if (fetchedNumber > quantity) {
 	  }
 	  else if (fetchedNumber < quantity) {
-		alert(`Please select the quantity less than or equal to: ${inventory}`);
+		alert(`Please select the quantity less than or equal to: ${fetchedNumber}`);
 	  }
 	  else {
 	  	alert(`Please  same `);
@@ -199,9 +200,7 @@ const ShopDetails = () => {
 	alert(`Added to cart quantity: ${quantity}`);
 	
 	await compareNumbers();
-	
-	const inv = Number(inventory);
-  	const quat = Number(quantity);
+
 	
 
   
