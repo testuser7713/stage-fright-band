@@ -56,7 +56,7 @@ const CartModal = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save changes to localStorage
   };
 
-<!-- 
+/*
 	const handleUpdate = (cart) => {
 		if (sqliteRef.current && sqliteRef.current.updateNumberByText) {
 
@@ -74,7 +74,7 @@ const CartModal = () => {
     handleUpdate(cart)
     navigate("/checkout"); 
   };  
--->  
+*/  
   
 
   return (
