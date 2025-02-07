@@ -196,6 +196,7 @@ const ShopDetails = () => {
 		alert(`Please select the quantity less than or equal to: ${inventory}`);
 	  }
 	  else {
+	  	alert(`Please  same `);
 	  }
 	};	
 	
