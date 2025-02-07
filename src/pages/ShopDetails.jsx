@@ -167,13 +167,14 @@ const ShopDetails = () => {
   
 	const compareNumbers = async () => {
 	  if (fetchedNumber > quantity) {
+	  	return true;
 	  }
 	  else if (fetchedNumber < quantity) {
 		alert(`Please select the quantity less than or equal to: ${fetchedNumber}`);
-		return false
+		return false;
 	  }
 	  else {
-	  	alert(`Please  same `);
+	  	return true;
 	  }
 	};	
   
