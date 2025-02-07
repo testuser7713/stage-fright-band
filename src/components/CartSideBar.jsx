@@ -1,3 +1,5 @@
+import SQLiteComponent from "../SQLiteComponent";
+
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./CartSideBar.css";
@@ -11,6 +13,7 @@ import shop_bag from "../assets/shop_bag (1).png"
 Modal.setAppElement("#root"); // Ensures accessibility by linking the modal to your app's root div.
 
 const CartModal = () => {
+  const sqliteRef = useRef(null);	
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
@@ -53,8 +56,30 @@ const CartModal = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save changes to localStorage
   };
 
+
+	const handleUpdate = (cart) => {
+		if (sqliteRef.current && sqliteRef.current.updateNumberByText) {
+
+		  cart.forEach((item, index) => {
+			console.log(`Updating DB for item ${index + 1}: ${item.id}, Quantity: ${item.quantity}`);
+			alert(`detail... ${item.id}`)
+			sqliteRef.current.updateNumberByText(item.id, item.quantity);
+		  });
+		}
+		}
+  
+  
+  const handleProceed = (cart) => {
+    alert(`Function executed before navigation!`);
+    handleUpdate(cart)
+    navigate("/checkout"); 
+  };  
+  
+  
+
   return (
     <>
+      <SQLiteComponent ref={sqliteRef} />
       <div className="cart-icon" onClick={toggleModal}>
         <img className="shop_bag" src={shop_bag} />
       </div>
