@@ -65,7 +65,7 @@ const CartModal = () => {
 			sqliteRef.current.updateNumberByText(item.id, item.quantity);
 		  });
 		}
-		}
+	}
   
   
   const handleProceed = (cart) => {
@@ -79,6 +79,7 @@ const CartModal = () => {
   return (
     <>
       <div className="cart-icon" onClick={toggleModal}>
+       <SQLiteComponent ref={sqliteRef} />
         <img className="shop_bag" src={shop_bag} />
       </div>
       <Modal
