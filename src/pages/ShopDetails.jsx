@@ -156,7 +156,8 @@ const ShopDetails = () => {
   
 
   // ? Fetch `number` column from SQLite when "Add to Cart" is clicked
-  const fetchItemNumber = async () => {
+  //const fetchItemNumber = async () => {
+  const fetchItemNumber =  () => {
     if (sqliteRef.current && sqliteRef.current.fetchDataByText) {
       const numberValue = await sqliteRef.current.fetchDataByText(item.id);
       setFetchedNumber(numberValue);
@@ -165,8 +166,7 @@ const ShopDetails = () => {
     return null;
   };  
   
-	const compareNumbers = async () => {
-	  alert(`checking inv ${inventory}`)
+	const compareNumbers = () => {
 	  if (fetchedNumber > quantity) {
 	  	return true;
 	  }
@@ -181,8 +181,8 @@ const ShopDetails = () => {
   
   
 
-  //const handleAddToCart = () => {
-  const handleAddToCart = async () => {
+  const handleAddToCart = () => {
+  //const handleAddToCart = async () => {
     if (!item) {
       alert("Item not found.");
       return;
@@ -197,11 +197,13 @@ const ShopDetails = () => {
     }
 
     // ? Fetch number value before adding to cart
-    const inventory = await fetchItemNumber();
+    //const inventory = await fetchItemNumber();
+    const inventory = fetchItemNumber();
 	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
 	alert(`Added to cart quantity: ${quantity}`);
 	
-	const check = await compareNumbers(inventory);
+	//const check = await compareNumbers();
+	const check =  compareNumbers();
 
 	
 
