@@ -1,6 +1,6 @@
 import SQLiteComponent from "../SQLiteComponent";
+import React, { useState, useEffect, useRef } from "react";
 
-import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./CartSideBar.css";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -78,8 +78,8 @@ const CartModal = () => {
 
   return (
     <>
+     <SQLiteComponent ref={sqliteRef} />
       <div className="cart-icon" onClick={toggleModal}>
-       <SQLiteComponent ref={sqliteRef} />
         <img className="shop_bag" src={shop_bag} />
       </div>
       <Modal
@@ -127,8 +127,8 @@ const CartModal = () => {
         )}
         <p className="total-price">Total: ${calculateTotal()}</p>
         <div className="proceed_but_con">
-          <button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
-
+          //<button className="proceed" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
+			<button className="proceed" onClick={handleProceed}>Proceed to Checkout</button>
         </div>
 
       </Modal>
