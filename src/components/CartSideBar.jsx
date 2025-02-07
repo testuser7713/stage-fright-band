@@ -65,7 +65,8 @@ const CartModal = () => {
 			alert(`detail... ${item.id}`)
 			sqliteRef.current.updateNumberByText(item.id, item.quantity);
 		  });
-	}
+		}
+		}
   
   
   const handleProceed = (cart) => {
