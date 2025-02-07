@@ -158,7 +158,6 @@ const ShopDetails = () => {
   // ? Fetch `number` column from SQLite when "Add to Cart" is clicked
   const fetchItemNumber =  () => {
     if (sqliteRef.current && sqliteRef.current.fetchDataByText) {
-      alert(`Please item-id...  ${item.id}`);	
       const numberValue =  sqliteRef.current.fetchDataByText(item.id);
       setFetchedNumber(numberValue);
       return numberValue;
