@@ -56,7 +56,7 @@ const CartModal = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save changes to localStorage
   };
 
-
+<!-- 
 	const handleUpdate = (cart) => {
 		if (sqliteRef.current && sqliteRef.current.updateNumberByText) {
 
@@ -74,12 +74,12 @@ const CartModal = () => {
     handleUpdate(cart)
     navigate("/checkout"); 
   };  
-  
+-->  
   
 
   return (
     <>
-      <SQLiteComponent ref={sqliteRef} />
+      // <SQLiteComponent ref={sqliteRef} />
       <div className="cart-icon" onClick={toggleModal}>
         <img className="shop_bag" src={shop_bag} />
       </div>
