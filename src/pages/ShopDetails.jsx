@@ -182,14 +182,14 @@ const ShopDetails = () => {
 
     // ? Fetch number value before adding to cart
     const inventory = await fetchItemNumber();
-	//alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
+	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
 	
-	//alert(`Added to cart quantity: ${quantity}`);
+	alert(`Added to cart quantity: ${quantity}`);
 	
-	const compareNumbers = (inventory, quantity) => {
-	  if (inventory > quantity) {
+	const compareNumbers = (${inventory}, ${quantity}) => {
+	  if (${inventory} > ${quantity}) {
 	  }
-	  else if (inventory < quantity) {
+	  else if (${inventory} < ${quantity}) {
 		alert(`Please select the quantity less than or equal to: ${inventory}`);
 	  }
 	  else {
