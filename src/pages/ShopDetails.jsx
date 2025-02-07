@@ -196,7 +196,7 @@ const ShopDetails = () => {
 
     // ? Fetch number value before adding to cart
     const inventory = fetchItemNumber();
-	alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
+	alert(`Added "${item.name}" to cart!\nCurrent Inventory for this item in stock is: ${inventory}`);
 	alert(`Added to cart quantity: ${quantity}`);
 	const check =  compareNumbers(inventory);
 

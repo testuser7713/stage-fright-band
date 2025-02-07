@@ -61,7 +61,7 @@ const CartModal = () => {
 
 		  cart.forEach((item, index) => {
 			console.log(`Updating DB for item ${index + 1}: ${item.id}, Quantity: ${item.quantity}`);
-    		alert(`Inventory qantity will be reduced for ${item.id} by ${item.quantity}`);			
+    		alert(`Inventory quantity will be reduced for ${item.id} by ${item.quantity}`);			
 			sqliteRef.current.updateNumberByText(item.id, item.quantity);
 		  });
 		}
