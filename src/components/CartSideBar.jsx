@@ -1,3 +1,5 @@
+import SQLiteComponent from "../SQLiteComponent";
+
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./CartSideBar.css";
@@ -11,6 +13,7 @@ import shop_bag from "../assets/shop_bag (1).png"
 Modal.setAppElement("#root"); // Ensures accessibility by linking the modal to your app's root div.
 
 const CartModal = () => {
+  const sqliteRef = useRef(null);	
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
@@ -75,6 +78,7 @@ const CartModal = () => {
 
   return (
     <>
+      <SQLiteComponent ref={sqliteRef} />
       <div className="cart-icon" onClick={toggleModal}>
         <img className="shop_bag" src={shop_bag} />
       </div>
