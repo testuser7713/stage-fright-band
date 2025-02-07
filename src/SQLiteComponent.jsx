@@ -37,13 +37,13 @@ const SQLiteComponent = forwardRef((props, ref) => {
                 "CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, number INTEGER);"
               );
 
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt1", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt2", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt3", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt4", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt5", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt6", 10]);
-              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt7", 10]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt1", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt2", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt3", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt4", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt5", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt6", 5]);
+              database.run("INSERT INTO messages (text, number) VALUES (?, ?)", ["shirt7", 5]);
 
               saveToIndexedDB(database);
             }
