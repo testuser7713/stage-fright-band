@@ -186,10 +186,13 @@ const ShopDetails = () => {
 	
 	alert(`Added to cart quantity: ${quantity}`);
 	
-	const compareNumbers = (inventory, quantity) => {
-	  if (inventory > quantity) {
+	const inv = Number(inventory);
+  	const quat = Number(quantity);
+	
+	const compareNumbers = () => {
+	  if (inv > quat) {
 	  }
-	  else if (inventory < quantity) {
+	  else if (inv < quat) {
 		alert(`Please select the quantity less than or equal to: ${inventory}`);
 	  }
 	  else {
