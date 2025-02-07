@@ -156,10 +156,9 @@ const ShopDetails = () => {
   
 
   // ? Fetch `number` column from SQLite when "Add to Cart" is clicked
-  //const fetchItemNumber = async () => {
   const fetchItemNumber =  () => {
     if (sqliteRef.current && sqliteRef.current.fetchDataByText) {
-      //const numberValue = await sqliteRef.current.fetchDataByText(item.id);
+      alert(`Please item-id...  ${item.id}`);	
       const numberValue =  sqliteRef.current.fetchDataByText(item.id);
       setFetchedNumber(numberValue);
       return numberValue;
@@ -183,7 +182,6 @@ const ShopDetails = () => {
   
 
   const handleAddToCart = () => {
-  //const handleAddToCart = async () => {
     if (!item) {
       alert("Item not found.");
       return;
