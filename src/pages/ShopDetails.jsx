@@ -181,8 +181,10 @@ const ShopDetails = () => {
     }
 
     // ? Fetch number value before adding to cart
-    const itemNumber = await fetchItemNumber();
-
+    const inventory = await fetchItemNumber();
+	//alert(`Added "${item.name}" to cart!\nFetched Number: ${inventory}`);
+	
+	alert(`Added to cart quantity: ${quantity}`);
   
     let selectedItemImage = item.image;
     if (itemColors[item.id] && selectedColor) {
@@ -212,7 +214,7 @@ const ShopDetails = () => {
     localStorage.setItem("cart", JSON.stringify(storedCart));
     window.dispatchEvent(new Event("cartUpdated"));
     
-	alert(`Added "${item.name}" to cart!\nFetched Number: ${itemNumber}`);    
+	    
   };
   
 
