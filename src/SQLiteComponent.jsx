@@ -10,7 +10,7 @@ const SQLiteComponent = forwardRef((props, ref) => {
       try {
         const SQL = await window.initSqlJs({
           // locateFile: (file) => `${process.env.PUBLIC_URL}/sql-wasm.wasm`,
-          locateFile: (file) => `sql-wasm.wasm`,
+          locateFile: (file) => `/sql-wasm.wasm`,
         });
 
         const request = indexedDB.open("MyDatabase", 1);
