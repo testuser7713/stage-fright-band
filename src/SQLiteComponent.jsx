@@ -84,15 +84,43 @@ const SQLiteComponent = forwardRef((props, ref) => {
     }
   };
 
-  const updateNumberByText = (text, newNumber) => {
-    if (!db || !text || !newNumber) return;
+  
 
-    const query = "UPDATE messages SET number = ? WHERE text = ?";
-    db.run(query, [parseInt(newNumber, 10), text]);
+const updateNumberByText = (text, newNumber) => {
+  if (!db || !text || newNumber === undefined) {
+    console.warn("Database not ready or missing parameters.");
+    return;
+  }
 
-    saveToIndexedDB(db);
-    console.log(`Updated "${text}" to number: ${newNumber}`);
-  };
+  const querySelect = "SELECT number FROM messages WHERE text = ?";
+  const result = db.exec(querySelect, [text]);
+
+  if (!result.length || !result[0].values.length) {
+    console.warn(`No matching item found for: ${text}`);
+    return;
+  }
+
+  const currentNumber = result[0].values[0][0]; // ? Extract current number value
+
+  const updatedNumber = currentNumber - parseInt(newNumber, 10);
+
+  if (updatedNumber < 0) {
+    console.warn(`Warning: Resulting number for "${text}" is negative. Setting to 0.`);
+    updatedNumber = 0; // ? Prevent negative values
+  }
+
+  const queryUpdate = "UPDATE messages SET number = ? WHERE text = ?";
+  db.run(queryUpdate, [updatedNumber, text]);
+
+  saveToIndexedDB(db); // ? Save changes to IndexedDB for persistence
+
+};
+  
+  
+  
+  
+  
+  
 
   useImperativeHandle(ref, () => ({
     fetchDataByText,
