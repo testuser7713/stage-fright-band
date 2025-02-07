@@ -201,7 +201,7 @@ const ShopDetails = () => {
 	alert(`Added to cart quantity: ${quantity}`);
 	
 	//const check = await compareNumbers(inventory);
-	const check =  compareNumbers();
+	const check =  compareNumbers(inventory);
 
 	
 
