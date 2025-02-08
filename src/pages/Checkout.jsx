@@ -4,6 +4,9 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom"
 import tour_cover from "../assets/lif_tour.png"
+
+import emailjs from "@emailjs/browser";
+
 const Checkout = () => {
       const [isOpen, setIsOpen] = useState(false);
       const [cart, setCart] = useState([]);
@@ -16,6 +19,10 @@ const Checkout = () => {
 
       const handlePlaceOrder = (e) => {
         e.preventDefault(); 
+        
+	    const emailSent = sendOrderEmail();
+	    if (!emailSent) return; // ? Stop if email failed
+        
         localStorage.removeItem("cart");
         localStorage.removeItem("seat");
         setCart([]);
@@ -23,6 +30,8 @@ const Checkout = () => {
         setPrice(null)
 
         setShowModal(true);
+        
+        
       };
 
       const handleModalClose = () => {
@@ -87,6 +96,62 @@ const Checkout = () => {
   const handlePrevStep = () => {
     setStep(1); // Go back to the billing section
   };
+
+
+
+   // ? Synchronous-like Email Sending Function (No async/await)
+   const sendOrderEmail = () => {
+     if (cart.length === 0) {
+       alert("Your cart is empty!");
+       return false;
+     }
+ 
+     if (!email) {
+       alert("Please enter your email before placing the order.");
+       return false;
+     }
+ 
+     // ? Format cart details for email
+     const orderDetails = cart
+       .map(item => `Item: ${item.id} | Quantity: ${item.quantity} | Price: $${item.price}`)
+       .join("\n");
+ 
+     const emailParams = {
+       customer_email: email,
+       order_details: orderDetails,
+     };
+ 
+     let isEmailSent = false; // ? Used for synchronous blocking simulation
+ 
+     emailjs.send(
+       "service_0nf5fva", // Replace with your EmailJS service ID
+       "template_4yauwe7", // Replace with your EmailJS template ID
+       emailParams,
+       "wsFh8lzacXiaIQ0iv" // Replace with your EmailJS user ID (public key)
+     ).then(
+       (response) => {
+         alert("Order email sent successfully!");
+         console.log("Email Response:", response);
+         isEmailSent = true; // ? Mark email as sent
+       }
+     ).catch(
+       (error) => {
+         console.error("Error sending email:", error);
+         alert("Failed to send email.");
+         isEmailSent = false; // ? Mark email as failed
+       }
+     );
+ 
+     // ? Simulating synchronous behavior (Non-blocking in JS)
+     while (!isEmailSent) {
+       console.log("Waiting for email to be sent..."); // Keeps checking until email is sent
+     }
+ 
+     return isEmailSent;
+   };
+
+
+
 
   return (
     <div className="checkout_page">
