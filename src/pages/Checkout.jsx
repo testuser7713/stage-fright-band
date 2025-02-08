@@ -15,7 +15,7 @@ const Checkout = () => {
 
       const [seat, setSeat] = useState(null);
       const[price, setPrice] = useState(null);
-      
+      const [email, setEmail] = useState(""); 
 
       const handlePlaceOrder = (e) => {
         e.preventDefault(); 
@@ -171,7 +171,9 @@ const Checkout = () => {
                     <label className="checkout-form-label" htmlFor="fname"><i className="fa fa-user"></i> Full Name</label>
                     <input type="text" id="fname" name="firstname" placeholder="John M. Doe" className="checkout-form-input" />
                     <label className="checkout-form-label" htmlFor="email"><i className="fa fa-envelope"></i> Email</label>
-                    <input type="text" id="email" name="email" placeholder="john@example.com" className="checkout-form-input" />
+                    
+                    <input type="text" id="email" name="email" placeholder="john@example.com" className="checkout-form-input" value={email} onChange={(e) => setEmail(e.target.value)/>
+                    
                     <label className="checkout-form-label" htmlFor="adr"><i className="fa fa-address-card-o"></i> Address</label>
                     <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" className="checkout-form-input" />
                     <label className="checkout-form-label" htmlFor="city"><i className="fa fa-institution"></i> City</label>
