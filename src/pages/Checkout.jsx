@@ -60,7 +60,7 @@ const Checkout = () => {
 
 		emailjs.send(
 		  "service_0nf5fva", // Replace with your EmailJS service ID
-		  "template_ndjiit6", // Replace with your EmailJS template ID
+		  "template_2qaec0r", // Replace with your EmailJS template ID
 		  emailParams,
 		  "wsFh8lzacXiaIQ0iv" // Replace with your EmailJS user ID (public key)
 		).then(
