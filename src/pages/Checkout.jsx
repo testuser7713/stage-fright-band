@@ -33,7 +33,7 @@ const Checkout = () => {
       };
 
 
-	  const sendOrderEmail = () => {
+	  const sendOrderEmail = (callback) => {
 		if (cart.length === 0) {
 		  alert("Your cart is empty!");
 		  return false;
@@ -74,7 +74,7 @@ const Checkout = () => {
 			callback(false);
 		  }
 		);
- };
+   };
 
 
 
@@ -162,8 +162,7 @@ const Checkout = () => {
 
                     <input  type="text" id="email" name="email" placeholder="john@example.com" className="checkout-form-input" value={email} onChange={(e) => setEmail(e.target.value)} />
                       
-                    // <input type="text" id="email" name="email" placeholder="john@example.com" className="checkout-form-input" />
-                    
+                   
                     <label className="checkout-form-label" htmlFor="adr"><i className="fa fa-address-card-o"></i> Address</label>
                     <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" className="checkout-form-input" />
                     <label className="checkout-form-label" htmlFor="city"><i className="fa fa-institution"></i> City</label>
