@@ -19,8 +19,8 @@ const Checkout = () => {
       const handlePlaceOrder = (e) => {
         e.preventDefault(); 
 
-		const emailSent = sendOrderEmail();
-	    if (!emailSent) return;
+		 sendOrderEmail((emailSent) => {
+		    if (!emailSent) return;
         
         localStorage.removeItem("cart");
         localStorage.removeItem("seat");
@@ -29,6 +29,7 @@ const Checkout = () => {
         setPrice(null)
 
         setShowModal(true);
+ 		});        
       };
 
 
@@ -64,23 +65,16 @@ const Checkout = () => {
 		  (response) => {
 			alert("Order email sent successfully!");
 			console.log("Email Response:", response);
-			isEmailSent = true; // ? Mark email as sent
+			callback(true);
 		  }
 		).catch(
 		  (error) => {
 			console.error("Error sending email:", error);
 			alert("Failed to send email.");
-			isEmailSent = false; // ? Mark email as failed
+			callback(false);
 		  }
 		);
-
-		// ? Simulating synchronous behavior (Non-blocking in JS)
-		while (!isEmailSent) {
-		  console.log("Waiting for email to be sent..."); // Keeps checking until email is sent
-		}
-
-		return isEmailSent;
-	  };
+ };
 
 
 
