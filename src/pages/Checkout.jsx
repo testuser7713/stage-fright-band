@@ -10,6 +10,7 @@ const Checkout = () => {
       const [isOpen, setIsOpen] = useState(false);
       const [cart, setCart] = useState([]);
 	  const [email, setEmail] = useState(""); // ? Store user inputted email      
+	  const [firstname, setFirstname] = useState("");
       const navigate = useNavigate();
       const [showModal, setShowModal] = useState(false);
       const [seat, setSeat] = useState(null);
@@ -52,6 +53,7 @@ const Checkout = () => {
 		const emailParams = {
 		  customer_email: email,
 		  order_details: orderDetails,
+		  firstname:  firstname,
 		};
 
 		let isEmailSent = false; // ? Used for synchronous blocking simulation
@@ -156,10 +158,12 @@ const Checkout = () => {
                 {step === 1 ? (
                   <div className="checkout-form-col-50">
                     <h3 className="checkout-form-section-heading">Billing Address</h3>
-                    <label className="checkout-form-label" htmlFor="fname"><i className="fa fa-user"></i> Full Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="John M. Doe" className="checkout-form-input" />
-                    <label className="checkout-form-label" htmlFor="email"><i className="fa fa-envelope"></i> Email</label>
+                    <label className="checkout-form-label" htmlFor="firstname"><i className="fa fa-user"></i> Full Name</label>
+                    
 
+					<input  type="text" id="firstname" name="firstname" placeholder="John M. Doe" className="checkout-form-input" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+					
+                    <label className="checkout-form-label" htmlFor="email"><i className="fa fa-envelope"></i> Email</label>
                     <input  type="text" id="email" name="email" placeholder="john@example.com" className="checkout-form-input" value={email} onChange={(e) => setEmail(e.target.value)} />
                       
                    
